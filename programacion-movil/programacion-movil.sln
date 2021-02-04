@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unidad-1", "unidad-1", "{92CD001F-9CED-4F78-A491-274ACB5DFB99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokemon-api", "unidad-1\pokemon-api\pokemon-api.csproj", "{78054BDE-A775-4F4D-81D5-253C3B50FCE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokemon-api", "unidad-1\pokemon-api\pokemon-api.csproj", "{4A517743-9224-4036-A69F-C036711D3AC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{78054BDE-A775-4F4D-81D5-253C3B50FCE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{78054BDE-A775-4F4D-81D5-253C3B50FCE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{78054BDE-A775-4F4D-81D5-253C3B50FCE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{78054BDE-A775-4F4D-81D5-253C3B50FCE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A517743-9224-4036-A69F-C036711D3AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A517743-9224-4036-A69F-C036711D3AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A517743-9224-4036-A69F-C036711D3AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A517743-9224-4036-A69F-C036711D3AC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{78054BDE-A775-4F4D-81D5-253C3B50FCE4} = {92CD001F-9CED-4F78-A491-274ACB5DFB99}
+		{4A517743-9224-4036-A69F-C036711D3AC5} = {92CD001F-9CED-4F78-A491-274ACB5DFB99}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F059F8C7-8709-4266-949F-EEAF5584D75A}

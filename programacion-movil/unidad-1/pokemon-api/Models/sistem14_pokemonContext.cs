@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
-namespace pokemon_api.Models
+namespace pokemon_api.models
 {
     public partial class sistem14_pokemonContext : DbContext
     {
@@ -24,10 +24,10 @@ namespace pokemon_api.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            /*if (!optionsBuilder.IsConfigured)
+            /* if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseMySql("server=204.93.167.23;database=sistem14_pokemon;user=sistem14_admin;password=admin2020", x => x.ServerVersion("5.6.46-mysql"));
-            }*/
+            } */
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

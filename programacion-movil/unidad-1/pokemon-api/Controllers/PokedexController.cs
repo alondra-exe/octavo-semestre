@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace pokemon_api.Controllers
+namespace pokemon_api.controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PokedexController : ControllerBase
+    public class pokedexController : ControllerBase
     {
         // Regresa el número, nombre, tipo e imagen del pokémon.
         [HttpGet]

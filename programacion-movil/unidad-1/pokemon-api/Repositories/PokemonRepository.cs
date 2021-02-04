@@ -2,20 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using pokemon_api.Models;
+using pokemon_api.models;
 
-namespace pokemon_api.Repositories
+namespace pokemon_api.repositories
 {
-    public class PokemonRepository
+    public class pokemonRepository
     {
         public sistem14_pokemonContext Context { get; set; }
-        public PokemonRepository(sistem14_pokemonContext context)
+        public pokemonRepository(sistem14_pokemonContext context)
         {
             Context = context;
         }
         public IEnumerable<Pokemon> GetList(int pagina)
         {
-            return ;
+            return;
         }
 
         public Pokemon GetPokemon(int id)
