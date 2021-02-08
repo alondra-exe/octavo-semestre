@@ -13,9 +13,12 @@ namespace pokemon_api.repositories
         {
             Context = context;
         }
+        const int tamaño = 50;
         public IEnumerable<Pokemon> GetList(int pagina)
         {
-            return;
+            int inf = tamaño * (pagina - 1) + 1;
+            //return Context.Pokemon.Skip(inf).Take(tamaño);
+            return Context.Pokemon.Where(x => x.Id >= inf && x.Id < inf + tamaño);
         }
 
         public Pokemon GetPokemon(int id)
