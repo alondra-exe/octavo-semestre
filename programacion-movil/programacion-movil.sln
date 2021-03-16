@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pokedex", "unidad-1\pokedex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "proyecto", "proyecto", "{C821B5C9-92BC-4773-B85D-15C9F5B066E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tablas-api", "unidad-1\proyecto\tablas-api\tablas-api.csproj", "{AFC685BB-E923-4557-9C1A-5A6FCE63D6B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "tablas-api", "unidad-1\proyecto\tablas-api\tablas-api.csproj", "{AFC685BB-E923-4557-9C1A-5A6FCE63D6B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

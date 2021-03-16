@@ -5,5 +5,10 @@
     <RootNamespace>tablas_api</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 
 </Project>
