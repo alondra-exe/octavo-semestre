@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using proyecto1_api.Models;
+using proyecto1_api.Repositories;
 
 namespace proyecto1_api.Controllers
 {
@@ -13,97 +14,85 @@ namespace proyecto1_api.Controllers
     [ApiController]
     public class AlumnosController : ControllerBase
     {
-        private readonly sistem14_proyecto1_alondra_jesmeContext _context;
+        public sistem14_proyecto1_alondra_jesmeContext Context { get; }
 
         public AlumnosController(sistem14_proyecto1_alondra_jesmeContext context)
         {
-            _context = context;
+            Context = context;
         }
 
-        // GET: api/Alumnos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Alumno>>> GetAlumno()
+        public IEnumerable<Alumno> Get()
         {
-            return await _context.Alumno.ToListAsync();
+            AlumnosRepository r = new AlumnosRepository(Context);
+            return r.GetAll();
         }
 
-        // GET: api/Alumnos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Alumno>> GetAlumno(int id)
+        public IActionResult Get(int id)
         {
-            var alumno = await _context.Alumno.FindAsync(id);
-
-            if (alumno == null)
-            {
-                return NotFound();
-            }
-
-            return alumno;
-        }
-
-        // PUT: api/Alumnos/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAlumno(int id, Alumno alumno)
-        {
-            if (id != alumno.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(alumno).State = EntityState.Modified;
-
             try
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!AlumnoExists(id))
+                AlumnosRepository r = new AlumnosRepository(Context);
+                var alumno = r.Get(id);
+                if (alumno == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    throw;
+                    return Ok(alumno);
                 }
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Alumnos
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Alumno>> PostAlumno(Alumno alumno)
-        {
-            _context.Alumno.Add(alumno);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetAlumno", new { id = alumno.Id }, alumno);
-        }
-
-        // DELETE: api/Alumnos/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Alumno>> DeleteAlumno(int id)
-        {
-            var alumno = await _context.Alumno.FindAsync(id);
-            if (alumno == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
+        }
 
-            _context.Alumno.Remove(alumno);
-            await _context.SaveChangesAsync();
+        [HttpPost]
+        public IActionResult Post([FromBody] Alumno alumno)
+        {
+            try
+            {
+                AlumnosRepository r = new AlumnosRepository(Context);
+                if (r.IsValid(alumno, out List<string> errores))
+                {
+                    r.Insert(alumno);
+                    return Ok(alumno);
+                }
+                else
+                    return BadRequest(errores);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
-            return alumno;
+        [HttpPut("{id}")]
+        public IActionResult Put([FromBody] Alumno alumno)
+        {
+            try
+            {
+                AlumnosRepository r = new AlumnosRepository(Context);
+                if (r.IsValid(alumno, out List<string> errores))
+                {
+                    r.Update(alumno);
+                    return Ok(alumno);
+                }
+                else
+                    return BadRequest(errores);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         private bool AlumnoExists(int id)
         {
-            return _context.Alumno.Any(e => e.Id == id);
+            return Context.Alumno.Any(e => e.Id == id);
         }
     }
 }
