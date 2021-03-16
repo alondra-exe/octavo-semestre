@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using proyecto1_api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ namespace proyecto1_api.Repositories
 {
     public abstract class Repository<T> where T : class
     {
-        public DbContext Context { get; set; }
+        public sistem14_proyecto1_alondra_jesmeContext Context { get; set; }
         public virtual T Get(object id)
         {
             return Context.Find<T>(id);
