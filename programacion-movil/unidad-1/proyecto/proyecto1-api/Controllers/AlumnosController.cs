@@ -11,23 +11,23 @@ namespace proyecto1_api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AlumnoesController : ControllerBase
+    public class AlumnosController : ControllerBase
     {
         private readonly sistem14_proyecto1_alondra_jesmeContext _context;
 
-        public AlumnoesController(sistem14_proyecto1_alondra_jesmeContext context)
+        public AlumnosController(sistem14_proyecto1_alondra_jesmeContext context)
         {
             _context = context;
         }
 
-        // GET: api/Alumnoes
+        // GET: api/Alumnos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Alumno>>> GetAlumno()
         {
             return await _context.Alumno.ToListAsync();
         }
 
-        // GET: api/Alumnoes/5
+        // GET: api/Alumnos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Alumno>> GetAlumno(int id)
         {
@@ -41,7 +41,7 @@ namespace proyecto1_api.Controllers
             return alumno;
         }
 
-        // PUT: api/Alumnoes/5
+        // PUT: api/Alumnos/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -73,7 +73,7 @@ namespace proyecto1_api.Controllers
             return NoContent();
         }
 
-        // POST: api/Alumnoes
+        // POST: api/Alumnos
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -85,7 +85,7 @@ namespace proyecto1_api.Controllers
             return CreatedAtAction("GetAlumno", new { id = alumno.Id }, alumno);
         }
 
-        // DELETE: api/Alumnoes/5
+        // DELETE: api/Alumnos/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Alumno>> DeleteAlumno(int id)
         {

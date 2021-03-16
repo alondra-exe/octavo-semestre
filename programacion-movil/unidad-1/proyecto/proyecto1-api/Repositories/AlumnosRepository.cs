@@ -13,6 +13,27 @@ namespace proyecto1_api.Repositories
             Context = context;
         }
 
+        public override Alumno Get(object id)
+        {
+            return Context.Alumno.FirstOrDefault(x => x.Id == (int)id && x.Eliminado == 0);
+        }
+
+        public override IEnumerable<Alumno> GetAll()
+        {
+            return Context.Alumno.Where(x => x.Eliminado == 0).OrderBy(x => x.Apellido);
+        }
+
+        public override void Delete(Alumno entity)
+        {
+            if (Context.Progreso.Any(x => x.IdAlumno == entity.Id))
+            {
+                entity.Eliminado = 1;
+                Update(entity);
+            }
+            else
+                base.Delete(entity);
+        }
+
         public override bool IsValid(Alumno entity, out List<string> errors)
         {
             errors = new List<string>();
