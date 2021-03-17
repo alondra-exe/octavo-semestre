@@ -70,7 +70,7 @@ namespace proyecto1_api.Controllers
             }
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
         public IActionResult Put([FromBody] Alumno alumno)
         {
             try
@@ -78,7 +78,13 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    r.Update(alumno);
+                    var obj = r.Get(alumno.Id);
+                    if (obj == null)
+                        return NotFound();
+                    obj.Nombre = alumno.Nombre;
+                    obj.Apellido = alumno.Apellido;
+                    obj.Contrasena = alumno.Contrasena;
+                    r.Update(obj);
                     return Ok(alumno);
                 }
                 else
@@ -90,9 +96,36 @@ namespace proyecto1_api.Controllers
             }
         }
 
-        private bool AlumnoExists(int id)
+        [HttpDelete("{id}")]
+        private IActionResult Delete(int id)
         {
-            return Context.Alumno.Any(e => e.Id == id);
+            AlumnosRepository r = new AlumnosRepository(Context);
+            var alumno = r.Get(id);
+            if (alumno == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                r.Delete(alumno);
+                return Ok();
+            }
+        }
+
+        [HttpDelete]
+        private IActionResult Delete([FromBody] Alumno a)
+        {
+            AlumnosRepository r = new AlumnosRepository(Context);
+            var alumno = r.Get(a.Id);
+            if (alumno==null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                r.Delete(alumno);
+                return Ok();
+            }
         }
     }
 }
