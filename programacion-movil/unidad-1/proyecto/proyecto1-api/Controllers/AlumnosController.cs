@@ -63,6 +63,7 @@ namespace proyecto1_api.Controllers
                 {
                     alumno.Contrasena = System.Text.Encoding.Unicode.GetString(
                         Convert.FromBase64String(alumno.Contrasena));
+                    alumno.Id = 0;
                     Alumno a = new Alumno
                     {
                         Nombre = alumno.Nombre,
@@ -72,7 +73,6 @@ namespace proyecto1_api.Controllers
                         IdDocente = alumno.IdDocente,
                         Eliminado = 0
                     };
-                    alumno.Id = 0;
                     r.Insert(alumno);
                     return Ok(alumno);
                 }
