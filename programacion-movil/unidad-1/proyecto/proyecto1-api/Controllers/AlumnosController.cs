@@ -153,7 +153,7 @@ namespace proyecto1_api.Controllers
 
 
         [HttpDelete("{id}")]
-        private IActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             AlumnosRepository r = new AlumnosRepository(Context);
             var alumno = r.Get(id);
@@ -169,7 +169,7 @@ namespace proyecto1_api.Controllers
         }
 
         [HttpDelete]
-        private IActionResult Delete([FromBody] Alumno a)
+        public IActionResult Delete([FromBody] Alumno a)
         {
             AlumnosRepository r = new AlumnosRepository(Context);
             var alumno = r.Get(a.Id);
