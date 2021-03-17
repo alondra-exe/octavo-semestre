@@ -22,10 +22,10 @@ namespace proyecto1_api.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Alumno> Get()
+        public IActionResult Get()
         {
             AlumnosRepository r = new AlumnosRepository(Context);
-            return r.GetAll();
+            return Ok(r.GetAll().Select(x => new { x.Id, x.Nombre, x.Apellido, x.Correo, x.Contrasena, x.IdDocente }));
         }
 
         [HttpGet("{id}")]
@@ -58,6 +58,7 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
+                    alumno.Id = 0;
                     r.Insert(alumno);
                     return Ok(alumno);
                 }
@@ -117,7 +118,7 @@ namespace proyecto1_api.Controllers
         {
             AlumnosRepository r = new AlumnosRepository(Context);
             var alumno = r.Get(a.Id);
-            if (alumno==null)
+            if (alumno == null)
             {
                 return NotFound();
             }
