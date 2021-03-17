@@ -7,7 +7,7 @@ using proyecto1_api.Models;
 
 namespace proyecto1_api.Repositories
 {
-    public class ProgresoRepository:Repository<Progreso>
+    public class ProgresoRepository : Repository<Progreso>
     {
         public ProgresoRepository(sistem14_proyecto1_alondra_jesmeContext context)
         {
@@ -19,12 +19,14 @@ namespace proyecto1_api.Repositories
             return Context.Progreso.Include(x => x.IdAlumnoNavigation).OrderByDescending(x => x.Fecha);
         }
 
-        //public override Progreso Get(object id)
-        //{
-        //    var Id = (int)id;
-        //    return Context.Progreso.Include(x=>x.IdAlumnoNavigation).
-        //        Include(x=>x.Puntuacion).
-        //        ThenInclude(x=> x.)
-        //}
+        public override Progreso Get(object id)
+        {
+            var Id = (int)id;
+            return Context.Progreso.Include(x => x.IdAlumnoNavigation).
+                Include(x => x.Puntuacion).
+                Include(x => x.Intentos).
+                Include(x => x.Fecha).
+                FirstOrDefault(x => x.Id == Id);
+        }
     }
 }
