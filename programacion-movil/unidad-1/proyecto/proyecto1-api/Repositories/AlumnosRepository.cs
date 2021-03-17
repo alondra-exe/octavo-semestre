@@ -53,7 +53,7 @@ namespace proyecto1_api.Repositories
             {
                 errors.Add("Debe asignarla une contraseña al alumno.");
             }
-            if (Context.Alumno.Any(x => x.Correo == entity.Correo && x.Eliminado == 0))
+            if (Context.Alumno.Any(x => x.Correo.ToLower() == entity.Correo.ToLower() && x.Eliminado == 0))
             {
                 errors.Add("Este correo electrónico ya está en uso.");
             }
