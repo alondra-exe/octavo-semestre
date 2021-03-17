@@ -23,6 +23,11 @@ namespace proyecto1_api.Repositories
             return Context.Alumno.Where(x => x.Eliminado == 0).OrderBy(x => x.Apellido);
         }
 
+        public Alumno Get(string contra)
+        {
+            return Context.Alumno.FirstOrDefault(x => x.Contrasena == contra && x.Eliminado == 0);
+        }
+
         public override void Delete(Alumno entity)
         {
             if (Context.Progreso.Any(x => x.IdAlumno == entity.Id))
