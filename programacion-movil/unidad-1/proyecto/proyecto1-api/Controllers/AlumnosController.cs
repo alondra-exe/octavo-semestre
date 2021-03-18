@@ -61,7 +61,7 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    alumno.Contrasena = System.Text.Encoding.Unicode.GetString(
+                    alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
                         Convert.FromBase64String(alumno.Contrasena));
                     alumno.Id = 0;
                     Alumno a = new Alumno
@@ -117,7 +117,7 @@ namespace proyecto1_api.Controllers
         {
             AlumnosRepository r = new AlumnosRepository(Context);
             var alumno = r.Get(c.Id);
-            var anterior = System.Text.Encoding.Unicode.GetString
+            var anterior = System.Text.Encoding.UTF8.GetString
                 (Convert.FromBase64String(c.ContraA));
             if (alumno == null)
             {
@@ -125,13 +125,20 @@ namespace proyecto1_api.Controllers
             }
             if (alumno.Contrasena == HashHelper.GetHash(anterior + alumno.Correo))
             {
-                var nuevo = System.Text.Encoding.Unicode.GetString(Convert.FromBase64String(c.ContraN));
-                alumno.Contrasena = HashHelper.GetHash(nuevo + alumno.Correo);
-                r.Update(alumno);
-                return Ok();
+                if (c.ContraA == c.ContraN)
+                {
+                    return BadRequest("La nueva contraseña no puede ser igual a la actual.");
+                }
+                else
+                {
+                    var nuevo = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(c.ContraN));
+                    alumno.Contrasena = HashHelper.GetHash(nuevo + alumno.Correo);
+                    r.Update(alumno);
+                    return Ok();
+                }
             }
             else
-                return Forbid();
+                return BadRequest("La contraseña actual que ingresó es incorrecta.");
         }
 
         [HttpPost("login")]
@@ -146,8 +153,12 @@ namespace proyecto1_api.Controllers
                 return BadRequest("Necesitas escribir tu correo electrónico y contraseña.");
             }
             AlumnosRepository r = new AlumnosRepository(Context);
-            var contra = System.Text.Encoding.Unicode.GetString(Convert.FromBase64String(a.Contrasena));
+            var contra = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(a.Contrasena));
             var alumno = r.Get(HashHelper.GetHash(contra + a.Correo));
+            if (alumno == null)
+            {
+                return Unauthorized("El correo electrónico o la contrasña son incorrectos.");
+            }
             return Ok(new { alumno.Id, alumno.Nombre, alumno.Apellido, alumno.Correo });
         }
 
