@@ -19,19 +19,19 @@ namespace proyecto1_web.Controllers
             return View();
         }
 
-        public async Task<IActionResult> InicioSesionDocente(Docente d)
-        {
+        //public async Task<IActionResult> InicioSesionDocente(Docente d)
+        //{
             
-            try
-            {
+        //    try
+        //    {
                 
-            }
+        //    }
 
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", ex.Message);
-                return View(d);
-            }
+        //    catch (Exception ex)
+        //    {
+        //        ModelState.AddModelError("", ex.Message);
+        //        return View(d);
+        //    }
 
             //GymContext context = new GymContext();
             //Repository<Administrador> repository = new Repository<Administrador>(context);
@@ -58,6 +58,6 @@ namespace proyecto1_web.Controllers
             //        return View(admin);
             //    }
             
-        }
+       // }
     }
 }
