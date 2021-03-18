@@ -29,83 +29,49 @@ namespace proyecto1_api.Controllers
             return Ok(datos);
         }
 
-        // GET: api/Progreso/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Progreso>> GetProgreso(int id)
+        [HttpGet("alumnos/{id}")]
+        public IActionResult GetProgresoAlumno(int id)
         {
-            var progreso = await Context.Progreso.FindAsync(id);
-
-            if (progreso == null)
-            {
-                return NotFound();
-            }
-
-            return progreso;
-        }
-
-        // PUT: api/Progreso/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProgreso(int id, Progreso progreso)
-        {
-            if (id != progreso.Id)
-            {
-                return BadRequest();
-            }
-
-            Context.Entry(progreso).State = EntityState.Modified;
-
             try
             {
-                await Context.SaveChangesAsync();
+                ProgresoRepository r = new ProgresoRepository(Context);
+                var datos = r.GetAll().
+                    Where(x => x.IdAlumno == id).
+                    Select(x => new { x.Id, x.Puntuacion, x.Intentos, x.Fecha, x.IdAlumno });
+                return Ok(datos);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception ex)
             {
-                if (!ProgresoExists(id))
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Progreso progreso)
+        {
+            try
+            {
+                ProgresoRepository r = new ProgresoRepository(Context);
+                if (r.IsValid(progreso, out List<string> errores))
                 {
-                    return NotFound();
+                    progreso.Id = 0;
+                    Progreso p = new Progreso
+                    {
+                        Puntuacion = progreso.Puntuacion,
+                        Intentos = progreso.Intentos,
+                        Fecha = DateTime.Now,
+                        IdAlumno = progreso.IdAlumno
+                    };
+                    r.Insert(progreso);
+                    return Ok(progreso);
                 }
                 else
-                {
-                    throw;
-                }
+                    return BadRequest(errores);
             }
-
-            return NoContent();
-        }
-
-        // POST: api/Progreso
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public async Task<ActionResult<Progreso>> PostProgreso(Progreso progreso)
-        {
-            Context.Progreso.Add(progreso);
-            await Context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProgreso", new { id = progreso.Id }, progreso);
-        }
-
-        // DELETE: api/Progreso/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Progreso>> DeleteProgreso(int id)
-        {
-            var progreso = await Context.Progreso.FindAsync(id);
-            if (progreso == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                return BadRequest(ex.Message);
             }
-
-            Context.Progreso.Remove(progreso);
-            await Context.SaveChangesAsync();
-
-            return progreso;
-        }
-
-        private bool ProgresoExists(int id)
-        {
-            return Context.Progreso.Any(e => e.Id == id);
         }
     }
 }
