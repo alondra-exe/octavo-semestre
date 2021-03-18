@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +17,21 @@ namespace proyecto1_web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient("proyecto1-api", client =>
+            {
+                client.BaseAddress = new Uri("https://juegoalondra-jesmeralda.sistemas171.com/api/");
+            });
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+           options =>
+           {
+               options.LoginPath = "/Home/InicioSesionDocente";
+               options.LogoutPath = "/Home/CerrarSesion";
+               //options.AccessDeniedPath = "/Home/AccesoRestringido";
+               options.Cookie.Name = "ProyectoU1";
+           });
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -27,13 +43,14 @@ namespace proyecto1_web
             }
 
             app.UseRouting();
+            app.UseFileServer();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }
