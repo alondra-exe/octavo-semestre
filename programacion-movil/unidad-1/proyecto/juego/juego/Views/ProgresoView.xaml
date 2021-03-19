@@ -1,14 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.ProgresoView"
              Title="Mis récords"
              BackgroundColor="#49648A">
+    <ContentPage.BindingContext>
+        <vm:ProgresoViewModel></vm:ProgresoViewModel>
+    </ContentPage.BindingContext>
     <ScrollView>
-        <StackLayout Margin="10">
+        <StackLayout Margin="10" BindableLayout.ItemsSource="{Binding Reportes}">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Frame>
+                        <Grid>
+                            
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
