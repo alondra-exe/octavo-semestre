@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="juego.Views.ProgresoView"
+             Title="Mis récords"
+             BackgroundColor="#49648A">
+    <ScrollView>
+        <StackLayout Margin="10">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
