@@ -13,9 +13,7 @@
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Frame>
-                        <Grid>
-                            
-                        </Grid>
+                        <Label Text="{Binding }"></Label>
                     </Frame>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>

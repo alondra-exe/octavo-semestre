@@ -14,19 +14,14 @@ namespace proyecto1_api.Repositories
             Context = context;
         }
 
-        public override IEnumerable<Progreso> GetAll()
-        {
-            return Context.Progreso.Include(x => x.IdAlumnoNavigation).OrderByDescending(x => x.Fecha);
-        }
-
         public override Progreso Get(object id)
         {
-            var Id = (int)id;
-            return Context.Progreso.Include(x => x.IdAlumnoNavigation).
-                Include(x => x.Puntuacion).
-                Include(x => x.Intentos).
-                Include(x => x.Fecha).
-                FirstOrDefault(x => x.Id == Id);
+            return Context.Progreso.FirstOrDefault(x => x.Id == (int)id);
+        }
+
+        public override IEnumerable<Progreso> GetAll()
+        {
+            return Context.Progreso.Include(x => x.IdAlumnoNavigation).OrderByDescending(x => x.IdAlumno);
         }
     }
 }
