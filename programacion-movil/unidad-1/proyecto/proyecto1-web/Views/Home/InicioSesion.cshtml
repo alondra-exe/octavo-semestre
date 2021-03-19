@@ -1,0 +1,16 @@
+﻿@model Docente
+@{ Layout = "_Layout"; }
+
+<h2>Inicia sesión</h2>
+<section>
+    <form method="post" action="~/Home/InicioSesion">
+        <label>Correo Electónico:</label>
+        <input type="email" asp-for="Clave" required /><br />
+        <label>Contraseña:</label>
+        <input type="password" asp-for="Contrasena" required /><br />
+
+        @Html.ValidationSummary()
+
+        <input type="submit" value="Entrar" /><br />
+    </form>
+</section> 

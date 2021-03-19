@@ -19,7 +19,7 @@ namespace proyecto1_web.Controllers
         public async Task<IActionResult> Index()
         {
             HttpClient cliente = Factory.CreateClient("proyecto1-api");
-            var result = await cliente.GetAsync("alumno");
+            var result = await cliente.GetAsync("alumnos");
 
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
@@ -43,8 +43,6 @@ namespace proyecto1_web.Controllers
         public async Task<IActionResult> AgregarAlumno(Models.Alumno alumno)
         {
             HttpClient cliente = Factory.CreateClient("proyecto1-api");
-
-            //Validado
 
             var json = JsonConvert.SerializeObject(alumno);
             var result = await cliente.PostAsync("alumnos", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
@@ -97,7 +95,7 @@ namespace proyecto1_web.Controllers
             HttpClient cliente = Factory.CreateClient("proyecto1-api");
 
             var json = JsonConvert.SerializeObject(alumno);
-            var result = await cliente.PutAsync("alumno", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
+            var result = await cliente.PutAsync("alumnos", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
 
             if (result.IsSuccessStatusCode)
             {
@@ -118,5 +116,53 @@ namespace proyecto1_web.Controllers
                 return View(alumno);
             }
         }
+         
+        public async Task<IActionResult> VerProgreso()
+        {
+            HttpClient cliente = Factory.CreateClient("proyecto1-api");
+            var result = await cliente.GetAsync("progreso");
+
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                var datos = JsonConvert.DeserializeObject<List<Models.Progreso>>(json);
+                return View(datos);
+            }
+            else
+            {
+                ModelState.AddModelError("", "No se puede conectar con el servidor de datos");
+                return View(new List<Models.Progreso>());
+            }
+        }
+
+        //[HttpPost]
+        //public async Task<IActionResult> EliminarAlumno(Alumno alumno)
+        //{
+        //    HttpClient cliente = Factory.CreateClient("proyecto1-api");
+           
+        //    var json = JsonConvert.SerializeObject(alumno);
+        //    var result = await cliente.DeleteAsync("alumno");
+
+        //    if (result.IsSuccessStatusCode)
+        //    {
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+        //    {
+        //        var jsonerrores = await result.Content.ReadAsStringAsync();
+        //        var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
+
+        //        lista.ForEach(x => ModelState.AddModelError("", x));
+
+        //        return View(alumno);
+        //    }
+        //    else
+        //    {
+        //        ModelState.AddModelError("", result.StatusCode.ToString());
+        //        return View(alumno);
+        //    }
+        //}
+
     }
 }
