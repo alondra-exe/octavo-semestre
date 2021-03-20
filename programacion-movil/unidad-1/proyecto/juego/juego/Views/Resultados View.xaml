@@ -4,9 +4,10 @@
              x:Class="juego.Views.Resultados_View">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Puntuación"></Label>
+            <Label Text="Intentos"></Label>
+            <Button Text="Volver a jugar"></Button>
+            <Button Text="Salir"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

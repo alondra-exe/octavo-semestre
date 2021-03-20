@@ -4,9 +4,10 @@
              x:Class="juego.Views.PrincipalView">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Bienvenido"></Label>
+            <Button Text="Jugar"></Button>
+            <Button Text="Mis récords"></Button>
+            <Button Text="Salir"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

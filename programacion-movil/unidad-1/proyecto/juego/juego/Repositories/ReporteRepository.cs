@@ -29,10 +29,9 @@ namespace juego.Repositories
 
         async void Descargar()
         {
-            for (int pagina = 1; pagina < 100; pagina++)
             {
                 HttpClient client = new HttpClient();
-                var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/" + pagina);
+                var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/");
                 if (resulta.IsSuccessStatusCode)
                 {
                     var json = await resulta.Content.ReadAsStringAsync();
@@ -42,8 +41,6 @@ namespace juego.Repositories
                         Datos.Add(r);
                     }
                 }
-                else
-                    break;
             }
             var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/reportes.json";
             var datos = JsonConvert.SerializeObject(Datos);
