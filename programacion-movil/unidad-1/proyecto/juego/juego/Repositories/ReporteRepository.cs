@@ -31,7 +31,7 @@ namespace juego.Repositories
         {
             {
                 HttpClient client = new HttpClient();
-                var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/");
+                var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso");
                 if (resulta.IsSuccessStatusCode)
                 {
                     var json = await resulta.Content.ReadAsStringAsync();

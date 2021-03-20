@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:m="clr-namespace:juego.Models"
+             xmlns:repos="clr-namespace:juego.Repositories"
              x:Class="juego.Views.LoginView">
     <ContentPage.BindingContext>
-        <m:Alumno></m:Alumno>
+        <repos:AlumnoRepository></repos:AlumnoRepository>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
