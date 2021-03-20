@@ -10,7 +10,7 @@ namespace juego
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new Views.LoginView());
+            MainPage = new NavigationPage(new Views.ProgresoView());
         }
 
         protected override void OnStart()

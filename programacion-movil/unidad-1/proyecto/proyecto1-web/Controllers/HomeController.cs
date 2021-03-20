@@ -55,7 +55,7 @@ namespace proyecto1_web.Controllers
 
                     List<Claim> claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Role, "Docente"));
-                    claims.Add(new Claim("Correo electronico", d.Correo));
+                    claims.Add(new Claim("Correo", d.Correo));
 
                     var claimidentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimprincipal = new ClaimsPrincipal(claimidentity);

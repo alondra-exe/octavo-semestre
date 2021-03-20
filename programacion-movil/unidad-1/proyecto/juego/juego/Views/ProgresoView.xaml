@@ -13,7 +13,13 @@
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
                     <Frame>
-                        <Label Text="{Binding }"></Label>
+                        <Grid RowDefinitions="*,*" ColumnDefinitions="80">
+                            <Label Text="{Binding Id}"></Label>
+                            <Label Text="{Binding Puntuacion}"></Label>
+                            <Label Grid.Column="1" Text="{Binding Intentos}"></Label>
+                            <Label Grid.Column="2" Text="{Binding Fecha}"></Label>
+                            <Label Grid.Column="3" Text="{Binding IdAlumno}"></Label>
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </BindableLayout.ItemTemplate>

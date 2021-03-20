@@ -25,7 +25,7 @@ namespace proyecto1_web
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
            options =>
            {
-               options.LoginPath = "/Home/InicioSesionDocente";
+               options.LoginPath = "/Home/InicioSesion";
                options.LogoutPath = "/Home/CerrarSesion";
                //options.AccessDeniedPath = "/Home/AccesoRestringido";
                options.Cookie.Name = "ProyectoU1";
