@@ -4,17 +4,14 @@
              xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.LoginView">
     <ContentPage.BindingContext>
-        <vm:AlumnoViewModel x:Name="alumnoVM"></vm:AlumnoViewModel>
+        <vm:AlumnoViewModel></vm:AlumnoViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Bienvenido"></Label>
-            <Entry Placeholder="Correo" Text="{Binding Correo}"></Entry>
-            <Entry Placeholder="Contraseña" Text="{Binding Contrasena}"></Entry>
-            <!--<Button Text="Iniciar sesión" Command="{Binding Source={x:Reference alumnoVM},  
-                Path=LoginCommand}" CommandParameter="{Binding .}"></Button>-->
-            <Button Text="Iniciar sesión" Command="{Binding LoginCommand}" 
-                    CommandParameter="{Binding LoginCommand}"></Button>
+            <Entry Placeholder="Correo" Text="{Binding AlumnoLogin.Correo}" x:Name="etyCorreo"></Entry>
+            <Entry Placeholder="Contraseña" Text="{Binding AlumnoLogin.Contrasena}" x:Name="etyContrasena"></Entry>
+            <Button Text="Iniciar sesión" Command="{Binding LoginCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
