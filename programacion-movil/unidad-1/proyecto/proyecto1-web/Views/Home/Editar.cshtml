@@ -1,0 +1,23 @@
+﻿@model Alumno
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar</h1>
+<form method="post" action="~/Home/Editar">
+    <fieldset class="card">
+        <h2>Datos del alumno</h2>
+        <label>Nombre:</label>
+        <input required asp-for="Nombre" type="text" /><br />
+        <label>Apellido:</label>
+        <input required asp-for="Apellido" type="text" /><br />
+        <input asp-for="Id" hidden />
+        @Html.ValidationSummary()
+        <section class="botones">
+            <input type="submit" value="Guardar" />
+            <a href="~/Home/Index">
+                <input type="button" value="Cancelar" />
+            </a>
+        </section>
+    </fieldset>
+</form>

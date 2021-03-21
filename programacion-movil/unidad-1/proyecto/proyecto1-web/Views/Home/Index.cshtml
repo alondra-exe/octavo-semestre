@@ -1,13 +1,19 @@
-﻿@{ Layout = "_Layout"; }
+﻿@model IEnumerable<proyecto1_web.Models.Alumno>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+}
 
-
-<h1></h1>
-<div>
-    <br />
-    <form action="~/Home/InicioSesion" method="post">
-        <h2></h2>
-        <div>
-            <input type="submit" value="Iniciar Sesion" />
-        </div>
-    </form>
-</div>
+<h1>Index</h1>
+<a href="~/Home/CerrarSesion">Cerrar sesión</a>
+<a href="~/Home/Agregar">Agregar alumno</a>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@item.Apellido</td>
+        <td>@item.Nombre</td>
+        <td>@item.Correo</td>
+        <td><a href=~/Home/Editar/@item.Id>Editar</a></td>
+        <td><a href=#>Eliminar</a></td>
+    </tr>
+}
