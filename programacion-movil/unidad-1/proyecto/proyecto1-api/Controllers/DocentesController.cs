@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using proyecto1_api.Models;
 using proyecto1_api.Repositories;
+using proyecto1_api.Helpers;
 
 namespace proyecto1_api.Controllers
 {
@@ -27,6 +28,27 @@ namespace proyecto1_api.Controllers
             DocentesRepository r = new DocentesRepository(Context);
             var datos = (r.GetAll().Select(x => new { x.Id, x.Nombre, x.Apellido, x.Correo }));
             return Ok(datos);
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login([FromBody] Docente d)
+        {
+            if (string.IsNullOrWhiteSpace(d.Correo))
+            {
+                return BadRequest("Necesitas escribir tu correo electrónico y contraseña.");
+            }
+            if (string.IsNullOrWhiteSpace(d.Contrasena))
+            {
+                return BadRequest("Necesitas escribir tu correo electrónico y contraseña.");
+            }
+            DocentesRepository r = new DocentesRepository(Context);
+            var contra = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(d.Contrasena));
+            var docente = r.Get(HashHelper.GetHash(contra));
+            if (docente == null)
+            {
+                return Unauthorized("El correo electrónico o la contrasña son incorrectos.");
+            }
+            return Ok(new { docente.Id, docente.Nombre, docente.Apellido, docente.Correo });
         }
     }
 }

@@ -22,12 +22,6 @@ namespace proyecto1_web.Controllers
             Factory = factory;
         }
 
-        [Authorize(Roles = "Docente")]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         [HttpGet]
         [AllowAnonymous]
         public IActionResult InicioSesion()
@@ -45,7 +39,7 @@ namespace proyecto1_web.Controllers
             d.Contrasena = Convert.ToBase64String(contra);
 
             var json = JsonConvert.SerializeObject(d);
-            var result = await client.PostAsync("docente/iniciosesion", new StringContent(json, Encoding.UTF8, "application/json"));
+            var result = await client.PostAsync("docentes/login", new StringContent(json, Encoding.UTF8, "application/json"));
 
             try
             {
@@ -55,6 +49,7 @@ namespace proyecto1_web.Controllers
 
                     List<Claim> claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Role, "Docente"));
+                    claims.Add(new Claim("Id", d.Id.ToString()));
                     claims.Add(new Claim("Correo", d.Correo));
 
                     var claimidentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -63,7 +58,7 @@ namespace proyecto1_web.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimprincipal,
                     new AuthenticationProperties { IsPersistent = true });
 
-                    return RedirectToAction("ListaAlumnos");
+                    return RedirectToAction("Index");
                 }
 
                 else
@@ -84,7 +79,104 @@ namespace proyecto1_web.Controllers
         public async Task<IActionResult> CerrarSesion()
         {
             await HttpContext.SignOutAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("InicioSesion");
+        }
+
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> Index()
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var result = await client.GetAsync("alumnos");
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                var datos = JsonConvert.DeserializeObject<List<Alumno>>(json);
+                return View(datos);
+            }
+            else
+            {
+                ModelState.AddModelError("", "No se puede conectar con el servidor.");
+                return View(new List<Alumno>());
+            }
+
+        }
+
+        [Authorize(Roles = "Docente")]
+        public IActionResult Agregar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> Agregar(Alumno a)
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var json = JsonConvert.SerializeObject(a);
+            var result = await client.PostAsync("alumnos", new StringContent(json, Encoding.UTF8, "application/json"));
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var jsonerrores = await result.Content.ReadAsStringAsync();
+                var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
+                lista.ForEach(x => ModelState.AddModelError("", x));
+                return View(a);
+            }
+            else
+            {
+                ModelState.AddModelError("", result.StatusCode.ToString());
+                return View(a);
+            }
+        }
+
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> Editar(int id)
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var result = await client.GetAsync("alumnos/" + id);
+            if (result.IsSuccessStatusCode)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                var a = JsonConvert.DeserializeObject<Alumno>(json);
+                return View(a);
+            }
+            else if (result.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", result.StatusCode.ToString() + " " + result.ReasonPhrase);
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> Editar(Alumno a)
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var json = JsonConvert.SerializeObject(a);
+            var result = await client.PutAsync("alumnos", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var jsonerrores = await result.Content.ReadAsStringAsync();
+                var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
+                lista.ForEach(x => ModelState.AddModelError("", x));
+                return View(a);
+            }
+            else
+            {
+                ModelState.AddModelError("", result.StatusCode.ToString());
+                return View(a);
+            }
         }
     }
 }
