@@ -61,8 +61,8 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
-                        Convert.FromBase64String(alumno.Contrasena));
+                    //alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
+                    //    Convert.FromBase64String(alumno.Contrasena));
                     alumno.Id = 0;
                     Alumno a = new Alumno
                     {

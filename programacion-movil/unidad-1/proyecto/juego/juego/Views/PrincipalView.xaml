@@ -6,12 +6,14 @@
     <ContentPage.Content>
         <StackLayout VerticalOptions="CenterAndExpand" Margin="30">
             <StackLayout.Resources>
-                
+                <Style TargetType="Button">
+                    <Setter Property="TextColor" Value="White"></Setter>
+                    <Setter Property="FontSize" Value="20"></Setter>
+                </Style>
             </StackLayout.Resources>
-            <Label Text="Bienvenido"></Label>
-            <Button Text="Jugar"></Button>
-            <Button Text="Mis récords"></Button>
-            <Button Text="Salir"></Button>
+            <Button Text="Jugar   ▶" BackgroundColor="#367E8D" FontAttributes="Bold"></Button>
+            <Button Text="👑 Mis récords   👑" BackgroundColor="#EDEF98" TextColor="Black"></Button>
+            <Button Text="Salir" BackgroundColor="#DD1313" Margin="70,90,70,0" FontSize="15"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
