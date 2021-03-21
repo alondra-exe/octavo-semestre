@@ -24,6 +24,7 @@ namespace juego.ViewModels
 
         private void VerRecords(object obj)
         {
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

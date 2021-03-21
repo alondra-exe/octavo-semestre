@@ -6,18 +6,36 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Net.Http;
 using System.Text;
+using Xamarin.Forms;
 
 namespace juego.Repositories
 {
     public class AlumnoRepository
     {
-        async void Login()
+        public string error;
+        public bool log;
+        public Alumno alumno;
+        public Command LoginCommand{ get; set; }
+
+        public AlumnoRepository()
+        {
+            LoginCommand = new Command<Alumno>(Login);
+        }
+
+        async void Login(Alumno a)
         {
             HttpClient client = new HttpClient();
-            var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/alumnos/login");
-            if (resulta.IsSuccessStatusCode)
+            var json = JsonConvert.SerializeObject(a);
+            var result = await client.PostAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/alumnos/login", new StringContent(json, Encoding.UTF8, "application/json"));
+            if (result.IsSuccessStatusCode)
             {
-                var json = await resulta.Content.ReadAsStringAsync();
+                log = true;
+                alumno = JsonConvert.DeserializeObject<Alumno>(await result.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                error = await result.Content.ReadAsStringAsync();
+                log = false;
             }
         }
     }

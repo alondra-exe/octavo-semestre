@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:repos="clr-namespace:juego.Repositories"
+             xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.LoginView">
     <ContentPage.BindingContext>
-        <repos:AlumnoRepository></repos:AlumnoRepository>
+        <vm:AlumnoViewModel x:Name="alumnoVM"></vm:AlumnoViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Bienvenido"></Label>
             <Entry Placeholder="Correo" Text="{Binding Correo}"></Entry>
             <Entry Placeholder="Contraseña" Text="{Binding Contrasena}"></Entry>
-            <Button Text="Iniciar sesión" Command="{Binding Login}"></Button>
+            <!--<Button Text="Iniciar sesión" Command="{Binding Source={x:Reference alumnoVM},  
+                Path=LoginCommand}" CommandParameter="{Binding .}"></Button>-->
+            <Button Text="Iniciar sesión" Command="{Binding LoginCommand}" 
+                    CommandParameter="{Binding LoginCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

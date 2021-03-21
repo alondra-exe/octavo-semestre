@@ -29,19 +29,18 @@ namespace juego.Repositories
 
         async void Descargar()
         {
-            {
-                HttpClient client = new HttpClient();
-                var resulta = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso");
-                if (resulta.IsSuccessStatusCode)
+            HttpClient client = new HttpClient();
+            var result = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso");
+            if (result.IsSuccessStatusCode)
                 {
-                    var json = await resulta.Content.ReadAsStringAsync();
+                    var json = await result.Content.ReadAsStringAsync();
                     var reporte = JsonConvert.DeserializeObject<Progreso[]>(json);
                     foreach (var r in reporte)
                     {
                         Datos.Add(r);
                     }
                 }
-            }
+
             var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/reportes.json";
             var datos = JsonConvert.SerializeObject(Datos);
             File.WriteAllText(ruta, datos);
