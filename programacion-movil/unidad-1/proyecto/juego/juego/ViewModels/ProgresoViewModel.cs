@@ -12,6 +12,11 @@ namespace juego.ViewModels
 {
     public class ProgresoViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
         public ObservableCollection<Progreso> Reportes { get; set; }
         public Command VerRecordsCommand { get; set; }
         ReporteRepository repos = new ReporteRepository();
@@ -27,10 +32,6 @@ namespace juego.ViewModels
 
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+
     }
 }

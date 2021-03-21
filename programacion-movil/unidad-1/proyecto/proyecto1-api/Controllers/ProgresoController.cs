@@ -29,7 +29,7 @@ namespace proyecto1_api.Controllers
             return Ok(datos);
         }
 
-        [HttpGet("alumnos/{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetProgresoAlumno(int id)
         {
             try
