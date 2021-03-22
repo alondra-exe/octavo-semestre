@@ -12,11 +12,11 @@ namespace proyecto1_api.Helpers
         public static string GetHash(string contra)
         {
             SHA256Managed sha = new SHA256Managed();
-            var bytes = sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(contra));
+            var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(contra));
             StringBuilder s = new StringBuilder();
             foreach (byte b in bytes)
             {
-                s.Append(b.ToString("x2"));
+                s.Append(b.ToString("X2"));
             }
             return s.ToString();
         }

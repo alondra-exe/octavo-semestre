@@ -61,8 +61,8 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    //alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
-                    //    Convert.FromBase64String(alumno.Contrasena));
+                    alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
+                        Convert.FromBase64String(alumno.Contrasena));
                     alumno.Id = 0;
                     Alumno a = new Alumno
                     {
@@ -96,15 +96,22 @@ namespace proyecto1_api.Controllers
                 {
                     return NotFound();
                 }
-                if (r.IsValid(a, out List<string> errores))
+                if (alumno.Eliminado == 1)
                 {
-                    alumno.Nombre = a.Nombre;
-                    alumno.Apellido = a.Apellido;
-                    r.Update(alumno);
-                    return Ok(alumno);
+                    return BadRequest("El alumno no se encontró.");
                 }
-                else
-                    return BadRequest(errores);
+                if (string.IsNullOrEmpty(alumno.Nombre))
+                {
+                    return BadRequest("No puede dejar el campo del nombre vacío.");
+                }
+                if (string.IsNullOrEmpty(alumno.Apellido))
+                {
+                    return BadRequest("No puede dejar el campo del apellido vacío.");
+                }
+                alumno.Nombre = a.Nombre;
+                alumno.Apellido = a.Apellido;
+                r.Update(alumno);
+                return Ok(alumno);
             }
             catch (Exception ex)
             {
