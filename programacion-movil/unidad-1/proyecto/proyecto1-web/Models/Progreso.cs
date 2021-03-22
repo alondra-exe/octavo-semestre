@@ -12,5 +12,7 @@ namespace proyecto1_web.Models
         public int Intentos { get; set; }
         public DateTime Fecha { get; set; }
         public int IdAlumno { get; set; }
+
+        public virtual Alumno IdAlumnoNavigation { get; set; }
     }
 }

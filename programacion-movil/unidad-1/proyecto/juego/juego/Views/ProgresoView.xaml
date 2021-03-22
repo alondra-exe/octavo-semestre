@@ -11,9 +11,6 @@
                 <DataTemplate>
                     <Frame>
                         <StackLayout BackgroundColor="Red">
-                            <Grid>
-                                <Label></Label>
-                            </Grid>
                             <Label Text="{Binding Puntuacion}"></Label>
                             <Label Text="{Binding Intentos}"></Label>
                             <Label Text="{Binding Fecha}"></Label>
