@@ -205,15 +205,15 @@ namespace proyecto1_web.Controllers
         }
 
         [Authorize(Roles = "Docente")]
-        public async Task<IActionResult> VerProgreso(Alumno a)
+        public async Task<IActionResult> VerProgreso(Progreso p)
         {
             HttpClient client = Factory.CreateClient("proyecto1-api");
-            var result = await client.GetAsync("progreso/" + a.Id);
+            var result = await client.GetAsync("progreso/" + p.IdAlumno);
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var json = await result.Content.ReadAsStringAsync();
-                var p = JsonConvert.DeserializeObject<List<Alumno>>(json);
-                return View(p);
+                var obj = JsonConvert.DeserializeObject<List<Progreso>>(json);
+                return View(obj);
             }
 
             else if (result.StatusCode == System.Net.HttpStatusCode.NotFound)

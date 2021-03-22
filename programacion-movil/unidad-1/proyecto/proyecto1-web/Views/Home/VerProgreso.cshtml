@@ -1,26 +1,32 @@
-﻿@model Progreso
+﻿@model IEnumerable<proyecto1_web.Models.Progreso>
 @{
     ViewData["Title"] = "VerProgreso";
     Layout = "_Layout";
 }
 
 <label>Progreso del alumno</label>
-<input required asp-for="Id" hidden />
 <br />
-<input required asp-for="IdAlumno" hidden />
-<br />
-<label> Puntuacion:</label>
-<br />
-<label asp-for="Puntuacion"></label>
-<br />
-<label> Intentos:</label>
-<br />
-<label asp-for="Intentos"></label>
-<br />
-<label> Fecha del ultimo avance registrado:</label>
-<br />
-<label asp-for="Fecha"></label>
-<br />
+<table>
+    <thead>
+        <tr>
+            <th>Puntuación</th>
+            <th>Intentos</th>
+            <th>Fecha</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Puntuacion</td>
+                <td>@item.Intentos</td>
+                <td>@item.Fecha</td>
+            </tr>
+        }
+    </tbody>
+</table>
 <a href="~/Home/Index">
     <input type="button" value="Regresar"/>
 </a>
