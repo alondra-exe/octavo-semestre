@@ -1,0 +1,26 @@
+﻿@model Progreso
+@{
+    ViewData["Title"] = "VerProgreso";
+    Layout = "_Layout";
+}
+
+<label>Progreso del alumno</label>
+<input required asp-for="Id" hidden />
+<br />
+<input required asp-for="IdAlumno" hidden />
+<br />
+<label> Puntuacion:</label>
+<br />
+<label asp-for="Puntuacion"></label>
+<br />
+<label> Intentos:</label>
+<br />
+<label asp-for="Intentos"></label>
+<br />
+<label> Fecha del ultimo avance registrado:</label>
+<br />
+<label asp-for="Fecha"></label>
+<br />
+<a href="~/Home/Index">
+    <input type="button" value="Regresar"/>
+</a>

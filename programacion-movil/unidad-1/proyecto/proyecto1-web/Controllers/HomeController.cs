@@ -203,5 +203,29 @@ namespace proyecto1_web.Controllers
                 return View(a);
             }
         }
+
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> VerProgreso(Alumno a)
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var result = await client.GetAsync("progreso/" + a.Id);
+            if (result.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                var p = JsonConvert.DeserializeObject<List<Alumno>>(json);
+                return View(p);
+            }
+
+            else if (result.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", result.StatusCode.ToString() + " " + result.ReasonPhrase);
+                return View();
+            }
+
+        }
     }
 }
