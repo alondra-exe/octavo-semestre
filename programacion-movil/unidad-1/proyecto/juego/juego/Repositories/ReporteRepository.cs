@@ -61,7 +61,6 @@ namespace juego.Repositories
                     var json = await result.Content.ReadAsStringAsync();
                     var clon = JsonConvert.DeserializeObject<Progreso>(json);
                     var index = Reportes.IndexOf(p);
-                    Guardar(Reportes);
                     return clon;
                 }
                 return null;

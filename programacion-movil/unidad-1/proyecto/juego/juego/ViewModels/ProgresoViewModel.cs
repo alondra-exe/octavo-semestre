@@ -57,7 +57,6 @@ namespace juego.ViewModels
             {
                 SinConexion = false;
                 IsRunning = true;
-                var result=await repos.
             }
         }
 
@@ -75,7 +74,6 @@ namespace juego.ViewModels
             {
                 SinConexion = false;
                 IsRunning = true;
-                var result=await repos.
             }
         }
     }
