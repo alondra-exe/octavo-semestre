@@ -178,5 +178,43 @@ namespace proyecto1_web.Controllers
                 return View(a);
             }
         }
+
+        //[HttpPost]
+        //[Authorize(Roles = "Docente")]
+        //public async Task<IActionResult> Eliminar(int id)
+        //{
+        //    HttpClient client = Factory.CreateClient("proyecto1-api");
+        //    var json = JsonConvert.SerializeObject(a);
+        //    var result = await client.DeleteAsync("alumnos/" + id);
+        //    if (result.IsSuccessStatusCode)
+        //    {
+        //        return RedirectToAction("Index")
+        //    }
+        //}
+
+        [HttpPost]
+        [Authorize(Roles = "Docente")]
+        public async Task<IActionResult> Eliminar(Alumno a)
+        {
+            HttpClient client = Factory.CreateClient("proyecto1-api");
+            var json = JsonConvert.SerializeObject(a);
+            var result = await client.DeleteAsync("alumnos/" + a.Id);
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var jsonerrores = await result.Content.ReadAsStringAsync();
+                var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
+                lista.ForEach(x => ModelState.AddModelError("", x));
+                return View(a);
+            }
+            else
+            {
+                ModelState.AddModelError("", result.StatusCode.ToString());
+                return View(a);
+            }
+        }
     }
 }

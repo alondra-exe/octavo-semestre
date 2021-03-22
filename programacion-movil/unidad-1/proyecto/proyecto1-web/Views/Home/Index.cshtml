@@ -6,14 +6,39 @@
 
 <h1>Index</h1>
 <a href="~/Home/CerrarSesion">Cerrar sesión</a>
+<br />
 <a href="~/Home/Agregar">Agregar alumno</a>
-@foreach (var item in Model)
-{
-    <tr>
-        <td>@item.Apellido</td>
-        <td>@item.Nombre</td>
-        <td>@item.Correo</td>
-        <td><a href=~/Home/Editar/@item.Id>Editar</a></td>
-        <td><a href=#>Eliminar</a></td>
-    </tr>
-}
+<br />
+<table>
+    <thead>
+        <tr>
+            <th>Apellido</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Apellido</td>
+                <td>@item.Nombre</td>
+                <td>@item.Correo</td>
+                <td><a href=~/Home/Editar/@item.Id>Editar</a></td>
+                <td><a href="#" onclick="eliminar(@item.Id)">Eliminar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form method="post" action="~/Home/Eliminar">
+    <input type="number" name="Id" id="idAlumno" hidden />
+</form>
+<script>
+    function eliminar(id) {
+        document.getElementById("idAlumno").value = id;
+        document.querySelector("form").submit();
+    }
+</script>

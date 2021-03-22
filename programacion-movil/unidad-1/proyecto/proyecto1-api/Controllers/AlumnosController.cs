@@ -74,7 +74,7 @@ namespace proyecto1_api.Controllers
                         Eliminado = 0
                     };
                     r.Insert(alumno);
-                    return Ok(alumno);
+                    return Ok();
                 }
                 else
                     return BadRequest(errores);
