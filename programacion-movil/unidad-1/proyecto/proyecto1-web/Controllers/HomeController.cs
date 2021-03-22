@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using proyecto1_web.Models;
+using proyecto1_web.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -205,14 +206,14 @@ namespace proyecto1_web.Controllers
         }
 
         [Authorize(Roles = "Docente")]
-        public async Task<IActionResult> VerProgreso(Progreso p)
+        public async Task<IActionResult> VerProgreso(ProgresoViewModel vm)
         {
             HttpClient client = Factory.CreateClient("proyecto1-api");
-            var result = await client.GetAsync("progreso/" + p.IdAlumno);
+            var result = await client.GetAsync("progreso/" + vm.Id);
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var json = await result.Content.ReadAsStringAsync();
-                var obj = JsonConvert.DeserializeObject<List<Progreso>>(json);
+                var obj = JsonConvert.DeserializeObject<List<ProgresoViewModel>>(json);
                 return View(obj);
             }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<proyecto1_web.Models.Progreso>
+﻿@model IEnumerable<proyecto1_web.Models.ViewModels.ProgresoViewModel>
 @{
     ViewData["Title"] = "VerProgreso";
     Layout = "_Layout";
@@ -6,27 +6,28 @@
 
 <label>Progreso del alumno</label>
 <br />
+<label></label>
 <table>
     <thead>
         <tr>
+            <th hidden></th>
             <th>Puntuación</th>
             <th>Intentos</th>
             <th>Fecha</th>
-            <th></th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td hidden>@item.Id</td>
                 <td>@item.Puntuacion</td>
                 <td>@item.Intentos</td>
-                <td>@item.Fecha</td>
+                <td>@item.Fecha.ToShortDateString()</td>
             </tr>
         }
     </tbody>
 </table>
 <a href="~/Home/Index">
-    <input type="button" value="Regresar"/>
+    <input type="button" value="Regresar" />
 </a>
