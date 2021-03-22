@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.PrincipalView"
              BackgroundColor="#171818">
     <ContentPage.Content>
@@ -12,7 +13,7 @@
                 </Style>
             </StackLayout.Resources>
             <Button Text="Jugar   ▶" BackgroundColor="#367E8D" FontAttributes="Bold"></Button>
-            <Button Text="👑 Mis récords   👑" BackgroundColor="#EDEF98" TextColor="Black"></Button>
+            <Button Text="👑 Mis récords   👑" BackgroundColor="#EDEF98" TextColor="Black" Command="{Binding ReportesCommand}"></Button>
             <Button Text="Salir" BackgroundColor="#DD1313" Margin="70,90,70,0" FontSize="15"></Button>
         </StackLayout>
     </ContentPage.Content>

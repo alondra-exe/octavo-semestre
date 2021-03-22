@@ -14,58 +14,33 @@ namespace juego.Repositories
     public class ReporteRepository
     {
         public ObservableCollection<Progreso> Reportes { get; set; }
-        public ReporteRepository()
+        public ReporteRepository(int id)
         {
-            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/reportes.json";
-            if (File.Exists(ruta))
-            {
-                string jsondata = File.ReadAllText(ruta);
-                Reportes = JsonConvert.DeserializeObject<ObservableCollection<Progreso>>(jsondata);
-            }
-            else
-            {
-                Reportes = new ObservableCollection<Progreso>();
-            }
+            Reportes = new ObservableCollection<Progreso>();
+            Descargar(id);
         }
 
-        async void Descargar(Progreso p)
+        async void Descargar(int id)
         {
-            SmartCollection<Progreso> temportal = new SmartCollection<Progreso>();
             HttpClient client = new HttpClient();
-            var result = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/" + p.IdAlumno);
+            var result = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/" + id);
             if (result.IsSuccessStatusCode)
             {
                 var json = await result.Content.ReadAsStringAsync();
                 var reporte = JsonConvert.DeserializeObject<Progreso[]>(json);
+                foreach (var r in reporte)
+                {
+                    Reportes.Add(r);
+                }
             }
-            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/reportes.json";
-            var datos = JsonConvert.SerializeObject(Reportes);
-            File.WriteAllText(ruta, datos);
+            Guardar(Reportes);
         }
 
-        private void Guardar(SmartCollection<Progreso> lista)
+        private void Guardar(ObservableCollection<Progreso> lista)
         {
             var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/reportes.json";
             var datos = JsonConvert.SerializeObject(lista);
             File.WriteAllText(ruta, datos);
-        }
-
-        public async Task<Progreso> ActualizarReporte(Progreso p)
-        {
-            if (p.Fecha == null)
-            {
-                HttpClient client = new HttpClient();
-                var result = await client.GetAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/progreso/" + p.IdAlumno);
-                if (result.IsSuccessStatusCode)
-                {
-                    var json = await result.Content.ReadAsStringAsync();
-                    var clon = JsonConvert.DeserializeObject<Progreso>(json);
-                    var index = Reportes.IndexOf(p);
-                    return clon;
-                }
-                return null;
-            }
-            return null;
         }
     }
 }

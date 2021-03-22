@@ -4,15 +4,23 @@
              xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.ProgresoView"
              Title="Mis récords"
-             BackgroundColor="#49648A">
-    <ContentPage.BindingContext>
-        <vm:ProgresoViewModel></vm:ProgresoViewModel>
-    </ContentPage.BindingContext>
+             BackgroundColor="#171818">
     <ScrollView>
-        <StackLayout Margin="10" BindableLayout.ItemsSource="{Binding Reportes}">
-            <Label Text="{Binding Puntuacion}"></Label>
-            <Label Grid.Column="1" Text="{Binding Intentos}"></Label>
-            <Label Grid.Column="2" Text="{Binding Fecha}"></Label>
+        <StackLayout Margin="10" BindableLayout.ItemsSource="{Binding Reporte}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Frame>
+                        <StackLayout BackgroundColor="Red">
+                            <Grid>
+                                <Label></Label>
+                            </Grid>
+                            <Label Text="{Binding Puntuacion}"></Label>
+                            <Label Text="{Binding Intentos}"></Label>
+                            <Label Text="{Binding Fecha}"></Label>
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
         </StackLayout>
     </ScrollView>
 </ContentPage>
