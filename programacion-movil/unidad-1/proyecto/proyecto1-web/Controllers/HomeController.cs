@@ -212,20 +212,14 @@ namespace proyecto1_web.Controllers
             if (result.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var json = await result.Content.ReadAsStringAsync();
-                var obj = JsonConvert.DeserializeObject<List<Progreso>>(json);
-                return View(obj);
-            }
-
-            else if (result.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                return RedirectToAction("Index");
+                var datos = JsonConvert.DeserializeObject<List<Progreso>>(json);
+                return View(datos);
             }
             else
             {
-                ModelState.AddModelError("", result.StatusCode.ToString() + " " + result.ReasonPhrase);
-                return View();
+                ModelState.AddModelError("", "No se puede conectar con el servidor.");
+                return View(new List<Progreso>());
             }
-
         }
     }
 }
