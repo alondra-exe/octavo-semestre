@@ -179,19 +179,6 @@ namespace proyecto1_web.Controllers
             }
         }
 
-        //[HttpPost]
-        //[Authorize(Roles = "Docente")]
-        //public async Task<IActionResult> Eliminar(int id)
-        //{
-        //    HttpClient client = Factory.CreateClient("proyecto1-api");
-        //    var json = JsonConvert.SerializeObject(a);
-        //    var result = await client.DeleteAsync("alumnos/" + id);
-        //    if (result.IsSuccessStatusCode)
-        //    {
-        //        return RedirectToAction("Index")
-        //    }
-        //}
-
         [HttpPost]
         [Authorize(Roles = "Docente")]
         public async Task<IActionResult> Eliminar(Alumno a)

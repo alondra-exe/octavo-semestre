@@ -61,15 +61,15 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
-                        Convert.FromBase64String(alumno.Contrasena));
+                    //alumno.Contrasena = System.Text.Encoding.UTF8.GetString(
+                    //    Convert.FromBase64String(alumno.Contrasena));
                     alumno.Id = 0;
                     Alumno a = new Alumno
                     {
                         Nombre = alumno.Nombre,
                         Apellido = alumno.Apellido,
                         Correo = alumno.Correo,
-                        Contrasena = HashHelper.GetHash(alumno.Contrasena + alumno.Correo),
+                        Contrasena = HashHelper.GetHash(alumno.Contrasena),
                         IdDocente = alumno.IdDocente,
                         Eliminado = 0
                     };
@@ -160,8 +160,8 @@ namespace proyecto1_api.Controllers
                 return BadRequest("Necesitas escribir tu correo electrónico y contraseña.");
             }
             AlumnosRepository r = new AlumnosRepository(Context);
-            var contra = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(a.Contrasena));
-            var alumno = r.Get(HashHelper.GetHash(contra + a.Correo));
+            //var contra = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(a.Contrasena));
+            var alumno = r.Get(HashHelper.GetHash(a.Contrasena));
             if (alumno == null)
             {
                 return Unauthorized("El correo electrónico o la contrasña son incorrectos.");
