@@ -3,18 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:juego.ViewModels"
              x:Class="juego.Views.PrincipalView"
-             BackgroundColor="#171818">
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#8BB4A1">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Margin="30">
-            <StackLayout.Resources>
-                <Style TargetType="Button">
-                    <Setter Property="TextColor" Value="White"></Setter>
-                    <Setter Property="FontSize" Value="20"></Setter>
-                </Style>
-            </StackLayout.Resources>
-            <Button Text="Jugar   ▶" BackgroundColor="#367E8D" FontAttributes="Bold"></Button>
-            <Button Text="👑 Mis récords   👑" BackgroundColor="#EDEF98" TextColor="Black" Command="{Binding ReportesCommand}"></Button>
-            <Button Text="Salir" BackgroundColor="#DD1313" Margin="70,90,70,0" FontSize="15"></Button>
-        </StackLayout>
+        <Frame VerticalOptions="CenterAndExpand" BackgroundColor="White" CornerRadius="50" Margin="30" HasShadow="False">
+            <StackLayout Margin="20">
+                <StackLayout.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                        <Setter Property="FontSize" Value="20"></Setter>
+                        <Setter Property="Padding" Value="0"></Setter>
+                    </Style>
+                    <Style TargetType="Frame">
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                        <Setter Property="HeightRequest" Value="46"></Setter>
+                        <Setter Property="Padding" Value="5"></Setter>
+                        <Setter Property="HasShadow" Value="False"></Setter>
+                    </Style>
+                </StackLayout.Resources>
+                <Frame BackgroundColor="#8BB4A1"  Margin="0,30,0,0">
+                    <Button Text="Jugar   ▶" BackgroundColor="#8BB4A1" FontAttributes="Bold"></Button>
+                </Frame>
+                <Frame BackgroundColor="#FFC300">
+                    <Button Text="Mis récords" BackgroundColor="#FFC300" FontAttributes="Bold" Command="{Binding ReportesCommand}"></Button>
+                </Frame>
+                <Frame Margin="0,80,0,30" BackgroundColor="Black" HeightRequest="30">
+                    <Button Text="Salir" BackgroundColor="Black" TextColor="White" Padding="0" FontSize="15"></Button>
+                </Frame>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

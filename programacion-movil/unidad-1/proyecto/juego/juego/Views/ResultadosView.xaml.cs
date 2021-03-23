@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace juego.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Resultados_View : ContentPage
+    public partial class ResultadosView : ContentPage
     {
-        public Resultados_View()
+        public ResultadosView()
         {
             InitializeComponent();
         }
