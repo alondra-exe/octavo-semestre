@@ -22,7 +22,7 @@
                     </Style>
                 </StackLayout.Resources>
                 <Frame BackgroundColor="#8BB4A1"  Margin="0,30,0,0">
-                    <Button Text="Jugar   ▶" BackgroundColor="#8BB4A1" FontAttributes="Bold"></Button>
+                    <Button Text="Jugar   ▶" BackgroundColor="#8BB4A1" FontAttributes="Bold" Command="{Binding MultiplicacionesCommand}"></Button>
                 </Frame>
                 <Frame BackgroundColor="#FFC300">
                     <Button Text="Mis récords" BackgroundColor="#FFC300" FontAttributes="Bold" Command="{Binding ReportesCommand}"></Button>

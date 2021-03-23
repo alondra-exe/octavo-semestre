@@ -179,7 +179,7 @@ namespace juego.ViewModels
             for (var i = 1; i < App.Current.MainPage.Navigation.NavigationStack.Count; i++)
             {
                 App.Current.MainPage.Navigation.RemovePage(App.Current.MainPage.Navigation.NavigationStack
-                    (App.Current.MainPage.Navigation));
+                    [App.Current.MainPage.Navigation.NavigationStack.Count-1]);
             }
             await App.Current.MainPage.Navigation.PopAsync();
             jv = null;
