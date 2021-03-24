@@ -2,27 +2,27 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Agregar";
+    Layout = "_Layout";
 }
 
-<h1>Agregar</h1>
-<form method="post" action="~/Home/Agregar">
-    <fieldset class="card">
-        <h2>Datos del alumno</h2>
-        <label>Nombre:</label>
-        <input required asp-for="Nombre" type="text" /><br />
-        <label>Apellido:</label>
-        <input required asp-for="Apellido" type="text" /><br />
-        <label>Correo:</label>
-        <input required asp-for="Correo" type="email" /><br />
-        <label>Contraseña:</label>
-        <input required asp-for="Contrasena" type="password" /><br />
-        <input type="number" asp-for="IdDocente" value="1" hidden />
-        @Html.ValidationSummary()
-        <section class="botones">
+<section class="section">
+    <div class="add">
+        <h2 class="d">Datos del alumno</h2>
+        <form method="post" action="~/Home/Agregar">
+            <label>Nombre:</label>
+            <input required asp-for="Nombre" type="text" /><br />
+            <label>Apellido:</label>
+            <input required asp-for="Apellido" type="text" /><br />
+            <label>Correo:</label>
+            <input required asp-for="Correo" type="email" /><br />
+            <label>Contraseña:</label>
+            <input required asp-for="Contrasena" type="password" /><br />
+            <input type="number" asp-for="IdDocente" value="1" hidden />
+            @Html.ValidationSummary()
             <input type="submit" value="Agregar" />
+        </form>
+    </div>
             <a href="~/Home/Index">
                 <input type="button" value="Cancelar" />
             </a>
-        </section>
-    </fieldset>
-</form>
+</section>

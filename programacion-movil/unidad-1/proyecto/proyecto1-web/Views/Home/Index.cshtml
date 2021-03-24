@@ -1,37 +1,48 @@
 ﻿@model IEnumerable<proyecto1_web.Models.Alumno>
 @{
     ViewData["Title"] = "Index";
+    Layout = "_Layout";
 }
-
-<h1>Index</h1>
-<a href="~/Home/CerrarSesion">Cerrar sesión</a>
-<br />
-<a href="~/Home/Agregar">Agregar alumno</a>
-<br />
-<table>
-    <thead>
-        <tr>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th>Correo</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Apellido</td>
-                <td>@item.Nombre</td>
-                <td>@item.Correo</td>
-                <td><a href="~/Home/Editar/@item.Id">Editar</a></td>
-                <td><a href="#" onclick="eliminar(@item.Id)">Eliminar</a></td>
-                <td><a href="~/Home/VerProgreso/@item.Id">Ver progreso</a></td>
-            </tr>
-        }
-    </tbody>
-</table>
+<section class="section2">
+    <div class="cont">
+            <img id="img" src="~/Images/logo.png" alt="Logo"/>
+        <br>
+            <a id="ag" href="~/Home/Agregar">
+        <input type="button" value="Agregar alumno"/>
+        </a>
+        <br />
+        <div class="list">
+            <h1 class="t">Listado de alumnos</h1>
+            <table class="alumnos">
+                <thead>
+                    <tr>
+                        <th>Apellido</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th colspan="3">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Apellido</td>
+                            <td>@item.Nombre</td>
+                            <td>@item.Correo</td>
+                            <td><a class="acciones" href="~/Home/VerProgreso/@item.Id">Reportes</a></td>
+                            <td><a class="acciones" href="~/Home/Editar/@item.Id">Editar</a></td>
+                            <td><a id="delete" href="#" onclick="eliminar(@item.Id)">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+            <a id="cs" href="~/Home/CerrarSesion">
+            <input type="button" value="Cerrar sesión"/>
+            </a>
+</section>
 
 <form method="post" action="~/Home/Eliminar">
     <input type="number" name="Id" id="idAlumno" hidden />

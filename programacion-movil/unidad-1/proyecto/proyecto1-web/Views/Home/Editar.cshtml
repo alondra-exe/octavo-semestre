@@ -1,23 +1,25 @@
 ﻿@model Alumno
 @{
     ViewData["Title"] = "Editar";
+    Layout = "_Layout";
 }
 
-<h1>Editar</h1>
-<form method="post" action="~/Home/Editar">
-    <fieldset class="card">
-        <h2>Datos del alumno</h2>
-        <label>Nombre:</label>
-        <input required asp-for="Nombre" type="text" /><br />
-        <label>Apellido:</label>
-        <input required asp-for="Apellido" type="text" /><br />
-        <input asp-for="Id" hidden />
-        @Html.ValidationSummary()
-        <section class="botones">
+<div class="section">
+    <div class="add">
+        <h2 class="d">Datos a editar</h2>
+        <form class="edit" method="post" action="~/Home/Editar">
+            <label>Nombre:</label>
+            <input required asp-for="Nombre" type="text" /><br />
+            <label>Apellido:</label>
+            <input required asp-for="Apellido" type="text" /><br />
+            <input asp-for="Id" hidden />
+            @Html.ValidationSummary()
+
             <input type="submit" value="Guardar" />
-            <a href="~/Home/Index">
-                <input type="button" value="Cancelar" />
-            </a>
-        </section>
-    </fieldset>
-</form>
+        </form>
+    </div>
+
+    <a href="~/Home/Index">
+        <input type="button" value="Cancelar" />
+    </a>
+</div>
