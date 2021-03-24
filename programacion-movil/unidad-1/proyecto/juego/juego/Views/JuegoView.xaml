@@ -3,14 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:juego.ViewModels"
              NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#8BB4A1"
              x:Class="juego.Views.JuegoView">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="30"></Setter>
+                    <Setter Property="TextColor" Value="Black"></Setter>
+                </Style>
+            </Grid.Resources>
             <Label Text="{Binding Num1}"></Label>
-            <Label Text="x"></Label>
-            <Label Text="{Binding Num2}"></Label>
-            <Label Text="="></Label>
-            <Entry Text="{Binding Resultado}" ReturnCommand="{Binding JugarCommand}" ReturnType="Send" Keyboard="Numeric"></Entry>
-        </StackLayout>
+            <Label Grid.Column="1" Text="x"></Label>
+            <Label Grid.Column="2" Text="{Binding Num2}"></Label>
+            <Entry Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Resultado}" ReturnCommand="{Binding JugarCommand}" ReturnType="Send" Keyboard="Numeric"></Entry>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
