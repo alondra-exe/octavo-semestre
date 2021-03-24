@@ -1,14 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:juego.ViewModels"
+             NavigationPage.HasNavigationBar="False"
              x:Class="juego.Views.JuegoView">
     <ContentPage.Content>
         <StackLayout>
-            <Label></Label>
+            <Label Text="{Binding Num1}"></Label>
             <Label Text="x"></Label>
-            <Label></Label>
+            <Label Text="{Binding Num2}"></Label>
             <Label Text="="></Label>
-            <Entry></Entry>
+            <Entry Text="{Binding Resultado}"></Entry>
+            <Button Text="{Binding ResultadoCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

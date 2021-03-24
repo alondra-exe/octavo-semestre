@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:juego.ViewModels"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="#8BB4A1"
              x:Class="juego.Views.SeleccionView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="FontSize" Value="50"></Setter>
+                        <Setter Property="BackgroundColor" Value="White"></Setter>
+                        <Setter Property="CornerRadius" Value="20"></Setter>
+                        <Setter Property="Margin" Value="5"></Setter>
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Label Grid.ColumnSpan="2" TextColor="Black" FontAttributes="Italic"  FontSize="30" VerticalOptions="Center" HorizontalTextAlignment="Center" Text="Seleccione la tabla que quiera hacer:"></Label>
+                <Button Grid.Row="1" Text="1" Command="{Binding IniciarJuegoCommand}" CommandParameter="1"></Button>
+                <Button Grid.Row="1" Grid.Column="1" Text="2" Command="{Binding IniciarJuegoCommand}" CommandParameter="2"></Button>
+                <Button Grid.Row="2" Text="3" Command="{Binding IniciarJuegoCommand}" CommandParameter="3"></Button>
+                <Button Grid.Row="2" Grid.Column="1" Text="4" Command="{Binding IniciarJuegoCommand}" CommandParameter="4"></Button>
+                <Button Grid.Row="3" Text="5" Command="{Binding IniciarJuegoCommand}" CommandParameter="5"></Button>
+                <Button Grid.Row="3" Grid.Column="1" Text="6" Command="{Binding IniciarJuegoCommand}" CommandParameter="6"></Button>
+                <Button Grid.Row="4" Text="7" Command="{Binding IniciarJuegoCommand}" CommandParameter="7"></Button>
+                <Button Grid.Row="4" Grid.Column="1" Text="8" Command="{Binding IniciarJuegoCommand}" CommandParameter="8"></Button>
+                <Button Grid.Row="5" Text="9" Command="{Binding IniciarJuegoCommand}" CommandParameter="9"></Button>
+                <Button Grid.Row="5" Grid.Column="1" Text="10" Command="{Binding IniciarJuegoCommand}" CommandParameter="10"></Button>
+            </Grid>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
