@@ -10,8 +10,7 @@
             <Label Text="x"></Label>
             <Label Text="{Binding Num2}"></Label>
             <Label Text="="></Label>
-            <Entry Text="{Binding Resultado}"></Entry>
-            <Button Text="{Binding ResultadoCommand}"></Button>
+            <Entry Text="{Binding Resultado}" ReturnCommand="{Binding JugarCommand}" ReturnType="Send" Keyboard="Numeric"></Entry>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
