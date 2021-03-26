@@ -11,15 +11,14 @@ namespace proyecto1_api.Helpers
     {
         public static string GetHash(string contra)
         {
-            var sha = SHA256.Create();
-            byte[] codificar = Encoding.UTF8.GetBytes(contra);
-            byte[] hash = sha.ComputeHash(codificar);
-            string a = "";
-            foreach (var objeto in hash)
+            SHA256Managed sha = new SHA256Managed();
+            var bytes = sha.ComputeHash(Encoding.UTF8.GetBytes(contra));
+            StringBuilder s = new StringBuilder();
+            foreach (byte b in bytes)
             {
-                a += objeto.ToString("x2");
+                s.Append(b.ToString("x2"));
             }
-            return a;
+            return s.ToString();
         }
     }
 }

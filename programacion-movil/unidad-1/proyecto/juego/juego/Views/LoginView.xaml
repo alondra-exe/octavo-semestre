@@ -6,11 +6,11 @@
              NavigationPage.HasNavigationBar="False"
              BackgroundColor="#8BB4A1">
     <ContentPage.BindingContext>
-        <vm:AlumnoViewModel></vm:AlumnoViewModel>
+        <vm:AlumnoViewModel x:Name="loginView"></vm:AlumnoViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <Frame VerticalOptions="CenterAndExpand" BackgroundColor="White" CornerRadius="50" Margin="30" HasShadow="False">
-            <StackLayout  Margin="30">
+            <StackLayout  Margin="30" BindingContext="{Binding AlumnoLogin}">
                 <StackLayout.Resources>
                     <Style TargetType="Entry">
                         <Setter Property="PlaceholderColor" Value="Gray"></Setter>
@@ -20,12 +20,12 @@
                 </StackLayout.Resources>
                 <Label FontSize="30" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Black" FontFamily="Arial" Text="Multiplica+" Margin="0,0,0,30"></Label>
                 <Frame CornerRadius="30" BorderColor="Black" HeightRequest="46" Padding="5" Margin="0,0,0,6" HasShadow="False">
-                    <Entry Placeholder="Correo" Text="{Binding AlumnoLogin.Correo}" x:Name="etyCorreo"></Entry>
+                    <Entry Placeholder="Correo" Text="{Binding Correo}" x:Name="etyCorreo"></Entry>
                 </Frame>
                 <Frame CornerRadius="30" BorderColor="Black" HeightRequest="46" Padding="5" HasShadow="False">
-                    <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding AlumnoLogin.Contrasena}" x:Name="etyContrasena"></Entry>
+                    <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding Contrasena}" x:Name="etyContrasena"></Entry>
                 </Frame>
-                <Button Text="Iniciar sesión" Command="{Binding LoginCommand}" FontAttributes="Bold" BackgroundColor="#8BB4A1" TextColor="White" FontSize="15" CornerRadius="20" Margin="10, 50,10,0"></Button>
+                <Button Text="Iniciar sesión" Command="{Binding Source={x:Reference loginView},Path=LoginCommand}" CommandParameter="{Binding .}" FontAttributes="Bold" BackgroundColor="#8BB4A1" TextColor="White" FontSize="15" CornerRadius="20" Margin="10, 50,10,0"></Button>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

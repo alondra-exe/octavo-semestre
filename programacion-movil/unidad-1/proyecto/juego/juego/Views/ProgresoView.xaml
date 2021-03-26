@@ -18,6 +18,7 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <Grid.Resources>
                                 <Style TargetType="Label">
@@ -30,7 +31,9 @@
                             </Grid.Resources>
                             <Label Text="Puntuación:"></Label>
                             <Label Grid.Column="2" Text="Fecha:"></Label>
+                            <Label Grid.Column="1" Text="Tabla:"></Label>
                             <Label Grid.Row="1" Text="{Binding Puntuacion}"></Label>
+                            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Intentos}"></Label>
                             <Label Grid.Column="2" Grid.Row="1" Text="{Binding Fecha}"></Label>
                         </Grid>
                     </DataTemplate>

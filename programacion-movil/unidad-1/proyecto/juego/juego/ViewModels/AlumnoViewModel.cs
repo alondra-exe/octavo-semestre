@@ -22,6 +22,7 @@ namespace juego.ViewModels
 
         public ObservableCollection<Progreso> Reporte { get; set; }
 
+        LoginRepository reposL;
         public Command LoginCommand { get; set; }
         public Command ReportesCommand { get; set; }
         public Command MultiplicacionesCommand { get; set; }
@@ -88,12 +89,31 @@ namespace juego.ViewModels
         Views.ProgresoView prov;
         Views.JuegoView jv;
         Views.SeleccionView sv;
-        Views.ResultadosView rv;
 
         public async void Iniciar(Alumno a)
         {
+            //HttpClient client = new HttpClient();
+            //var json = JsonConvert.SerializeObject(AlumnoLogin);
+            //var result = await client.PostAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/alumnos/login", new StringContent(json, Encoding.UTF8, "application/json"));
+            //if (result.IsSuccessStatusCode)
+            //{
+            //    AlumnoLogin = JsonConvert.DeserializeObject<Alumno>(await result.Content.ReadAsStringAsync());
+            //    if (pv == null)
+            //    {
+            //        pv = new Views.PrincipalView();
+            //        pv.BindingContext = this;
+            //    }
+            //    await App.Current.MainPage.Navigation.PushAsync(pv);
+            //}
+            //else
+            //{
+            //    //error = await result.Content.ReadAsStringAsync();
+            //}
+
+            reposL = new Repositories.LoginRepository();
+            Reporte = null;
             HttpClient client = new HttpClient();
-            var json = JsonConvert.SerializeObject(AlumnoLogin);
+            var json = JsonConvert.SerializeObject(a);
             var result = await client.PostAsync("https://juegoalondra-jesmeralda.sistemas171.com/api/alumnos/login", new StringContent(json, Encoding.UTF8, "application/json"));
             if (result.IsSuccessStatusCode)
             {
@@ -104,10 +124,6 @@ namespace juego.ViewModels
                     pv.BindingContext = this;
                 }
                 await App.Current.MainPage.Navigation.PushAsync(pv);
-            }
-            else
-            {
-                //error = await result.Content.ReadAsStringAsync();
             }
         }
         public async void VerReportes()
@@ -183,7 +199,6 @@ namespace juego.ViewModels
             }
             await App.Current.MainPage.Navigation.PopAsync();
             jv = null;
-            rv = null;
             puntos = 0;
         }
     }

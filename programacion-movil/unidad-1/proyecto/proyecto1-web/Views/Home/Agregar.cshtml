@@ -18,6 +18,7 @@
             <label>Contraseña:</label>
             <input required asp-for="Contrasena" type="password" /><br />
             <input type="number" asp-for="IdDocente" value="1" hidden />
+            <input type="number" asp-for="Id" hidden />
             @Html.ValidationSummary()
             <input type="submit" value="Agregar" />
         </form>

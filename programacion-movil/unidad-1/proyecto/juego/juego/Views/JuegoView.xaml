@@ -6,26 +6,30 @@
              BackgroundColor="#8BB4A1"
              x:Class="juego.Views.JuegoView">
     <ContentPage.Content>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.Resources>
-                <Style TargetType="Label">
-                    <Setter Property="FontSize" Value="30"></Setter>
-                    <Setter Property="TextColor" Value="Black"></Setter>
-                </Style>
-            </Grid.Resources>
-            <Label Text="{Binding Num1}"></Label>
-            <Label Grid.Column="1" Text="x"></Label>
-            <Label Grid.Column="2" Text="{Binding Num2}"></Label>
-            <Entry Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Resultado}" ReturnCommand="{Binding JugarCommand}" ReturnType="Send" Keyboard="Numeric"></Entry>
-        </Grid>
+        <Frame VerticalOptions="CenterAndExpand" BackgroundColor="White" CornerRadius="50" Margin="30" HasShadow="False">
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition> 
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="FontSize" Value="30"></Setter>
+                        <Setter Property="TextColor" Value="Black"></Setter>
+                    </Style>
+                </Grid.Resources>
+                <Label Text="{Binding Num1}"></Label>
+                <Label Grid.Column="1" Text="x"></Label>
+                <Label Grid.Column="2" Text="{Binding Num2}"></Label>
+                <Frame Grid.Row="1" Grid.ColumnSpan="3"  BorderColor="Black" CornerRadius="10" Padding="10" HeightRequest="50">
+                    <Entry TextColor="Black" FontSize="20" Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Resultado}" ReturnCommand="{Binding JugarCommand}" ReturnType="Send" Keyboard="Numeric"></Entry>
+                </Frame>
+            </Grid>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

@@ -113,6 +113,7 @@ namespace proyecto1_web.Controllers
         public async Task<IActionResult> Agregar(Alumno a)
         {
             HttpClient client = Factory.CreateClient("proyecto1-api");
+            a.Contrasena = Convert.ToBase64String(Encoding.UTF8.GetBytes(a.Contrasena));
             var json = JsonConvert.SerializeObject(a);
             var result = await client.PostAsync("alumnos", new StringContent(json, Encoding.UTF8, "application/json"));
             if (result.IsSuccessStatusCode)

@@ -25,7 +25,7 @@ namespace proyecto1_api.Repositories
 
         public Alumno Get(string contra)
         {
-            return Context.Alumno.FirstOrDefault(x => x.Contrasena == contra && x.Eliminado == 0);
+            return Context.Alumno.FirstOrDefault(x => x.Contrasena == contra);
         }
 
         public override void Delete(Alumno entity)
@@ -58,7 +58,7 @@ namespace proyecto1_api.Repositories
             {
                 errors.Add("Debe asignarla une contraseña al alumno.");
             }
-            if (Context.Alumno.Any(x => x.Correo.ToLower() == entity.Correo.ToLower() && x.Eliminado == 0))
+            if (Context.Alumno.Any(x => x.Correo.ToLower() == entity.Correo.ToLower()))
             {
                 errors.Add("Este correo electrónico ya está en uso.");
             }
