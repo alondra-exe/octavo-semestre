@@ -21,14 +21,14 @@ namespace NoticiasWEB.Models
 
         public virtual DbSet<Noticia> Noticia { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseMySql("server=204.93.167.23;database=sistem14_noticiasalo;user=sistem14_aloeli;password=zrokfejxsm8qunyipbcg", x => x.ServerVersion("5.6.46-mysql"));
-            }
-        }
+//        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+//        {
+//            if (!optionsBuilder.IsConfigured)
+//            {
+//#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+//                optionsBuilder.
+//            }
+//        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
