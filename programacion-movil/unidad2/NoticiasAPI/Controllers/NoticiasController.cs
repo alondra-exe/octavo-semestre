@@ -62,7 +62,7 @@ namespace NoticiasAPI.Controllers
                         Encabezado = noticia.Encabezado,
                         Autor = noticia.Autor,
                         Lugar = noticia.Lugar,
-                        Fecha = DateTime.Now,
+                        Fecha = DateTime.Now.Date,
                         Contenido = noticia.Contenido,
                         Eliminado = 1
                     };
@@ -102,7 +102,7 @@ namespace NoticiasAPI.Controllers
                     return BadRequest("Escriba el contenido de la noticia.");
                 }
                 noticia.Encabezado = n.Encabezado;
-                noticia.Fecha = DateTime.Now;
+                noticia.Fecha = DateTime.Now.Date;
                 noticia.Contenido = n.Contenido;
                 repository.Update(noticia);
                 return Ok(noticia);
