@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
+             x:Class="NoticiasMOVIL.Views.Inicio" Title="Noticias" BackgroundColor="red">
+    <ContentPage.BindingContext>
+        <vm:NoticiasViewModel x:Name="noticiasView"></vm:NoticiasViewModel>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <CollectionView Margin="10" ItemsSource="{Binding Noticias}">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                           ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="Label">
+                                <Setter Property="TextColor" Value="Black"></Setter>
+                                <Setter Property="Padding" Value="0"></Setter>
+                                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
+                                <Setter Property="FontSize" Value="14"></Setter>
+                                <Setter Property="FontAttributes" Value="Bold"></Setter>
+                            </Style>
+                        </Grid.Resources>
+                        <Label Text="Puntuación:"></Label>
+                        <Label Grid.Column="2" Text="Fecha:"></Label>
+                        <Label Grid.Column="1" Text="Tabla:"></Label>
+                        <Label Grid.Row="1" Text="{Binding Encabezado}"></Label>
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Autor}"></Label>
+                        <Label Grid.Column="2" Grid.Row="1" Text="{Binding Lugar}"></Label>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ScrollView>
+</ContentPage>
