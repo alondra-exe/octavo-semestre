@@ -1,10 +1,10 @@
-﻿using System;
+﻿using NoticiasAPI.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NoticiasWEB.Models;
 
-namespace NoticiasWEB.Repositories
+namespace NoticiasAPI.Repositories
 {
     public class Repository
     {

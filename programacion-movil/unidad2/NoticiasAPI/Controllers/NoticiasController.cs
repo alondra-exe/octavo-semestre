@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NoticiasWEB.Models;
-using NoticiasWEB.Repositories;
+using NoticiasAPI.Models;
+using NoticiasAPI.Repositories;
 
-namespace NoticiasWEB.Controllers
+namespace NoticiasAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

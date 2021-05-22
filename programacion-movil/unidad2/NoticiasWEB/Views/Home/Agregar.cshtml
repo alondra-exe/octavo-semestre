@@ -1,0 +1,17 @@
+﻿@model NoticiasWEB.Models.Noticia;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+<main>
+    <form method="post" action="~/Home/Agregar">
+        <label>Encabezado</label><br />
+        <input type="text" required asp-for="Encabezado" /><br />
+        <input type="text" required asp-for="Autor" placeholder="Autor" /><br />
+        <input type="text" required asp-for="Lugar" placeholder="Lugar" /><br />
+        <label>Contenido</label><br />
+        <input type="text" required asp-for="Contenido" /><br />
+        @Html.ValidationSummary();
+        <input type="submit" value="GUARDAR" />
+    </form>
+</main>

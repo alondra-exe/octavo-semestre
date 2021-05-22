@@ -1,0 +1,41 @@
+﻿@model IEnumerable<NoticiasWEB.Models.Noticia>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Index";
+    int x = 1;
+}
+
+<main>
+    <section class="botones">
+        <a href="~/Home/Agregar"><input type=button value="AGREGAR" /></a>
+    </section>
+
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>FECHA</th>
+                <th>ENCABEZADO</th>
+                <th>AUTOR</th>
+                <th>LUGAR</th>
+                <th>CONTENIDO</th>
+                <th colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var noticia in Model)
+            {
+            <tr>
+                <td>@(x++)</td>
+                <td>@noticia.Fecha</td>
+                <td>@noticia.Encabezado</td>
+                <td>@noticia.Autor</td>
+                <td>@noticia.Lugar</td>
+                <td>@noticia.Contenido</td>
+                <td id="option"><a href="~/Home/Editar/@noticia.Id">EDITAR</a></td>
+                <td id="option"><a href="~/Home/Eliminar/@noticia.Id" id="eliminar">ELIMINAR</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</main>
