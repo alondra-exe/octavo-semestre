@@ -22,7 +22,7 @@ namespace NoticiasAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            Repository repository = new Repository(Context);
+            NoticiasRepository repository = new NoticiasRepository(Context);
             var noticias = (repository.GetAll().Select(x => new { x.Id, x.Encabezado, x.Autor, x.Lugar, x.Fecha, x.Contenido }));
             return Ok(noticias);
         }
@@ -30,7 +30,7 @@ namespace NoticiasAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            Repository repository = new Repository(Context);
+            NoticiasRepository repository = new NoticiasRepository(Context);
             try
             {
                 var noticia = repository.Get(id);
@@ -52,7 +52,7 @@ namespace NoticiasAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Noticia noticia)
         {
-            Repository repository = new Repository(Context);
+            NoticiasRepository repository = new NoticiasRepository(Context);
             try
             {
                 if (repository.IsValid(noticia, out List<string> errores))
@@ -83,7 +83,7 @@ namespace NoticiasAPI.Controllers
         {
             try
             {
-                Repository repository = new Repository(Context);
+                NoticiasRepository repository = new NoticiasRepository(Context);
                 var noticia = repository.Get(n.Id);
                 if (noticia == null)
                 {
@@ -113,10 +113,26 @@ namespace NoticiasAPI.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            NoticiasRepository repository = new NoticiasRepository(Context);
+            var noticia = repository.Get(id);
+            if (noticia == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                repository.Delete(noticia);
+                return Ok();
+            }
+        }
+
         [HttpDelete]
         public IActionResult Delete([FromBody] Noticia n)
         {
-            Repository repository = new Repository(Context);
+            NoticiasRepository repository = new NoticiasRepository(Context);
             var noticia = repository.Get(n.Id);
             if (noticia == null)
             {

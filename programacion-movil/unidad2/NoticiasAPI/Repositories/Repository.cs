@@ -6,54 +6,42 @@ using System.Threading.Tasks;
 
 namespace NoticiasAPI.Repositories
 {
-    public class Repository
+    public class Repository<T> where T : class
     {
         public sistem14_noticiasaloContext Context { get; set; }
-        public Repository(sistem14_noticiasaloContext context)
+
+        public virtual T Get(object id)
         {
-            Context = context;
+            return Context.Find<T>(id);
         }
 
-        public Noticia Get(int id)
+        public virtual IEnumerable<T> GetAll()
         {
-            return Context.Noticia.Find(id);
+            return Context.Set<T>();
         }
 
-        public IEnumerable<Noticia> GetAll()
+        public virtual void Insert(T entity)
         {
-            return Context.Noticia.OrderBy(x => x.Fecha);
-        }
-
-        public void Insert(Noticia noticia)
-        {
-            Context.Add(noticia);
+            Context.Add(entity);
             Context.SaveChanges();
         }
 
-        public void Update(Noticia noticia)
+        public virtual void Update(T entity)
         {
-            Context.Update(noticia);
+            Context.Update(entity);
             Context.SaveChanges();
         }
 
-        public void Delete(Noticia noticia)
+        public virtual void Delete(T entity)
         {
-            Context.Remove(noticia);
+            Context.Remove(entity);
             Context.SaveChanges();
         }
 
-        public virtual bool IsValid(Noticia noticia, out List<string> errors)
+        public virtual bool IsValid(T entity, out List<string> errors)
         {
             errors = new List<string>();
-            if (string.IsNullOrEmpty(noticia.Encabezado))
-                errors.Add("Escriba el encabezado de la noticia.");
-            if (string.IsNullOrEmpty(noticia.Autor))
-                errors.Add("Escriba el nombre del autor de la noticia.");
-            if (string.IsNullOrEmpty(noticia.Lugar))
-                errors.Add("Escriba el lugar donde ocurre la noticia.");
-            if (string.IsNullOrEmpty(noticia.Contenido))
-                errors.Add("Escriba el contenido de la noticia.");
-            return errors.Count == 0;
+            return true;
         }
     }
 }
