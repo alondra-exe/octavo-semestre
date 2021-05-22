@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<NoticiasWEB.Models.Noticia>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Index";
+    Layout = "Plantilla";
     int x = 1;
 }
 
@@ -25,17 +25,29 @@
         <tbody>
             @foreach (var noticia in Model)
             {
-            <tr>
-                <td>@(x++)</td>
-                <td>@noticia.Fecha</td>
-                <td>@noticia.Encabezado</td>
-                <td>@noticia.Autor</td>
-                <td>@noticia.Lugar</td>
-                <td>@noticia.Contenido</td>
-                <td id="option"><a href="~/Home/Editar/@noticia.Id">EDITAR</a></td>
-                <td id="option"><a href="~/Home/Eliminar/@noticia.Id" id="eliminar">ELIMINAR</a></td>
-            </tr>
+                <tr>
+                    <td>@(x++)</td>
+                    <td>@noticia.Fecha</td>
+                    <td>@noticia.Encabezado</td>
+                    <td>@noticia.Autor</td>
+                    <td>@noticia.Lugar</td>
+                    <td>@noticia.Contenido</td>
+                    <td id="option"><a href="~/Home/Editar/@noticia.Id">EDITAR</a></td>
+                    <td id="option"><a id="delete" href="#" onclick="eliminar(@noticia.Id)">ELIMINAR</a></td>
+                </tr>
             }
         </tbody>
     </table>
 </main>
+
+<form method="post" action="~/Home/Eliminar">
+    <input type="number" name="Id" id="idNoticia" hidden />
+</form>
+<script>
+    function eliminar(id) {
+        if (confirm('¿Seguro que desea eliminar esta noticia?')) {
+            document.getElementById("idNoticia").value = id;
+            document.querySelector("form").submit();
+        }
+    }
+</script>

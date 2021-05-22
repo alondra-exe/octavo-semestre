@@ -1,17 +1,25 @@
 ﻿@model NoticiasWEB.Models.Noticia;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    Layout = null;
+    Layout = "Plantilla";
 }
 <main>
-    <form method="post" action="~/Home/Agregar">
-        <label>Encabezado</label><br />
-        <input type="text" required asp-for="Encabezado" /><br />
-        <input type="text" required asp-for="Autor" placeholder="Autor" /><br />
-        <input type="text" required asp-for="Lugar" placeholder="Lugar" /><br />
-        <label>Contenido</label><br />
-        <input type="text" required asp-for="Contenido" /><br />
-        @Html.ValidationSummary();
-        <input type="submit" value="GUARDAR" />
-    </form>
+    <article>
+        <a href="~/Home/Index">
+            <input type="button" id="cancelar" value="CANCELAR" />
+        </a>
+        <form method="post" action="~/Home/Agregar">
+            <label>ENCABEZADO</label><br />
+            <input type="text" required asp-for="Encabezado" id="encabezado" /><br />
+            <input type="text" required asp-for="Autor" placeholder="AUTOR" />
+            <input type="text" required asp-for="Lugar" placeholder="LUGAR" /><br />
+            <br />
+            <label>CONTENIDO</label><br />
+            <textarea required asp-for="Contenido" id="contenido"></textarea>
+            @Html.ValidationSummary()
+            <section>
+                <input type="submit" value="GUARDAR" />
+            </section>
+        </form>
+    </article>
 </main>

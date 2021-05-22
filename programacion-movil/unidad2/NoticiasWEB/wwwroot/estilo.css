@@ -1,0 +1,191 @@
+﻿html {
+    font-family: Roboto;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    text-align: center;
+    background-color: #FF9D06;
+    color: white;
+}
+
+    header a {
+        position: absolute;
+        float: right;
+        top: 0;
+        right: 0;
+        margin-top: 5px;
+    }
+
+
+    header input[type="button"] {
+        background-color: transparent;
+        font-size: 15px;
+        border: 2px white solid;
+        color: white;
+        border-radius: 10px;
+    }
+
+        header input[type="button"]:hover {
+            background-color: white;
+            color: red;
+            border-color: red;
+            font-weight: bold;
+            outline: none !important;
+        }
+
+footer {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
+    padding: 5px;
+    border-top: solid 2px #FF9D06;
+    background-color: white;
+}
+
+    footer label {
+        font-family: Merriweather;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+main {
+    position: fixed;
+    padding-top: 30px;
+    top: 82px;
+    left: 0;
+    right: 0;
+    bottom: 50px;
+}
+
+input[type="button"] {
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+    input[type="button"]:hover {
+        background-color: #FF9D06;
+        color: white;
+    }
+
+table, th, td {
+    border: 1px solid black;
+    margin: 0 auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#option {
+    width: 100px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+table{
+    margin-left:80px;
+    margin-right:80px;
+}
+
+table a {
+    cursor: pointer;
+}
+
+    table a:hover {
+        font-weight: bold;
+    }
+
+#delete:hover {
+    color: red;
+}
+
+.botones {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+input[type=button] {
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+article {
+    width: 760px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+form {
+    padding: 5px;
+    margin: 50px;
+}
+
+    form label {
+        font-weight: bold;
+        font-size: 15px;
+    }
+
+    form input {
+        border-radius: 20px;
+        border-style: solid;
+        padding: 10px;
+        outline: none !important;
+        margin: 10px;
+    }
+
+textarea {
+    resize: none;
+}
+
+#encabezado, #contenido {
+    width: 600px;
+}
+
+#contenido {
+    overflow-y: scroll;
+    word-wrap: break-word;
+    height: 200px;
+    border-radius: 20px 0 0 20px;
+    padding: 10px;
+    outline: none !important;
+}
+
+section {
+    text-align: right;
+}
+
+article {
+    margin: 0 auto;
+}
+
+input[type="submit"], #cancelar {
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    border: 0;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+    input[type="submit"]:hover {
+        background-color: #FF9D06;
+        color: white;
+    }
+
+    #cancelar:hover {
+        background-color: red;
+        color: white;
+    }
