@@ -16,6 +16,8 @@ namespace NoticiasMOVIL.ViewModels
 {
     public class NoticiasViewModel : INotifyPropertyChanged
     {
+        public SmartCollection<Noticia> Noticias { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)
         {
@@ -23,8 +25,7 @@ namespace NoticiasMOVIL.ViewModels
         }
 
         NoticiasRepository repository = new NoticiasRepository();
-        public SmartCollection<Noticia> Noticias { get; set; } = new SmartCollection<Noticia>();
-
+        
         public Command VerCommand { get; set; }
 
         private bool cargando;
@@ -55,6 +56,7 @@ namespace NoticiasMOVIL.ViewModels
             repository = new NoticiasRepository();
             Noticias = repository.NoticiasAll;
             VerCommand = new Command<Noticia>(Ver);
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
         }
 
         private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
@@ -71,6 +73,7 @@ namespace NoticiasMOVIL.ViewModels
                 Cargando = false;
             }
         }
+
 
         //Views.Inicio inicio;
         Views.VerNoticia ver;

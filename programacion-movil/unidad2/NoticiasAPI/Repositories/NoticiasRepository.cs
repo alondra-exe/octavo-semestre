@@ -23,6 +23,13 @@ namespace NoticiasAPI.Repositories
             return Context.Noticia.Where(x => x.Eliminado == 1).OrderBy(x => x.Fecha);
         }
 
+        const int tamano = 50;
+        public IEnumerable<Noticia> GetNoticias(int pagina)
+        {
+            int inf= tamano * (pagina - 1) + 1;
+            return Context.Noticia.Where(x => x.Id >= inf && x.Id < inf + tamano);
+        }
+
         public override void Delete(Noticia entity)
         {
             if (Context.Noticia.Any(x => x.Id == entity.Id))

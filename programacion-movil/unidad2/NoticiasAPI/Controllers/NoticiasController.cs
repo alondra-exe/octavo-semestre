@@ -144,5 +144,27 @@ namespace NoticiasAPI.Controllers
                 return Ok();
             }
         }
+
+        [HttpGet("lista/{id}")]
+        public IActionResult GetListaNoticias(int id)
+        {
+            NoticiasRepository repository = new NoticiasRepository(Context);
+            var lista = repository.GetNoticias(id).Select(x => new
+            {
+                Id = x.Id,
+                Encabezado=x.Encabezado,
+                Autor=x.Autor,
+                Lugar=x.Lugar,
+                Fecha=x.Fecha,
+                Contenido=x.Contenido
+            }).ToList();
+
+            if (lista != null)
+                return Ok(lista);
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }

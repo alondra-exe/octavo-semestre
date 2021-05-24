@@ -6,7 +6,6 @@
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="noticiasView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
-    
     <ScrollView>
         <CollectionView Margin="10" ItemsSource="{Binding Noticias}">
             <CollectionView.ItemsLayout>
@@ -15,32 +14,19 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="Label">
-                                <Setter Property="TextColor" Value="Black"></Setter>
-                                <Setter Property="Padding" Value="0"></Setter>
-                                <Setter Property="HorizontalTextAlignment" Value="Center"></Setter>
-                                <Setter Property="FontSize" Value="14"></Setter>
-                                <Setter Property="FontAttributes" Value="Bold"></Setter>
-                            </Style>
-                        </Grid.Resources>
-                        <Label Text="Puntuación:"></Label>
-                        <Label Grid.Column="2" Text="Fecha:"></Label>
-                        <Label Grid.Column="1" Text="Tabla:"></Label>
-                        <Label Grid.Row="1" Text="{Binding Encabezado}"></Label>
-                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding Autor}"></Label>
-                        <Label Grid.Column="2" Grid.Row="1" Text="{Binding Lugar}"></Label>
-                    </Grid>
+                    <Frame Padding="5">
+                        <StackLayout>
+                            <Label FontSize="Title" Text="{Binding Encabezado}"></Label>
+                            <Label Text="{Binding Autor}"></Label>
+                            <Label Text="{Binding Lugar}"></Label>
+                        </StackLayout>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding   Source={x:Reference noticiasView}, Path=VerCommand}"
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

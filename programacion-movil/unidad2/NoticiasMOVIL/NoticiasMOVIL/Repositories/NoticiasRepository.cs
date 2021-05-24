@@ -35,13 +35,11 @@ namespace NoticiasMOVIL.Repositories
             for (int pagina = 1; pagina < 100; pagina++)
             {
                 HttpClient client = new HttpClient();
-                var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias/" + pagina);
+                var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias/lista/" + pagina);
                 if (result.IsSuccessStatusCode)
                 {
                     var json = await result.Content.ReadAsStringAsync();
                     var noticia = JsonConvert.DeserializeObject<Noticia[]>(json);
-
-
                     if (pagina == 1)
                     {
                         NoticiasAll.AddRange(noticia);
@@ -52,7 +50,6 @@ namespace NoticiasMOVIL.Repositories
                     {
                         temporal.AddRange(noticia);
                     }
-
                 }
                 else
                 {
