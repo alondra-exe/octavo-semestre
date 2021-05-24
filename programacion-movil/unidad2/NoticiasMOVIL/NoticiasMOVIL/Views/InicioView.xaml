@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
-             x:Class="NoticiasMOVIL.Views.Inicio" Title="Noticias" BackgroundColor="red">
+             x:Class="NoticiasMOVIL.Views.InicioView" Title="Noticias" BackgroundColor="red">
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="noticiasView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>

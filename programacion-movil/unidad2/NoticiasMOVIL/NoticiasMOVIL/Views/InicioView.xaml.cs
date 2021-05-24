@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace NoticiasMOVIL.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Inicio : ContentPage
+    public partial class InicioView : ContentPage
     {
-        public Inicio()
+        public InicioView()
         {
             InitializeComponent();
         }
