@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
-             x:Class="NoticiasMOVIL.Views.InicioView" Title="Noticias" BackgroundColor="red">
+             x:Class="NoticiasMOVIL.Views.InicioView" BackgroundColor="Orange"  NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="noticiasView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
@@ -14,12 +14,24 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="5">
-                        <StackLayout>
-                            <Label FontSize="Title" Text="{Binding Encabezado}"></Label>
-                            <Label Text="{Binding Autor}"></Label>
-                            <Label Text="{Binding Lugar}"></Label>
-                        </StackLayout>
+                    <Frame Padding="5" Margin="10" CornerRadius="20">
+                        <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="35"></RowDefinition>
+                                <RowDefinition Height="15"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label FontSize="Title" FontAttributes="Bold" Grid.ColumnSpan="5" Text="{Binding Encabezado}" TextColor="Black"></Label>
+                            <Label FontSize="Body" Grid.ColumnSpan="5" Grid.Row="1" Text="{Binding Contenido}" TextColor="Black"></Label>
+                            <Label BackgroundColor="White" Margin="0,18,0,0" Grid.Column="4" Grid.Row="1" Text="...   " TextColor="Black"></Label>
+                            <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Black"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}" TextColor="Black"></Label>
+                        </Grid>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer 
                                 Command="{Binding   Source={x:Reference noticiasView}, Path=VerCommand}"

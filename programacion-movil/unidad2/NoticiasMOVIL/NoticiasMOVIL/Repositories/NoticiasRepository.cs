@@ -41,8 +41,8 @@ namespace NoticiasMOVIL.Repositories
                         NoticiasAll.AddRange(noticia);
                         temporal.AddRange(noticia);
                 }
-            Guardar(temporal);
-            NoticiasAll.AddRange(temporal);
+            //Guardar(temporal);
+            //NoticiasAll.AddRange(temporal);
         }
 
         private void Guardar(SmartCollection<Noticia> obj)

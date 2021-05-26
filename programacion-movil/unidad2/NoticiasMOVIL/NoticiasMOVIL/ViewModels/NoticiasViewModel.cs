@@ -23,8 +23,6 @@ namespace NoticiasMOVIL.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-
-        NoticiasRepository repository = new NoticiasRepository();
         
         public Command VerCommand { get; set; }
 
@@ -51,9 +49,11 @@ namespace NoticiasMOVIL.ViewModels
             set { noticia = value; OnPropertyChanged("Noticia"); }
         }
 
+        NoticiasMOVIL.Repositories.NoticiasRepository repository;
+
         public NoticiasViewModel()
         {
-            repository = new NoticiasRepository();
+            repository = new Repositories.NoticiasRepository();
             Noticias = repository.NoticiasAll;
             VerCommand = new Command<Noticia>(Ver);
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
