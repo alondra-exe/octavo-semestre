@@ -23,7 +23,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoticiasMOVIL.Android", "un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoticiasMOVIL", "unidad2\NoticiasMOVIL\NoticiasMOVIL\NoticiasMOVIL.csproj", "{26CDA5BF-A0E2-4983-BD69-5153D94DA70B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoticiasAPI", "unidad2\NoticiasAPI\NoticiasAPI.csproj", "{313A8468-95B6-4C2E-9433-84C403BA7F7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoticiasAPI", "unidad2\NoticiasAPI\NoticiasAPI.csproj", "{313A8468-95B6-4C2E-9433-84C403BA7F7A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

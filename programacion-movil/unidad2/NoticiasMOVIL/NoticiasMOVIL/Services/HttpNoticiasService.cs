@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,15 +39,44 @@ namespace NoticiasMOVIL.Services
                         foreach (var n in noticias)
                         {
                             var existente = repos.Get(n.Id);
-                            existente.Encabezado = n.Encabezado;
-                            existente.Contenido = n.Contenido;
-                            existente.Fecha = n.Fecha;
+                            if (existente == null)
+                            {
+                                repos.Insert(n);
+                            }
+                            else
+                            {
+                                existente.Encabezado = n.Encabezado;
+                                existente.Contenido = n.Contenido;
+                                existente.Fecha = n.Fecha;
+                                repos.Update(existente);
+                            }
                         }
                     }
                     hubocambios = true;
                 }
             }
             return hubocambios;
+        }
+
+        public async Task Insertar(Noticia n)
+        {
+
+            var json = JsonConvert.SerializeObject(n);
+            var result = await client.PostAsync("/api/noticias",
+                new StringContent(json, Encoding.UTF8, "application/json"));
+
+            if (result.IsSuccessStatusCode)
+            {
+                await App.Descargar();
+                return;
+            }
+            else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var mensaje = await result.Content.ReadAsStringAsync();
+                throw new ArgumentException(JsonConvert.DeserializeObject<string>(mensaje));
+            }
+
+            throw new ArgumentException("No se puede realizar la operación: " + result.StatusCode);
         }
     }
 }

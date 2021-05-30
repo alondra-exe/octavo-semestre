@@ -7,7 +7,8 @@
         <vm:NoticiasViewModel x:Name="noticiasView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
     <ScrollView>
-        <CollectionView Margin="10" ItemsSource="{Binding Noticias}">
+        <RefreshView  Command="{Binding ActualizarCommand}" IsRefreshing="{Binding EstaCargando}">
+            <CollectionView Margin="10" ItemsSource="{Binding Noticias}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
                            ItemSpacing="10" />
@@ -43,5 +44,6 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        </RefreshView>
     </ScrollView>
 </ContentPage>

@@ -1,33 +1,31 @@
-﻿using Newtonsoft.Json;
-using NoticiasMOVIL.Models;
-using NoticiasMOVIL.Helpers;
+﻿using NoticiasMOVIL.Models;
 using NoticiasMOVIL.Repositories;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Net.Http;
 using System.Runtime.CompilerServices;
-using System.Text;
 using Xamarin.Forms;
-using Xamarin.Essentials;
 using System.Threading.Tasks;
-using System.Linq;
 
 namespace NoticiasMOVIL.ViewModels
 {
     public class NoticiasViewModel : INotifyPropertyChanged
     {
         public Command VerCommand { get; set; }
+        public Command ActualizarCommand { get; set; }
 
-        public SmartCollection<Noticia> Noticias { get; set; } = new SmartCollection<Noticia>();
+        public ObservableCollection<Noticia> Noticias { get; set; } = new ObservableCollection<Noticia>();
 
         public NoticiasViewModel()
         {
-            repository = new Repositories.NoticiasRepository();
-            Noticias = repository.NoticiasAll;
-            VerCommand = new Command<Noticia>(Ver);
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            ActualizarCommand = new Command(() => { _ = Descargar(); });
+            //VerCommand = new Command<Noticia>(Ver);
+            App.ActualizacionRealizada += App_ActualizacionRealizada; Actualizar();
+            _ = Descargar();
+        }
+
+        private void App_ActualizacionRealizada()
+        {
+            Actualizar();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,22 +35,13 @@ namespace NoticiasMOVIL.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private bool cargando;
-        public bool Cargando
-        {
-            get { return cargando; }
-            set
-            {
-                cargando = value;
-                OnPropertyChanged("IsRunning");
-            }
-        }
         private bool visible;
         public bool SinConexion
         {
             get { return visible; }
             set { visible = value; OnPropertyChanged("SinConexion"); }
         }
+
         private Noticia noticia;
         public Noticia Noticia
         {
@@ -60,55 +49,58 @@ namespace NoticiasMOVIL.ViewModels
             set { noticia = value; OnPropertyChanged("Noticia"); }
         }
 
+        private bool cargando;
         public bool EstaCargando
         {
             get { return cargando; }
             set { cargando = value; OnPropertyChanged(); }
         }
 
-        NoticiasMOVIL.Repositories.NoticiasRepository repository;
-
-        private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
-        {
-            if (Noticia != null && Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                SinConexion = false;
-                Cargando = true;
-                var resultado = await repository.Actualizar(Noticia);
-                if (resultado != null)
-                {
-                    Noticia = resultado;
-                }
-                Cargando = false;
-            }
-        }
-
         Views.VerNoticia ver;
-        private async void Ver(Noticia n)
-        {
-            if (ver == null)
-            {
-                ver = new Views.VerNoticia();
-                ver.BindingContext = this;
-            }
-            Noticia = n;
-            await App.Current.MainPage.Navigation.PushAsync(ver);
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                SinConexion = false;
-                Cargando = true;
-                var resultado = await repository.Actualizar(n);
 
-                if (resultado != null)
-                {
-                    Noticia = resultado;
-                }
-                Cargando = false;
-            }
-            else
+        public async Task Descargar()
+        {
+            EstaCargando = true;
+            await App.Descargar();
+            EstaCargando = false;
+        }
+
+        public void Actualizar()
+        {
+            NoticiasRepository repos = new NoticiasRepository();
+            Noticias.Clear();
+            var todas = repos.GetAll();
+            foreach (var item in todas)
             {
-                SinConexion = n.Contenido == null;
+                Noticias.Add(item);
             }
         }
+
+        //private async void Ver(Noticia n)
+        //{
+        //    if (ver == null)
+        //    {
+        //        ver = new Views.VerNoticia();
+        //        ver.BindingContext = this;
+        //    }
+        //    Noticia = n;
+        //    await App.Current.MainPage.Navigation.PushAsync(ver);
+        //    if (Connectivity.NetworkAccess == NetworkAccess.Internet)
+        //    {
+        //        SinConexion = false;
+        //        EstaCargando = true;
+        //        var resultado = await repository.Actualizar(n);
+
+        //        if (resultado != null)
+        //        {
+        //            Noticia = resultado;
+        //        }
+        //        EstaCargando = false;
+        //    }
+        //    else
+        //    {
+        //        SinConexion = n.Contenido == null;
+        //    }
+        //}
     }
 }

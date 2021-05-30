@@ -1,6 +1,5 @@
 ﻿using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 using NoticiasMOVIL.Services;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -15,7 +14,6 @@ namespace NoticiasMOVIL
         public App()
         {
             InitializeComponent();
-
             MainPage = new NavigationPage(new Views.InicioView());
         }
 

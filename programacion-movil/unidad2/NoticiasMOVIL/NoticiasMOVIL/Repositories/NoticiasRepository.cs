@@ -1,89 +1,53 @@
-﻿using Newtonsoft.Json;
-using NoticiasMOVIL.Models;
-using NoticiasMOVIL.Helpers;
+﻿using NoticiasMOVIL.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
 using SQLite;
-using System.Linq;
 
 namespace NoticiasMOVIL.Repositories
 {
     public class NoticiasRepository
     {
-        public SmartCollection<Noticia> NoticiasAll { get; set; }
+        public SQLiteConnection connection { get; set; }
+
         public NoticiasRepository()
         {
-            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/noticias.json";
-            if (File.Exists(ruta))
+            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/noticias.db3";
+            connection = new SQLiteConnection(ruta);
+            connection.CreateTable<Noticia>();
+        }
+
+        public static bool Exists
+        {
+            get
             {
-                string jsondata = File.ReadAllText(ruta);
-                NoticiasAll = JsonConvert.DeserializeObject<SmartCollection<Noticia>>(jsondata);
-            }
-            else
-            {
-                NoticiasAll = new SmartCollection<Noticia>();
-                Descargar();
+                var rutabd = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/noticias.db3";
+                return System.IO.File.Exists(rutabd);
             }
         }
 
-        async void Descargar()
+        public void Insert(Noticia n)
         {
-            SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
-            HttpClient client = new HttpClient();
-            var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias");
-            if (result.IsSuccessStatusCode)
-            {
-                var json = await result.Content.ReadAsStringAsync();
-                var noticia = JsonConvert.DeserializeObject<Noticia[]>(json);
-                NoticiasAll.AddRange(noticia);
-                temporal.AddRange(noticia);
-            }
-            Guardar(temporal);
+            connection.Insert(n);
         }
 
-        private void Guardar(SmartCollection<Noticia> obj)
+        public void Update(Noticia n)
         {
-            var ruta = Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "/noticias.json";
-            var datos = JsonConvert.SerializeObject(obj);
-            File.WriteAllText(ruta, datos);
+            connection.Update(n);
         }
 
-        public async Task<Noticia> Actualizar(Noticia n)
+        public void Delete(Noticia n)
         {
-            if (n.Contenido == null)
-            {
-                HttpClient client = new HttpClient();
-                var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias/" + n.Id);
-                if (result.IsSuccessStatusCode)
-                {
-                    var json = await result.Content.ReadAsStringAsync();
-                    var clon = JsonConvert.DeserializeObject<Noticia>(json);
-                    var index = NoticiasAll.IndexOf(n);
-                    NoticiasAll[index] = clon;
-                    Guardar(NoticiasAll);
-                    return clon;
-                }
-                return null;
-            }
-            return null;
+            connection.Delete(n);
         }
 
         public Noticia Get(int id)
         {
-            SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
-            return temporal.FirstOrDefault(x => x.Id == (int)id && x.Eliminado == 1);
+            return connection.Get<Noticia>(id);
         }
 
         public IEnumerable<Noticia> GetAll()
         {
-            SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
-            return temporal.Where(x => x.Eliminado == 1).OrderBy(x => x.Fecha);
+            return connection.Table<Noticia>().OrderBy(x => x.Encabezado);
         }
     }
 }
