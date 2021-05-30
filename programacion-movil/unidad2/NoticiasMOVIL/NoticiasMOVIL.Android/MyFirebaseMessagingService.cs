@@ -26,10 +26,20 @@ namespace NoticiasMOVIL.Droid
             Log.Debug("PRUEBAMENSAJES", "RECIBI EL MENSAJE");
 
             if (App.Current != null)
+            {
                 var data = message.Data;
                 if (data["Tipo"] == "Actualizar")
                 {
                     _ = App.Descargar();
+                }
+                else
+                {
+                    Repositories.NoticiasRepository repos = new Repositories.NoticiasRepository();
+                    var persona = repos.Get(int.Parse(data["Id"]));
+                    if (persona != null)
+                    {
+                        _ = App.Descargar();
+                    }
                 }
             }
             else
@@ -39,8 +49,8 @@ namespace NoticiasMOVIL.Droid
                 {
                     DateTime fechaultimaactualizado = Preferences.Get("fechaAct", DateTime.MinValue);
                     var fecha = DateTime.Now;
-                    HttpNoticiasService personas = new HttpNoticiasService();
-                    var resultado = personas.DescargarNoticias(fechaultimaactualizado);
+                    HttpNoticiasService noticias = new HttpNoticiasService();
+                    var resultado = noticias.DescargarNoticias(fechaultimaactualizado);
                     resultado.Wait();
 
                     if (resultado.Result)

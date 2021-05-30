@@ -27,6 +27,14 @@ namespace NoticiasAPI.Controllers
             return Ok(noticias);
         }
 
+        [HttpGet("{fecha}")]
+        public IActionResult Get(DateTime fecha)
+        {
+            NoticiasRepository repository = new NoticiasRepository(Context);
+            var noticias = repository.GetAll().Where(x => x.Fecha >= fecha);
+            return Ok(noticias);
+        }
+
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {

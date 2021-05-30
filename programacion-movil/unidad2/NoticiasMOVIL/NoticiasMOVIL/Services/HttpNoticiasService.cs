@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NoticiasMOVIL.Repositories;
+using NoticiasMOVIL.Models;
 using Xamarin.Essentials;
 
 namespace NoticiasMOVIL.Services
@@ -21,40 +22,30 @@ namespace NoticiasMOVIL.Services
 
         NoticiasRepository repos;
 
-        public async Task<bool> DescargarNoticias(DateTime fechaUltimaActualizacion)
+        public async Task<bool> DescargarNoticias(DateTime fechaAct)
         {
             bool hubocambios = false;
-
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-
-                var result = await client.GetAsync("api/noticias/false/" + fechaUltimaActualizacion.ToString("yyyy-MM-dd"));
-
-
-                if (result.IsSuccessStatusCode)
-                {
-                    if (result.Content.Headers.ContentLength > 0)
-                    {
-
-                        var json = await result.Content.ReadAsStringAsync();
-                        if (repos == null) repos = new NoticiasRepository();
-
-                        hubocambios = true;
-                    }
-                }
-            }
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                var result = await client.GetAsync("api/noticias/true/" + fechaUltimaActualizacion.ToString("yyyy-MM-dd"));
-
+                var result = await client.GetAsync("/api/noticias/" + fechaAct.ToString("yyyy-MM-dd"));
                 if (result.IsSuccessStatusCode)
                 {
                     if (result.Content.Headers.ContentLength > 0)
                     {
                         var json = await result.Content.ReadAsStringAsync();
+                        var noticias = JsonConvert.DeserializeObject<Noticia[]>(json);
+
                         if (repos == null) repos = new NoticiasRepository();
-                        hubocambios = true;
+
+                        foreach (var n in noticias)
+                        {
+                            var existente = repos.Get(n.Id);
+                            existente.Encabezado = n.Encabezado;
+                            existente.Contenido = n.Contenido;
+                            existente.Fecha = n.Fecha;
+                        }
                     }
+                    hubocambios = true;
                 }
             }
             return hubocambios;

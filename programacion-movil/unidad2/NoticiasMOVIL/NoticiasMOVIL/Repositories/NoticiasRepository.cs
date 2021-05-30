@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using SQLite;
+using System.Linq;
 
 namespace NoticiasMOVIL.Repositories
 {
@@ -31,16 +32,6 @@ namespace NoticiasMOVIL.Repositories
             }
         }
 
-        //public Noticia Get(int id)
-        //{
-        //    return connection.Table<Noticia>().FirstOrDefault(x => x.Id == id);
-        //}
-
-        //public IEnumerable<Noticia> GetAll()
-        //{
-        //    return connection.Table<Noticia>().OrderBy(x => x.Encabezado);
-        //}
-
         async void Descargar()
         {
             SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
@@ -53,8 +44,7 @@ namespace NoticiasMOVIL.Repositories
                 NoticiasAll.AddRange(noticia);
                 temporal.AddRange(noticia);
             }
-            //Guardar(temporal);
-            //NoticiasAll.AddRange(temporal);
+            Guardar(temporal);
         }
 
         private void Guardar(SmartCollection<Noticia> obj)
@@ -82,6 +72,18 @@ namespace NoticiasMOVIL.Repositories
                 return null;
             }
             return null;
+        }
+
+        public Noticia Get(int id)
+        {
+            SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
+            return temporal.FirstOrDefault(x => x.Id == (int)id && x.Eliminado == 1);
+        }
+
+        public IEnumerable<Noticia> GetAll()
+        {
+            SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
+            return temporal.Where(x => x.Eliminado == 1).OrderBy(x => x.Fecha);
         }
     }
 }
