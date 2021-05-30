@@ -6,13 +6,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace NoticiasAPI.Services
+namespace NoticiasWEB.Services
 {
     public class MessagingService
     {
         public MessagingService()
         {
-            var ruta = AppDomain.CurrentDomain.BaseDirectory + "/noticias-2dd45-firebase-adminsdk-93ekl-9a7ebaebee.json";
+            var ruta = AppDomain.CurrentDomain.BaseDirectory + "/clave.json";
 
             if (FirebaseMessaging.DefaultInstance == null)
             {
@@ -35,7 +35,6 @@ namespace NoticiasAPI.Services
                  },
                 Android = new AndroidConfig { Priority = Priority.High }
             };
-
             FirebaseMessaging.DefaultInstance.SendAsync(mensaje);
         }
     }

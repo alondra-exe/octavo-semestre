@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using NoticiasWEB.Models;
+using NoticiasWEB.Services;
 
 namespace NoticiasWEB.Controllers
 {
     public class HomeController : Controller
     {
         public IHttpClientFactory Factory { get; }
-        public HomeController(IHttpClientFactory factory)
+        public HomeController(IHttpClientFactory factory, MessagingService mensaje)
         {
+            Mensaje = mensaje;
             Factory = factory;
         }
+
+        public MessagingService Mensaje { get; set; }
 
         public async Task<IActionResult> Index()
         {
@@ -48,6 +52,7 @@ namespace NoticiasWEB.Controllers
             var result = await client.PostAsync("noticias", new StringContent(json, Encoding.UTF8, "application/json"));
             if (result.IsSuccessStatusCode)
             {
+                Mensaje.EnviarMensaje();
                 return RedirectToAction("Index");
             }
             else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
@@ -93,6 +98,7 @@ namespace NoticiasWEB.Controllers
             var result = await client.PutAsync("noticias", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
             if (result.IsSuccessStatusCode)
             {
+                Mensaje.EnviarMensaje();
                 return RedirectToAction("Index");
             }
             else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)

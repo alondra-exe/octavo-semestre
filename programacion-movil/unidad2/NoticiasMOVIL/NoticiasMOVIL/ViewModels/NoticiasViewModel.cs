@@ -11,20 +11,31 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Essentials;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace NoticiasMOVIL.ViewModels
 {
     public class NoticiasViewModel : INotifyPropertyChanged
     {
-        public SmartCollection<Noticia> Noticias { get; set; }
+        public Command VerCommand { get; set; }
+
+        public SmartCollection<Noticia> Noticias { get; set; } = new SmartCollection<Noticia>();
+
+        public NoticiasViewModel()
+        {
+            repository = new Repositories.NoticiasRepository();
+            Noticias = repository.NoticiasAll;
+            VerCommand = new Command<Noticia>(Ver);
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         private void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
-        
-        public Command VerCommand { get; set; }
 
         private bool cargando;
         public bool Cargando
@@ -49,15 +60,13 @@ namespace NoticiasMOVIL.ViewModels
             set { noticia = value; OnPropertyChanged("Noticia"); }
         }
 
-        NoticiasMOVIL.Repositories.NoticiasRepository repository;
-
-        public NoticiasViewModel()
+        public bool EstaCargando
         {
-            repository = new Repositories.NoticiasRepository();
-            Noticias = repository.NoticiasAll;
-            VerCommand = new Command<Noticia>(Ver);
-            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChanged;
+            get { return cargando; }
+            set { cargando = value; OnPropertyChanged(); }
         }
+
+        NoticiasMOVIL.Repositories.NoticiasRepository repository;
 
         private async void Connectivity_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
         {
@@ -74,8 +83,6 @@ namespace NoticiasMOVIL.ViewModels
             }
         }
 
-
-        //Views.Inicio inicio;
         Views.VerNoticia ver;
         private async void Ver(Noticia n)
         {

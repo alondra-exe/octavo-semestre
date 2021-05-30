@@ -12,6 +12,7 @@
                 <LinearItemsLayout Orientation="Vertical"
                            ItemSpacing="10" />
             </CollectionView.ItemsLayout>
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame Padding="5" Margin="10" CornerRadius="20">
@@ -29,8 +30,8 @@
                             <Label FontSize="Title" FontAttributes="Bold" Grid.ColumnSpan="5" Text="{Binding Encabezado}" TextColor="Black"></Label>
                             <Label FontSize="Body" Grid.ColumnSpan="5" Grid.Row="1" Text="{Binding Contenido}" TextColor="Black"></Label>
                             <Label BackgroundColor="White" Margin="0,18,0,0" Grid.Column="4" Grid.Row="1" Text="...   " TextColor="Black"></Label>
-                            <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Black"></Label>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}" TextColor="Black"></Label>
+                            <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Gray"></Label>
+                            <Label Grid.Row="2" Grid.Column="1" FontAttributes="Bold" TextColor="Gray" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"></Label>
                         </Grid>
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer 

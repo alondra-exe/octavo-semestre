@@ -8,6 +8,8 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
+using SQLite;
 
 namespace NoticiasMOVIL.Repositories
 {
@@ -29,18 +31,28 @@ namespace NoticiasMOVIL.Repositories
             }
         }
 
+        //public Noticia Get(int id)
+        //{
+        //    return connection.Table<Noticia>().FirstOrDefault(x => x.Id == id);
+        //}
+
+        //public IEnumerable<Noticia> GetAll()
+        //{
+        //    return connection.Table<Noticia>().OrderBy(x => x.Encabezado);
+        //}
+
         async void Descargar()
         {
             SmartCollection<Noticia> temporal = new SmartCollection<Noticia>();
-                HttpClient client = new HttpClient();
-                var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias");
-                if (result.IsSuccessStatusCode)
-                {
-                    var json = await result.Content.ReadAsStringAsync();
-                    var noticia = JsonConvert.DeserializeObject<Noticia[]>(json);
-                        NoticiasAll.AddRange(noticia);
-                        temporal.AddRange(noticia);
-                }
+            HttpClient client = new HttpClient();
+            var result = await client.GetAsync("https://apinoticiasalondra.sistemas171.com/api/noticias");
+            if (result.IsSuccessStatusCode)
+            {
+                var json = await result.Content.ReadAsStringAsync();
+                var noticia = JsonConvert.DeserializeObject<Noticia[]>(json);
+                NoticiasAll.AddRange(noticia);
+                temporal.AddRange(noticia);
+            }
             //Guardar(temporal);
             //NoticiasAll.AddRange(temporal);
         }

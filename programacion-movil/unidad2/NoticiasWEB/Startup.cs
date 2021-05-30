@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NoticiasWEB.Services;
 
 namespace NoticiasWEB
 {
@@ -30,7 +31,7 @@ namespace NoticiasWEB
            {
                options.Cookie.Name = "noticiasu2";
            });
-
+            services.AddSingleton<MessagingService>();
             services.AddMvc();
         }
 
