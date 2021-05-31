@@ -35,27 +35,27 @@ namespace NoticiasAPI.Controllers
             return Ok(noticias);
         }
 
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            NoticiasRepository repository = new NoticiasRepository(Context);
-            try
-            {
-                var noticia = repository.Get(id);
-                if (noticia == null)
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    return Ok(new { noticia.Id, noticia.Encabezado, noticia.Autor, noticia.Lugar, noticia.Fecha, noticia.Contenido });
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        //[HttpGet("{id}")]
+        //public IActionResult Get(int id)
+        //{
+        //    NoticiasRepository repository = new NoticiasRepository(Context);
+        //    try
+        //    {
+        //        var noticia = repository.Get(id);
+        //        if (noticia == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            return Ok(new { noticia.Id, noticia.Encabezado, noticia.Autor, noticia.Lugar, noticia.Fecha, noticia.Contenido });
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
 
         [HttpPost]
         public IActionResult Post([FromBody] Noticia noticia)

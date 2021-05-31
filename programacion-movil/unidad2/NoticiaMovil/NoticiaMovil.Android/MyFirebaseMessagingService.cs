@@ -1,17 +1,23 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content;
+using Android.OS;
+using Android.Runtime;
 using Android.Util;
+using Android.Views;
+using Android.Widget;
 using Firebase.Messaging;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Xamarin.Essentials;
-using NoticiasMOVIL.Services;
+using NoticiaMovil.Services;
 
-namespace NoticiasMOVIL.Droid
+namespace NoticiaMovil.Droid
 {
     [Service]
     [IntentFilter(new[] { "com.google.firebase.MESSAGING_EVENT" })]
-    public class MyFirebaseMessagingService : FirebaseMessagingService
+    class MyFirebaseMessagingService : FirebaseMessagingService
     {
         const string TAG = "MyFirebaseMsgService";
         public override void OnMessageReceived(RemoteMessage message)
