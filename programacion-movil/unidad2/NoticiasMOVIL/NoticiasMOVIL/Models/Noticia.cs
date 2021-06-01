@@ -18,7 +18,5 @@ namespace NoticiasMOVIL.Models
         public DateTime Fecha { get; set; }
         [NotNull]
         public string Contenido { get; set; }
-        [NotNull]
-        public ulong Eliminado { get; set; }
     }
 }

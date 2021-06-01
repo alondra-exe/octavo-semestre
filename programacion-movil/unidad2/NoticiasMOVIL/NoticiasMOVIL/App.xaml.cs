@@ -31,9 +31,7 @@ namespace NoticiasMOVIL
 
         public static async Task Descargar()
         {
-            DateTime fechaultimaactualizado = Preferences.Get("fechaAct", DateTime.MinValue);
-            var fecha = DateTime.Now;
-            var resultado = await NoticiasServices.DescargarNoticias(fechaultimaactualizado);
+            var resultado = await NoticiasServices.DescargarNoticias();
             if (resultado)
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -41,7 +39,6 @@ namespace NoticiasMOVIL
                     ActualizacionRealizada?.Invoke();
                 });
             }
-            Preferences.Set("fechaAct", fecha);
         }
     }
 }

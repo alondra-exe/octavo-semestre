@@ -17,7 +17,7 @@
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -42,7 +42,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
-    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
+    <BundleAssemblies>false</BundleAssemblies>
+    <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />

@@ -8,7 +8,7 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <RefreshView  Command="{Binding ActualizarCommand}" IsRefreshing="{Binding EstaCargando}">
-            <CollectionView Margin="10" ItemsSource="{Binding Noticias}">
+            <CollectionView Margin="10" ItemsSource="{Binding ListaNoticias}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Vertical"
                            ItemSpacing="10" />

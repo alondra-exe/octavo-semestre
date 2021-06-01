@@ -1,46 +1,29 @@
 ﻿using NoticiasMOVIL.Models;
 using NoticiasMOVIL.Repositories;
-using System.Collections.ObjectModel;
+using NoticiasMOVIL.Helpers;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Xamarin.Forms;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace NoticiasMOVIL.ViewModels
 {
     public class NoticiasViewModel : INotifyPropertyChanged
     {
-        public Command VerCommand { get; set; }
-        public Command ActualizarCommand { get; set; }
-
-        public ObservableCollection<Noticia> Noticias { get; set; } = new ObservableCollection<Noticia>();
-
-        public NoticiasViewModel()
-        {
-            ActualizarCommand = new Command(() => { _ = Descargar(); });
-            //VerCommand = new Command<Noticia>(Ver);
-            App.ActualizacionRealizada += App_ActualizacionRealizada; Actualizar();
-            _ = Descargar();
-        }
-
-        private void App_ActualizacionRealizada()
-        {
-            Actualizar();
-        }
-
+        public SmartCollection<Noticia> ListaNoticias { get; set; } = new SmartCollection<Noticia>();
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string name = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+        public Command VerCommand { get; set; }
+        public Command VerTodasCommand { get; set; }
+        public Command ActualizarCommand { get; set; }
 
-        private bool visible;
-        public bool SinConexion
-        {
-            get { return visible; }
-            set { visible = value; OnPropertyChanged("SinConexion"); }
-        }
+        Views.InicioView inicioView;
+        Views.VerNoticia verView;
 
         private Noticia noticia;
         public Noticia Noticia
@@ -50,57 +33,66 @@ namespace NoticiasMOVIL.ViewModels
         }
 
         private bool cargando;
-        public bool EstaCargando
+        public bool Cargando
         {
             get { return cargando; }
-            set { cargando = value; OnPropertyChanged(); }
+            set { cargando = value; OnPropertyChanged("Cargando"); }
         }
 
-        Views.VerNoticia ver;
-
-        public async Task Descargar()
+        public NoticiasViewModel()
         {
-            EstaCargando = true;
-            await App.Descargar();
-            EstaCargando = false;
+            ActualizarCommand = new Command(() => { _ = Descargar(); });
+            VerTodasCommand = new Command(VerTodas);
+            VerCommand = new Command<Noticia>(Ver);
+            Connectivity.ConnectivityChanged += Connectivity_ConnectivityChangedAsync;
+            App.ActualizacionRealizada += App_ActualizacionRealizada;
+            Actualizar();
+            _ = Descargar();
         }
 
-        public void Actualizar()
+        private void App_ActualizacionRealizada()
+        {
+            Actualizar();
+        }
+
+private void Actualizar()
         {
             NoticiasRepository repos = new NoticiasRepository();
-            Noticias.Clear();
-            var todas = repos.GetAll();
-            foreach (var item in todas)
+            ListaNoticias.Clear();
+            var noticias = repos.GetAll();
+            Cargando = false;
+        }
+        private async void Connectivity_ConnectivityChangedAsync(object sender, ConnectivityChangedEventArgs e)
+        {
+            if (ListaNoticias == null)
             {
-                Noticias.Add(item);
+                await Descargar();
+            }
+            else
+            {
+                Actualizar();
             }
         }
 
-        //private async void Ver(Noticia n)
-        //{
-        //    if (ver == null)
-        //    {
-        //        ver = new Views.VerNoticia();
-        //        ver.BindingContext = this;
-        //    }
-        //    Noticia = n;
-        //    await App.Current.MainPage.Navigation.PushAsync(ver);
-        //    if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-        //    {
-        //        SinConexion = false;
-        //        EstaCargando = true;
-        //        var resultado = await repository.Actualizar(n);
+        private async Task Descargar()
+        {
+            Cargando = true;
+            await App.Descargar();
+            Cargando = false;
+        }
 
-        //        if (resultado != null)
-        //        {
-        //            Noticia = resultado;
-        //        }
-        //        EstaCargando = false;
-        //    }
-        //    else
-        //    {
-        //        SinConexion = n.Contenido == null;
-        //    }
-        //}
+        private async void Ver(Noticia n)
+        {
+            verView = new Views.VerNoticia();
+            verView.BindingContext = this;
+            Noticia = n;
+            await App.Current.MainPage.Navigation.PushAsync(verView);
+        }
+        private async void VerTodas()
+        {
+            inicioView = new Views.InicioView();
+            inicioView.BindingContext = this;
+            await App.Current.MainPage.Navigation.PushAsync(inicioView);
+        }
     }
 }

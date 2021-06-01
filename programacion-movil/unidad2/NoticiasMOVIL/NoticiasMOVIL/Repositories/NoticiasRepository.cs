@@ -1,7 +1,11 @@
-﻿using NoticiasMOVIL.Models;
+﻿using Newtonsoft.Json;
+using NoticiasMOVIL.Helpers;
+using NoticiasMOVIL.Models;
+using SQLite;
 using System;
 using System.Collections.Generic;
-using SQLite;
+using System.IO;
+using System.Net.Http;
 
 namespace NoticiasMOVIL.Repositories
 {

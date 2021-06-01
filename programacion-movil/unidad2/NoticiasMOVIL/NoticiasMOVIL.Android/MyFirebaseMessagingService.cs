@@ -40,16 +40,9 @@ namespace NoticiasMOVIL.Droid
                 var data = message.Data;
                 if (data["Tipo"] == "Actualizar")
                 {
-                    DateTime fechaultimaactualizado = Preferences.Get("fechaAct", DateTime.MinValue);
-                    var fecha = DateTime.Now;
                     HttpNoticiasService noticias = new HttpNoticiasService();
-                    var resultado = noticias.DescargarNoticias(fechaultimaactualizado);
+                    var resultado = noticias.DescargarNoticias();
                     resultado.Wait();
-
-                    if (resultado.Result)
-                    {
-                        Preferences.Set("fechaAct", fecha);
-                    }
                 }
             }
         }
