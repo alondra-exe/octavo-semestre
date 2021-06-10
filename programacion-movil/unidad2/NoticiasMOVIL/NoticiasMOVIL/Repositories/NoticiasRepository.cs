@@ -46,12 +46,12 @@ namespace NoticiasMOVIL.Repositories
 
         public Noticia Get(int id)
         {
-            return connection.Get<Noticia>(id);
+            return connection.Table<Noticia>().FirstOrDefault(x=>x.Id == id);
         }
 
         public IEnumerable<Noticia> GetAll()
         {
-            return connection.Table<Noticia>().OrderBy(x => x.Encabezado);
+            return connection.Table<Noticia>().OrderBy(x => x.Fecha);
         }
     }
 }

@@ -8,91 +8,55 @@ using NoticiasMOVIL.Models;
 using Xamarin.Essentials;
 using NoticiasMOVIL.Helpers;
 using System.IO;
+using Xamarin.Forms;
 
 namespace NoticiasMOVIL.Services
 {
     public class HttpNoticiasService
     {
         HttpClient client;
-
+        NoticiasRepository repos;
         public HttpNoticiasService()
         {
             client = new HttpClient();
-            client.BaseAddress = new Uri("http://apinoticiasalondra.sistemas171.com/api/");
+            client.BaseAddress = new Uri("https://apinoticiasalondra.sistemas171.com/");
         }
-
-        NoticiasRepository repos;
 
         public async Task<bool> DescargarNoticias()
         {
-            bool hubocambios = false;
+            bool Existencambios = false;
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                var result = await client.GetAsync("noticias");
+                var result = await client.GetAsync("api/noticias");
+
                 if (result.IsSuccessStatusCode)
                 {
-                    if (result.Content.Headers.ContentLength > 0)
+                    var json = await result.Content.ReadAsStringAsync();
+                    var noticias = JsonConvert.DeserializeObject<Noticia[]>(json);
+
+                    if (repos == null) repos = new NoticiasRepository();
+
+                    foreach (var noticia in noticias)
                     {
-                        var json = await result.Content.ReadAsStringAsync();
-                        var noticias = JsonConvert.DeserializeObject<Noticia[]>(json);
-
-                        if (repos == null) repos = new NoticiasRepository();
-
-                        foreach (var n in noticias)
+                        var n = repos.Get(noticia.Id);
+                        if (n == null)
                         {
-                            var existente = repos.Get(n.Id);
-                            if (existente == null)
-                            {
-                                repos.Insert(n);
-                            }
-                            else
-                            {
-                                existente.Encabezado = n.Encabezado;
-                                existente.Contenido = n.Contenido;
-                                existente.Autor = n.Autor;
-                                existente.Lugar = n.Lugar;
-                                existente.Fecha = n.Fecha;
-                                repos.Update(existente);
-                            }
+                            repos.Insert(noticia);
                         }
-                        hubocambios = true;
+                        else
+                        {
+                            n.Encabezado = noticia.Encabezado;
+                            n.Contenido = noticia.Contenido;
+                            n.Autor = noticia.Autor;
+                            n.Lugar = noticia.Lugar;
+                            n.Fecha = noticia.Fecha;
+                            repos.Update(n);
+                        }
                     }
+                    Existencambios = true;
                 }
             }
-            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
-            {
-                var result = await client.GetAsync("noticias");
-                if (result.IsSuccessStatusCode)
-                {
-                    if (result.Content.Headers.ContentLength > 0)
-                    {
-                        var json = await result.Content.ReadAsStringAsync();
-                        var noticias = JsonConvert.DeserializeObject<Noticia[]>(json);
-                        if (repos == null) repos = new NoticiasRepository();
-
-                        foreach (var n in noticias)
-                        {
-                            var existente = repos.Get(n.Id);
-                            if (existente == null)
-                            {
-                                repos.Insert(n);
-                            }
-                            else
-                            {
-                                existente.Encabezado = n.Encabezado;
-                                existente.Contenido = n.Contenido;
-                                existente.Autor = n.Autor;
-                                existente.Lugar = n.Lugar;
-                                existente.Fecha = n.Fecha;
-                                repos.Update(existente);
-                            }
-                        }
-                        hubocambios = true;
-                    }
-                }
-
-            }
-            return hubocambios;
+            return Existencambios;
         }
     }
 }

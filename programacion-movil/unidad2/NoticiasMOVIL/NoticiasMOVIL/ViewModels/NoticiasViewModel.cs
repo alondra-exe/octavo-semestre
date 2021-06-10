@@ -33,10 +33,10 @@ namespace NoticiasMOVIL.ViewModels
         }
 
         private bool cargando;
-        public bool Cargando
+        public bool EstaCargando
         {
             get { return cargando; }
-            set { cargando = value; OnPropertyChanged("Cargando"); }
+            set { cargando = value; OnPropertyChanged(); }
         }
 
         public NoticiasViewModel()
@@ -54,13 +54,14 @@ namespace NoticiasMOVIL.ViewModels
         {
             Actualizar();
         }
-
-private void Actualizar()
+        
+        private void Actualizar()
         {
             NoticiasRepository repos = new NoticiasRepository();
             ListaNoticias.Clear();
             var noticias = repos.GetAll();
-            Cargando = false;
+            EstaCargando = false;
+            ListaNoticias.AddRange(noticias);
         }
         private async void Connectivity_ConnectivityChangedAsync(object sender, ConnectivityChangedEventArgs e)
         {
@@ -76,9 +77,9 @@ private void Actualizar()
 
         private async Task Descargar()
         {
-            Cargando = true;
+            EstaCargando = true;
             await App.Descargar();
-            Cargando = false;
+            EstaCargando = false;
         }
 
         private async void Ver(Noticia n)

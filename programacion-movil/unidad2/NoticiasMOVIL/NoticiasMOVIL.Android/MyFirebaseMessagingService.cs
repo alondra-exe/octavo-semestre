@@ -28,9 +28,10 @@ namespace NoticiasMOVIL.Droid
                 else
                 {
                     Repositories.NoticiasRepository repos = new Repositories.NoticiasRepository();
-                    var persona = repos.Get(int.Parse(data["Id"]));
-                    if (persona != null)
+                    var noticia = repos.Get(int.Parse(data["Id"]));
+                    if (noticia != null)
                     {
+                        repos.Delete(noticia);
                         _ = App.Descargar();
                     }
                 }
@@ -43,6 +44,20 @@ namespace NoticiasMOVIL.Droid
                     HttpNoticiasService noticias = new HttpNoticiasService();
                     var resultado = noticias.DescargarNoticias();
                     resultado.Wait();
+
+                    if (resultado.Result)
+                    {
+
+                    }
+                }
+                else
+                {
+                    Repositories.NoticiasRepository repos = new Repositories.NoticiasRepository();
+                    var noticia = repos.Get(int.Parse(data["Id"]));
+                    if (noticia != null)
+                    {
+                        repos.Delete(noticia);
+                    }
                 }
             }
         }

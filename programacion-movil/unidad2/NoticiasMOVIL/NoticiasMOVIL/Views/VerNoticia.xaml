@@ -23,7 +23,7 @@
                 </StackLayout>
                 
                 <ActivityIndicator IsRunning="{Binding Source={x:Reference noticiaView}, Path=BindingContext.IsRunning}" VerticalOptions="End"></ActivityIndicator>
-                <Label IsVisible="{Binding Source={x:Reference noticiaView}, Path=BindingContext.SinConexion}" TextColor="Red" HorizontalTextAlignment="Center" VerticalOptions="End" Text="No hay conexión a internet. No se puede mostrar la noticia."></Label>
+                <!--<Label IsVisible="{Binding Source={x:Reference noticiaView}, Path=BindingContext.SinConexion}" TextColor="Red" HorizontalTextAlignment="Center" VerticalOptions="End" Text="No hay conexión a internet. No se puede mostrar la noticia."></Label>-->
 
                 </StackLayout>
             </Frame>
