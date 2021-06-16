@@ -38,7 +38,7 @@ namespace NoticiasWEB.Services
             FirebaseMessaging.DefaultInstance.SendAsync(message);
         }
 
-        public async void EnviarNotificacion(string titulo)
+        public void EnviarNotificacion(string titulo)
         {
             var topic = "general";
             var message = new FirebaseAdmin.Messaging.Message()
@@ -47,8 +47,7 @@ namespace NoticiasWEB.Services
                 Notification = new Notification()
                 { Title = "Nueva noticia", Body = titulo }
             };
-
-            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
+            FirebaseMessaging.DefaultInstance.SendAsync(message);
         }
     }
 }

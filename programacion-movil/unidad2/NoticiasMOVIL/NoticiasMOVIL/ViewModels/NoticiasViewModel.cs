@@ -36,7 +36,7 @@ namespace NoticiasMOVIL.ViewModels
         public bool EstaCargando
         {
             get { return cargando; }
-            set { cargando = value; OnPropertyChanged(); }
+            set { cargando = value; OnPropertyChanged("EstaCargando"); }
         }
 
         public NoticiasViewModel()
@@ -60,8 +60,11 @@ namespace NoticiasMOVIL.ViewModels
             NoticiasRepository repos = new NoticiasRepository();
             ListaNoticias.Clear();
             var noticias = repos.GetAll();
+            foreach (var noticia in noticias)
+            {
+                ListaNoticias.Add(noticia);
+            }
             EstaCargando = false;
-            ListaNoticias.AddRange(noticias);
         }
         private async void Connectivity_ConnectivityChangedAsync(object sender, ConnectivityChangedEventArgs e)
         {

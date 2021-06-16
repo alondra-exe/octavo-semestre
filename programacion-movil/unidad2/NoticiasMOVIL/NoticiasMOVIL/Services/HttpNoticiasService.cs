@@ -16,8 +16,10 @@ namespace NoticiasMOVIL.Services
     {
         HttpClient client;
         NoticiasRepository repos;
+        IMensajes mensaje;
         public HttpNoticiasService()
         {
+            mensaje = DependencyService.Get<IMensajes>();
             client = new HttpClient();
             client.BaseAddress = new Uri("https://apinoticiasalondra.sistemas171.com/");
         }
@@ -28,14 +30,11 @@ namespace NoticiasMOVIL.Services
             if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
                 var result = await client.GetAsync("api/noticias");
-
                 if (result.IsSuccessStatusCode)
                 {
                     var json = await result.Content.ReadAsStringAsync();
                     var noticias = JsonConvert.DeserializeObject<Noticia[]>(json);
-
                     if (repos == null) repos = new NoticiasRepository();
-
                     foreach (var noticia in noticias)
                     {
                         var n = repos.Get(noticia.Id);
@@ -55,6 +54,11 @@ namespace NoticiasMOVIL.Services
                     }
                     Existencambios = true;
                 }
+            }
+            else
+            {
+                mensaje.MostrarToast("No se pudieron descargar los datos. Conéctese a internet y vuelva a intentarlo.");
+                return false;
             }
             return Existencambios;
         }

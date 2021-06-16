@@ -36,7 +36,7 @@ namespace NoticiasMOVIL.Droid
 
             NotificationCompat.Builder builder = new NotificationCompat.Builder(Application.Context, "notificacion");
             builder.SetContentText(mensaje);
-            builder.SetContentTitle("Noticias App");
+            builder.SetContentTitle("Noticias");
             builder.SetPriority((int)NotificationPriority.Max);
             builder.SetDefaults((int)NotificationDefaults.All);
 

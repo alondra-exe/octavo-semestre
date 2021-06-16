@@ -126,26 +126,26 @@ namespace NoticiasWEB.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Eliminar(Noticia n)
+        public async Task<IActionResult> Eliminar(int id)
         {
             HttpClient client = Factory.CreateClient("NoticiasAPI");
-            var json = JsonConvert.SerializeObject(n);
-            var result = await client.DeleteAsync("noticias/" + n.Id);
+            var result = await client.DeleteAsync("noticias/" + id);
             if (result.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                    //Mensaje.EnviarMensaje("Eliminado", id);
+                    return RedirectToAction("Index");
             }
             else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
             {
                 var jsonerrores = await result.Content.ReadAsStringAsync();
                 var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
                 lista.ForEach(x => ModelState.AddModelError("", x));
-                return View(n);
+                return View("Index");
             }
             else
             {
                 ModelState.AddModelError("", result.StatusCode.ToString());
-                return View(n);
+                return View("Index");
             }
         }
     }
