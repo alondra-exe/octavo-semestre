@@ -62,15 +62,16 @@ namespace proyecto1_api.Controllers
                 AlumnosRepository r = new AlumnosRepository(Context);
                 if (r.IsValid(alumno, out List<string> errores))
                 {
-                    alumno.Contrasena = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(alumno.Contrasena));
+                    //alumno.Contrasena = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(alumno.Contrasena));
                     Alumno a = new Alumno
                     {
                         Eliminado = 0,
                         Nombre = alumno.Nombre,
                         Apellido = alumno.Apellido,
                         Correo = alumno.Correo,
-                        Contrasena = HashHelper.GetHash(alumno.Contrasena + alumno.Correo),
-                        IdDocente = alumno.IdDocente
+                        Contrasena = "1234",
+                        //Contrasena = HashHelper.GetHash(alumno.Contrasena + alumno.Correo),
+                        IdDocente = 1
                     };
                     r.Insert(a);
                     return Ok();

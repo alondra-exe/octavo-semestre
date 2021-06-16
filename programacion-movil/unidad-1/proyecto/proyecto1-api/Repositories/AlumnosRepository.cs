@@ -54,10 +54,10 @@ namespace proyecto1_api.Repositories
             {
                 errors.Add("El correo electrónico del alumno no puede estar vacío.");
             }
-            if (string.IsNullOrWhiteSpace(entity.Contrasena))
-            {
-                errors.Add("Debe asignarla une contraseña al alumno.");
-            }
+            //if (string.IsNullOrWhiteSpace(entity.Contrasena))
+            //{
+            //    errors.Add("Debe asignarla une contraseña al alumno.");
+            //}
             if (Context.Alumno.Any(x => x.Correo.ToLower() == entity.Correo.ToLower()))
             {
                 errors.Add("Este correo electrónico ya está en uso.");

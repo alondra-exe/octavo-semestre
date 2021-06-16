@@ -23,11 +23,11 @@ namespace NoticiasWEB.Services
             }
         }
 
-        public void EnviarMensaje(string tipo = "Actualizar", int? id = null)
+        public void EnviarMensaje(string tipo = "Actualizacion", int? id = null)
         {
-            var mensaje = new Message
+            var message = new Message
             {
-                Topic = "Actualizacion",
+                Topic = "general",
                 Data = new Dictionary<string, string>()
                  {
                     {"Tipo", tipo },
@@ -35,7 +35,20 @@ namespace NoticiasWEB.Services
                  },
                 Android = new AndroidConfig { Priority = Priority.High }
             };
-            FirebaseMessaging.DefaultInstance.SendAsync(mensaje);
+            FirebaseMessaging.DefaultInstance.SendAsync(message);
+        }
+
+        public async void EnviarNotificacion(string titulo)
+        {
+            var topic = "general";
+            var message = new FirebaseAdmin.Messaging.Message()
+            {
+                Topic = topic,
+                Notification = new Notification()
+                { Title = "Nueva noticia", Body = titulo }
+            };
+
+            string response = await FirebaseMessaging.DefaultInstance.SendAsync(message);
         }
     }
 }

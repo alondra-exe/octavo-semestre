@@ -16,12 +16,10 @@ namespace NoticiasMOVIL.Droid
         const string TAG = "MyFirebaseMsgService";
         public override void OnMessageReceived(RemoteMessage message)
         {
-            Log.Debug("PRUEBAMENSAJES", "RECIBI EL MENSAJE");
-
             if (App.Current != null)
             {
                 var data = message.Data;
-                if (data["Tipo"] == "Actualizar")
+                if (data["Tipo"] == "Actualizacion")
                 {
                     _ = App.Descargar();
                 }
@@ -39,16 +37,11 @@ namespace NoticiasMOVIL.Droid
             else
             {
                 var data = message.Data;
-                if (data["Tipo"] == "Actualizar")
+                if (data["Tipo"] == "Eliminado")
                 {
-                    HttpNoticiasService noticias = new HttpNoticiasService();
-                    var resultado = noticias.DescargarNoticias();
+                    HttpNoticiasService noticiasService = new HttpNoticiasService();
+                    var resultado = noticiasService.DescargarNoticias();
                     resultado.Wait();
-
-                    if (resultado.Result)
-                    {
-
-                    }
                 }
                 else
                 {

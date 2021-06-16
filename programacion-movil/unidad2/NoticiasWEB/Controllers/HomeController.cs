@@ -13,14 +13,14 @@ namespace NoticiasWEB.Controllers
 {
     public class HomeController : Controller
     {
-        public IHttpClientFactory Factory { get; }
+        public IHttpClientFactory Factory { get; set; }
+        HttpClient client;
+        public MessagingService Mensaje { get; set; }
         public HomeController(IHttpClientFactory factory, MessagingService mensaje)
         {
-            Mensaje = mensaje;
             Factory = factory;
+            Mensaje = mensaje;
         }
-
-        public MessagingService Mensaje { get; set; }
 
         public async Task<IActionResult> Index()
         {
@@ -47,24 +47,35 @@ namespace NoticiasWEB.Controllers
         [HttpPost]
         public async Task<IActionResult> Agregar(Noticia n)
         {
-            HttpClient client = Factory.CreateClient("NoticiasAPI");
-            var json = JsonConvert.SerializeObject(n);
-            var result = await client.PostAsync("noticias", new StringContent(json, Encoding.UTF8, "application/json"));
-            if (result.IsSuccessStatusCode)
+            try
             {
-                Mensaje.EnviarMensaje();
-                return RedirectToAction("Index");
+                client = Factory.CreateClient("NoticiasAPI");
+                var json = JsonConvert.SerializeObject(n);
+                var result = await client.PostAsync("noticias", new StringContent(json, Encoding.UTF8, "application/json"));
+                
+                if (result.IsSuccessStatusCode)
+                {
+                    Mensaje.EnviarMensaje();
+                    Mensaje.EnviarNotificacion(n.Encabezado);
+                    return RedirectToAction("Index");
+                }
+                else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+                {
+                    var jsonerrores = await result.Content.ReadAsStringAsync();
+                    var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
+                    lista.ForEach(x => ModelState.AddModelError("", x));
+                    return View(n);
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.StatusCode.ToString());
+                    return View(n);
+                }
             }
-            else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            catch (Exception ex)
             {
-                var jsonerrores = await result.Content.ReadAsStringAsync();
-                var lista = JsonConvert.DeserializeObject<List<string>>(jsonerrores);
-                lista.ForEach(x => ModelState.AddModelError("", x));
-                return View(n);
-            }
-            else
-            {
-                ModelState.AddModelError("", result.StatusCode.ToString());
+
+                ModelState.AddModelError("", ex.Message);
                 return View(n);
             }
         }
@@ -98,7 +109,6 @@ namespace NoticiasWEB.Controllers
             var result = await client.PutAsync("noticias", new StringContent(json, System.Text.Encoding.UTF8, "application/json"));
             if (result.IsSuccessStatusCode)
             {
-                Mensaje.EnviarMensaje();
                 return RedirectToAction("Index");
             }
             else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)

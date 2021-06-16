@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,18 +22,12 @@ namespace NoticiasWEB
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<MessagingService>();
+            services.AddMvc();
             services.AddHttpClient("NoticiasAPI", client =>
             {
                 client.BaseAddress = new Uri("http://apinoticiasalondra.sistemas171.com/api/");
             });
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
-           options =>
-           {
-               options.Cookie.Name = "noticiasu2";
-           });
-            services.AddSingleton<MessagingService>();
-            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,10 +38,8 @@ namespace NoticiasWEB
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
             app.UseFileServer();
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

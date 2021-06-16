@@ -31,6 +31,14 @@ namespace proyecto1_api
             {
                 x.UseMySql("server=204.93.167.23;user=sistem14_adjeg;password=alondrajesme032021;database=sistem14_proyecto1_alondra_jesme", x => x.ServerVersion("5.6.46-mysql"));
             });
+            services.AddCors(
+ x => x.AddPolicy("axios", options =>
+ {
+     options.AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+ }
+ ));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +48,7 @@ namespace proyecto1_api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("axios");
             app.UseHttpsRedirection();
 
             app.UseRouting();

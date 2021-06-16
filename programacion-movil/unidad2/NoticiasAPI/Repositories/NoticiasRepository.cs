@@ -1,4 +1,5 @@
-﻿using NoticiasAPI.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using NoticiasAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,13 +22,6 @@ namespace NoticiasAPI.Repositories
         public override IEnumerable<Noticia> GetAll()
         {
             return Context.Noticia.Where(x => x.Eliminado == 1).OrderBy(x => x.Fecha);
-        }
-
-        const int tamano = 50;
-        public IEnumerable<Noticia> GetNoticias(int pagina)
-        {
-            int inf= tamano * (pagina - 1) + 1;
-            return Context.Noticia.Where(x => x.Id >= inf && x.Id < inf + tamano);
         }
 
         public override void Delete(Noticia entity)
