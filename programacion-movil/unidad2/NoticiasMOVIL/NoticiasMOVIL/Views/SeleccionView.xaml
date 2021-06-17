@@ -2,24 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
-             x:Class="NoticiasMOVIL.Views.SeleccionView">
+             x:Class="NoticiasMOVIL.Views.SeleccionView" BackgroundColor="#FF7313"  NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="seleccionView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="10">
+            <Image Source="~/Resources/drawable/noticias.png"></Image>
             <Button  Text="NOTICIAS NACIONALES"
-                     BackgroundColor="#0d47a1"
-                     Padding="0,20" TextColor="White"
-                     FontSize="Default"
+                     BackgroundColor="#3A3939"
+                     TextColor="White"
+                     FontSize="50"
+                     BorderColor="White" BorderWidth="2" 
                      Command="{Binding VerMexicoCommand}"
                      CommandParameter="{Binding .}" >
             </Button>
-            <Button  Text="NOTICIAS INTERNACIONALES"
-                     BackgroundColor="#0d47a1"
-                     Padding="0,20"
+            <Button  Text="TODAS LAS NOTICIAS"
+                     BackgroundColor="#3A3939"
                      TextColor="White"
-                     FontSize="Default"
+                     FontSize="50"
+                     BorderColor="White" BorderWidth="2" 
                      Command="{Binding VerTodasCommand}"
                      CommandParameter="{Binding .}" >
             </Button>
