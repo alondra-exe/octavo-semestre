@@ -2,26 +2,31 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
-             x:Class="NoticiasMOVIL.Views.SeleccionView" BackgroundColor="#FF7313"  NavigationPage.HasNavigationBar="False">
+             x:Class="NoticiasMOVIL.Views.SeleccionView" BackgroundColor="#F98116"  NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="seleccionView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" Margin="10">
-            <Image Source="~/Resources/drawable/noticias.png"></Image>
+        <StackLayout VerticalOptions="CenterAndExpand" Margin="0,-80,0,0">
+            <Image Source="~/Resources/drawable/noticias.png" HeightRequest="60" Margin="0,0,0,10"></Image>
+            <Frame BackgroundColor="#EA5312" Margin="0,0,0,40">
+                <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="15">Bienvenido a Not¡cias, el portal de noticias con toda la información del momento.</Label>
+            </Frame>
+            <Image Source="~/Resources/drawable/herramienta.png" HeightRequest="40" Margin="0,0,0,10"></Image>
             <Button  Text="NOTICIAS NACIONALES"
-                     BackgroundColor="#3A3939"
+                     BackgroundColor="#EA5312"
                      TextColor="White"
-                     FontSize="50"
-                     BorderColor="White" BorderWidth="2" 
+                     FontSize="20" FontAttributes="Bold"
+                     CornerRadius="20" Margin="50,0,50,20"
                      Command="{Binding VerMexicoCommand}"
                      CommandParameter="{Binding .}" >
             </Button>
+            <Image Source="~/Resources/drawable/ubicacion.png" HeightRequest="40" Margin="0,0,0,10"></Image>
             <Button  Text="TODAS LAS NOTICIAS"
-                     BackgroundColor="#3A3939"
+                     BackgroundColor="#EA5312"
                      TextColor="White"
-                     FontSize="50"
-                     BorderColor="White" BorderWidth="2" 
+                     FontSize="20" FontAttributes="Bold"
+                     CornerRadius="20" Margin="50,0,50,0"
                      Command="{Binding VerTodasCommand}"
                      CommandParameter="{Binding .}" >
             </Button>
