@@ -23,7 +23,7 @@ namespace NoticiasWEB.Services
             }
         }
 
-        public void EnviarMensaje(string tipo = "Actualizacion", int? id = null)
+        public void EnviarMensaje(string tipo = "NuevaNoticia", int? id = null)
         {
             var message = new Message
             {
@@ -45,7 +45,7 @@ namespace NoticiasWEB.Services
             {
                 Topic = topic,
                 Notification = new Notification()
-                { Title = "Nueva noticia", Body = titulo }
+                { Title = "¡HAY UNA NOTICIA NUEVA, NO TE LA PIERDAS!", Body = titulo }
             };
             FirebaseMessaging.DefaultInstance.SendAsync(message);
         }

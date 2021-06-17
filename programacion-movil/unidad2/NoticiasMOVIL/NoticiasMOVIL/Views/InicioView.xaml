@@ -15,8 +15,8 @@
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Frame Padding="5" Margin="10" CornerRadius="20">
+                    <DataTemplate>
+                        <Frame Padding="5" Margin="10" CornerRadius="20">
                         <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"></RowDefinition>

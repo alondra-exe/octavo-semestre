@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
+             x:Class="NoticiasMOVIL.Views.MexicoView">
+    <ContentPage.BindingContext>
+        <vm:NoticiasViewModel x:Name="mexicoView"></vm:NoticiasViewModel>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <RefreshView  Command="{Binding ActualizarCommand}" IsRefreshing="{Binding EstaCargando}">
+            <CollectionView Margin="10" ItemsSource="{Binding ListaMexico}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                           ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="5" Margin="10" CornerRadius="20">
+                            <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="35"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label FontSize="Title" FontAttributes="Bold" Grid.ColumnSpan="5" Text="{Binding Encabezado}" TextColor="Black"></Label>
+                                <Label FontSize="Body" Grid.ColumnSpan="5" Grid.Row="1" Text="{Binding Contenido}" TextColor="Black"></Label>
+                                <Label BackgroundColor="White" Margin="0,18,0,0" Grid.Column="4" Grid.Row="1" Text="...   " TextColor="Black"></Label>
+                                <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Gray"></Label>
+                                <Label Grid.Row="2" Grid.Column="1" FontAttributes="Bold" TextColor="Gray" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"></Label>
+                            </Grid>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding   Source={x:Reference mexicoView}, Path=VerCommand}"
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ScrollView>
+</ContentPage>

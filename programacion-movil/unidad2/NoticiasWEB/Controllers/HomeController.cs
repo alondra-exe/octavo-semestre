@@ -132,7 +132,6 @@ namespace NoticiasWEB.Controllers
             var result = await client.DeleteAsync("noticias/" + id);
             if (result.IsSuccessStatusCode)
             {
-                    //Mensaje.EnviarMensaje("Eliminado", id);
                     return RedirectToAction("Index");
             }
             else if (result.StatusCode == System.Net.HttpStatusCode.BadRequest)

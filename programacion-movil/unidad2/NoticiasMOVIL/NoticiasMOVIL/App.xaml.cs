@@ -14,7 +14,7 @@ namespace NoticiasMOVIL
         public App()
         {
             InitializeComponent();
-            MainPage = new NavigationPage(new Views.InicioView());
+            MainPage = new NavigationPage(new Views.SeleccionView());
         }
 
         protected override void OnStart()

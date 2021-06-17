@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
+             x:Class="NoticiasMOVIL.Views.SeleccionView">
+    <ContentPage.BindingContext>
+        <vm:NoticiasViewModel x:Name="seleccionView"></vm:NoticiasViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <Button  Text="NOTICIAS NACIONALES"
+                     BackgroundColor="#0d47a1"
+                     Padding="0,20" TextColor="White"
+                     FontSize="Default"
+                     Command="{Binding VerMexicoCommand}"
+                     CommandParameter="{Binding .}" >
+            </Button>
+            <Button  Text="NOTICIAS INTERNACIONALES"
+                     BackgroundColor="#0d47a1"
+                     Padding="0,20"
+                     TextColor="White"
+                     FontSize="Default"
+                     Command="{Binding VerTodasCommand}"
+                     CommandParameter="{Binding .}" >
+            </Button>
+            <ActivityIndicator IsRunning="{Binding EstaCargando}" VerticalOptions="EndAndExpand"></ActivityIndicator>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

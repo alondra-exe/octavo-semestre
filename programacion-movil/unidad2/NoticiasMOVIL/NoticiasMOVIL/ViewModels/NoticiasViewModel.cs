@@ -12,6 +12,7 @@ namespace NoticiasMOVIL.ViewModels
     public class NoticiasViewModel : INotifyPropertyChanged
     {
         public SmartCollection<Noticia> ListaNoticias { get; set; } = new SmartCollection<Noticia>();
+        public SmartCollection<Noticia> ListaMexico { get; set; } = new SmartCollection<Noticia>();
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged([CallerMemberName] string name = null)
@@ -20,10 +21,12 @@ namespace NoticiasMOVIL.ViewModels
         }
         public Command VerCommand { get; set; }
         public Command VerTodasCommand { get; set; }
+        public Command VerMexicoCommand { get; set; }
         public Command ActualizarCommand { get; set; }
 
         Views.InicioView inicioView;
         Views.VerNoticia verView;
+        Views.MexicoView mexicoView;
 
         private Noticia noticia;
         public Noticia Noticia
@@ -43,6 +46,7 @@ namespace NoticiasMOVIL.ViewModels
         {
             ActualizarCommand = new Command(() => { _ = Descargar(); });
             VerTodasCommand = new Command(VerTodas);
+            VerMexicoCommand = new Command(VerMexico);
             VerCommand = new Command<Noticia>(Ver);
             Connectivity.ConnectivityChanged += Connectivity_ConnectivityChangedAsync;
             App.ActualizacionRealizada += App_ActualizacionRealizada;
@@ -59,9 +63,14 @@ namespace NoticiasMOVIL.ViewModels
         {
             NoticiasRepository repos = new NoticiasRepository();
             ListaNoticias.Clear();
+            ListaMexico.Clear();
             var noticias = repos.GetAll();
             foreach (var noticia in noticias)
             {
+                if (noticia.Lugar == "Mexico" || noticia.Lugar == "México")
+                {
+                    ListaMexico.Add(noticia);
+                }
                 ListaNoticias.Add(noticia);
             }
             EstaCargando = false;
@@ -97,6 +106,12 @@ namespace NoticiasMOVIL.ViewModels
             inicioView = new Views.InicioView();
             inicioView.BindingContext = this;
             await App.Current.MainPage.Navigation.PushAsync(inicioView);
+        }
+        private async void VerMexico()
+        {
+            mexicoView = new Views.MexicoView();
+            mexicoView.BindingContext = this;
+            await App.Current.MainPage.Navigation.PushAsync(mexicoView);
         }
     }
 }
