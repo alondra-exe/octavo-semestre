@@ -15,6 +15,8 @@ namespace NoticiasMOVIL.Views
         public MexicoView()
         {
             InitializeComponent();
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.OrangeRed;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.White;
         }
     }
 }

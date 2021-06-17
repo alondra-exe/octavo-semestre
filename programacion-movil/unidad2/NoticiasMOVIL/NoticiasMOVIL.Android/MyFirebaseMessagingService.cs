@@ -34,25 +34,6 @@ namespace NoticiasMOVIL.Droid
                     }
                 }
             }
-            //else
-            //{
-            //    var data = message.Data;
-            //    if (data["Tipo"] == "Eliminado")
-            //    {
-            //        HttpNoticiasService noticiasService = new HttpNoticiasService();
-            //        var resultado = noticiasService.DescargarNoticias();
-            //        resultado.Wait();
-            //    }
-            //    else
-            //    {
-            //        Repositories.NoticiasRepository repos = new Repositories.NoticiasRepository();
-            //        var noticia = repos.Get(int.Parse(data["Id"]));
-            //        if (noticia != null)
-            //        {
-            //            repos.Delete(noticia);
-            //        }
-            //    }
-            //}
         }
     }
 }

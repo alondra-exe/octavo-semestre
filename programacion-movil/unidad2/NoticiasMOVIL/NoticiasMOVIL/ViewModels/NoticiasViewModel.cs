@@ -67,7 +67,7 @@ namespace NoticiasMOVIL.ViewModels
             var noticias = repos.GetAll();
             foreach (var noticia in noticias)
             {
-                if (noticia.Lugar == "Mexico" || noticia.Lugar == "México")
+                if (noticia.Lugar == "Mexico" || noticia.Lugar == "México" || noticia.Lugar == "MEXICO" || noticia.Lugar == "MÉXICO")
                 {
                     ListaMexico.Add(noticia);
                 }

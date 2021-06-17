@@ -53,10 +53,5 @@ namespace NoticiasMOVIL.Repositories
         {
             return connection.Table<Noticia>().OrderByDescending(x => x.Fecha);
         }
-
-        public IEnumerable<Noticia> GetNuevas()
-        {
-            return connection.Table<Noticia>().OrderByDescending(x => x.Fecha);
-        }
     }
 }

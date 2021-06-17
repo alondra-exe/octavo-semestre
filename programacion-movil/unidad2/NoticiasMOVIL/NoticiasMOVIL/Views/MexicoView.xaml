@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:NoticiasMOVIL.ViewModels"
-             x:Class="NoticiasMOVIL.Views.MexicoView">
+             x:Class="NoticiasMOVIL.Views.MexicoView" Title="NOTICIAS NACIONALES" BackgroundColor="#F98116">
     <ContentPage.BindingContext>
         <vm:NoticiasViewModel x:Name="mexicoView"></vm:NoticiasViewModel>
     </ContentPage.BindingContext>
@@ -13,13 +13,13 @@
                     <LinearItemsLayout Orientation="Vertical"
                            ItemSpacing="10" />
                 </CollectionView.ItemsLayout>
-
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Frame Padding="5" Margin="10" CornerRadius="20">
+                        <Frame BorderColor="#EA5312" Padding="5" Margin="5" CornerRadius="10" BackgroundColor="White">
                             <Grid Padding="10" VerticalOptions="Center" HorizontalOptions="Center">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto"></RowDefinition>
+                                    <RowDefinition Height="2"></RowDefinition>
                                     <RowDefinition Height="35"></RowDefinition>
                                     <RowDefinition Height="15"></RowDefinition>
                                 </Grid.RowDefinitions>
@@ -29,10 +29,11 @@
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Label FontSize="Title" FontAttributes="Bold" Grid.ColumnSpan="5" Text="{Binding Encabezado}" TextColor="Black"></Label>
-                                <Label FontSize="Body" Grid.ColumnSpan="5" Grid.Row="1" Text="{Binding Contenido}" TextColor="Black"></Label>
-                                <Label BackgroundColor="White" Margin="0,18,0,0" Grid.Column="4" Grid.Row="1" Text="...   " TextColor="Black"></Label>
-                                <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Gray"></Label>
-                                <Label Grid.Row="2" Grid.Column="1" FontAttributes="Bold" TextColor="Gray" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"></Label>
+                                <BoxView Grid.ColumnSpan="5" Grid.Row="1" Color="#EA5312" HeightRequest="1" HorizontalOptions="Fill" />
+                                <Label FontSize="Body" Grid.ColumnSpan="5" Grid.Row="2" Text="{Binding Contenido}" TextColor="Black"></Label>
+                                <Label BackgroundColor="White" Margin="0,18,0,0" Grid.Column="4" Grid.Row="2" Text="...   " TextColor="Black"></Label>
+                                <Label Grid.Row="3" FontAttributes="Bold" Text="{Binding Autor}" TextColor="Gray"></Label>
+                                <Label Grid.Row="3" Grid.Column="1" FontAttributes="Bold" TextColor="Gray" Text="{Binding Fecha, StringFormat='{}{0:dd/MM/yyyy}'}"></Label>
                             </Grid>
                             <Frame.GestureRecognizers>
                                 <TapGestureRecognizer 

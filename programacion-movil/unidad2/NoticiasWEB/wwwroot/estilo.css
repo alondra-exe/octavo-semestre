@@ -56,8 +56,9 @@ footer {
 
 main {
     position: fixed;
+    overflow: scroll;
     padding-top: 30px;
-    top: 82px;
+    top: 40px;
     left: 0;
     right: 0;
     bottom: 50px;

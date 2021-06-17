@@ -10,7 +10,7 @@
         <StackLayout VerticalOptions="CenterAndExpand" Margin="0,-80,0,0">
             <Image Source="~/Resources/drawable/noticias.png" HeightRequest="60" Margin="0,0,0,10"></Image>
             <Frame BackgroundColor="#EA5312" Margin="0,0,0,40">
-                <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="15">Bienvenido a Not¡cias, el portal de noticias con toda la información del momento.</Label>
+                <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="20">Bienvenido a Not¡cias, el portal de noticias con toda la información del momento.</Label>
             </Frame>
             <Image Source="~/Resources/drawable/herramienta.png" HeightRequest="40" Margin="0,0,0,10"></Image>
             <Button  Text="NOTICIAS NACIONALES"
