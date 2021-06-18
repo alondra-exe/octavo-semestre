@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:tutorialalodav.ViewModels"
-             x:Class="tutorialalodav.Views.Hud">
+             x:Class="tutorialalodav.Views.Hud" BackgroundColor="White" NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
     </ContentPage.BindingContext>
@@ -10,31 +10,42 @@
         <ScrollView Orientation="Horizontal">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="350"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <StackLayout Grid.ColumnSpan="3">
-                    <Label Text="Tutorial: ADs en Xamarin"></Label>
-                    <Label Text="Descrubre los anuncios que nos ofrece Google mediante Google AdMob"></Label>
+                <StackLayout>
+                    <Label Text="Tutorial: ADs en Xamarin"
+                           FontSize="50"
+                           FontAttributes="Bold"
+                           TextColor="#231942"
+                           Margin="10,40,0,0"></Label>
+                    <Label
+                        Text="Descrubre los anuncios que nos ofrece Google mediante Google AdMob"
+                        TextColor="#231942"
+                        FontSize="20"
+                        Margin="10,40,0,0"></Label>
                 </StackLayout>
                 <Frame 
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.RowSpan="2"
                     BackgroundColor="#231942"
                     HorizontalOptions="Start"
                     CornerRadius="20"
-                    Margin="20,20,10,20"
+                    Margin="20,0,10,20"
                     WidthRequest="200">
                     <StackLayout>
+                        <Image Source="~/Resources/drawable/banner.png"
+                               HeightRequest="150"></Image>
                         <Label Text="BANNER"
                                TextColor="White"
-                               FontSize="Large"
+                               FontSize="30"
+                               HorizontalTextAlignment="Start"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
                         <Button Text="APRENDER"
@@ -46,18 +57,21 @@
                     </StackLayout>
                 </Frame>
                 <Frame 
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.RowSpan="2"
                     Grid.Column="1"
                     BackgroundColor="#231942"
                     HorizontalOptions="Start"
-                    CornerRadius="20"
-                    Margin="20,20,0,20"
+                    CornerRadius="30"
+                    Margin="0,0,10,20"
                     WidthRequest="200">
                     <StackLayout>
+                        <Image Source="~/Resources/drawable/in.png"
+                               HeightRequest="150"></Image>
                         <Label Text="INTERSTICIAL"
                                TextColor="White"
-                               FontSize="Large"
+                               FontSize="30"
+                               HorizontalTextAlignment="Start"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
                         <Button Text="APRENDER"
@@ -69,18 +83,21 @@
                     </StackLayout>
                 </Frame>
                 <Frame 
-                    Grid.Row="2"
+                    Grid.Row="1"
                     Grid.RowSpan="2"
                     Grid.Column="2"
                     BackgroundColor="#231942"
                     HorizontalOptions="Start"
-                    CornerRadius="20"
-                    Margin="10,10,10,20"
-                    WidthRequest="150">
+                    CornerRadius="30"
+                    Margin="10,0,10,20"
+                    WidthRequest="200">
                     <StackLayout>
+                        <Image Source="~/Resources/drawable/rea.png"
+                               HeightRequest="150"></Image>
                         <Label Text="RECOMPENSAS MEDIANTE VIDEOS"
                                TextColor="White"
                                FontSize="Large"
+                               HorizontalTextAlignment="Start"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
                         <Button Text="APRENDER" 
