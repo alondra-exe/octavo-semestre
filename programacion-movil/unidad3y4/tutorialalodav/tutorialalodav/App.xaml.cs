@@ -10,7 +10,7 @@ namespace tutorialalodav
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new Views.Hud());
         }
 
         protected override void OnStart()

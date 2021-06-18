@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:tutorialalodav.ViewModels"
+             x:Class="tutorialalodav.Views.Hud">
+    <ContentPage.BindingContext>
+        <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <ScrollView Orientation="Horizontal">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackLayout Grid.ColumnSpan="3">
+                    <Label Text="Tutorial: ADs en Xamarin"></Label>
+                    <Label Text="Descrubre los anuncios que nos ofrece Google mediante Google AdMob"></Label>
+                </StackLayout>
+                <Frame 
+                    Grid.Row="2"
+                    Grid.RowSpan="2">
+                    <StackLayout>
+                        <Label Text="BANNER"
+                               TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                        <Button Text="APRENDER"
+                                Command="{Binding BannerCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+                    <StackLayout>
+                        <Label Text="INTERSTICIAL"
+                               TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                        <Button Text="APRENDER"
+                                Command="{Binding IntersticialCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+                <Frame 
+                    Grid.Row="2"
+                    Grid.RowSpan="2"
+                    Grid.Column="2">
+                    <StackLayout>
+                        <Label Text="RECOMPENSAS MEDIANTE VIDEOS"
+                               TextColor="Black"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+                        <Button Text="APRENDER" 
+                     Command="{Binding RewardCommand}"></Button>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
