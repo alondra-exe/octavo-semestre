@@ -1,6 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.itesrc.tutorialalodav" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
-	<application android:label="tutorialalodav.Android" android:theme="@style/MainTheme"></application>
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<application android:label="tutorialalodav.Android" android:theme="@style/MainTheme">
+    <meta-data android:name="com.google.adroid.gms.version" 
+							 android:value="@integer/google_play_services_version"/>
+		<meta-data android:name="com.google.adroid.gms.ads.APPLICATION_ID" 
+               android:value="ca-app-pub-1184057908298837~6978209143"/>
+  </application>
+
 </manifest>
