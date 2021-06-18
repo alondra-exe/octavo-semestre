@@ -5,6 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button x:Name="reward" Text="show reward" Clicked="reward_Clicked"></Button>
+            <Label BackgroundColor="Red" Text="{Binding abc}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
