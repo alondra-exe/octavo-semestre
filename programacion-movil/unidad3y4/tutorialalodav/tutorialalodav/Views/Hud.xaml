@@ -33,14 +33,16 @@
                         FontAttributes="Bold"
                         CornerRadius="20"
                         ImageSource="~/Resources/drawable/rea.png"
+                        Margin="20,0,20,20"
                         Command="{Binding RewardCommand}"></Button>
 
                 <Button Text="ACERCA DE"
-                        BackgroundColor="#ffb4dc"
+                        BackgroundColor="#231942"
                         TextColor="White"
                         FontAttributes="Bold"
                         FontSize="Caption"
                         CornerRadius="20"
+                        Margin="20,30,20,0"
                         Command="{Binding InfoCommand}"></Button>
             </StackLayout>
         </ScrollView>

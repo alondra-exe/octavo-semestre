@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tutorialalodav.Views.Info">
+             x:Class="tutorialalodav.Views.Info" BackgroundColor="White" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout >
+            <BoxView BackgroundColor="#231942" HeightRequest="100"></BoxView>
+            <Label>Realizado por:</Label>
+            <Label>Alondra Elizabeth Delgadillo Silos 171G0576</Label>
+            <Label>David Andrés Ríos González 171G0247</Label>
+            <Label>Programación de Dispositvos Móviles 2021 | 8vo Semestre</Label>
+            <Label>Instituto Tecnológico de Estudios Superiores de la Región Carbonífera</Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
