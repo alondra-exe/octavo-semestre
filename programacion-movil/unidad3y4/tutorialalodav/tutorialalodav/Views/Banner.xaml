@@ -5,7 +5,7 @@
              x:Class="tutorialalodav.Views.Banner">
 
     <StackLayout>
-        <controls:MTAdView x:Name="banner_prueba" AdsId="ca-app-pub-1184057908298837/7618279499" BackgroundColor="Red" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
+        <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-3940256099942544/6300978111" BackgroundColor="Red" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
     </StackLayout>
 
 </ContentPage>

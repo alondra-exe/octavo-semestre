@@ -16,5 +16,6 @@ namespace tutorialalodav.Views
         {
             InitializeComponent();
         }
+
     }
 }
