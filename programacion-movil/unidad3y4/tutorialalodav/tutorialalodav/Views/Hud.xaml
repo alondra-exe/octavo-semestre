@@ -7,108 +7,42 @@
         <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <ScrollView Orientation="Horizontal">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="350"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <StackLayout>
-                    <Label Text="Tutorial: ADs en Xamarin"
-                           FontSize="50"
-                           FontAttributes="Bold"
-                           TextColor="#231942"
-                           Margin="10,40,0,0"></Label>
-                    <Label
-                        Text="Descrubre los anuncios que nos ofrece Google mediante Google AdMob"
-                        TextColor="#231942"
-                        FontSize="20"
-                        Margin="10,40,0,0"></Label>
-                </StackLayout>
-                <Frame 
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    BackgroundColor="#231942"
-                    HorizontalOptions="Start"
-                    CornerRadius="20"
-                    Margin="20,0,10,20"
-                    WidthRequest="200">
-                    <StackLayout>
-                        <Image Source="~/Resources/drawable/banner.png"
-                               HeightRequest="150"></Image>
-                        <Label Text="BANNER"
-                               TextColor="White"
-                               FontSize="30"
-                               HorizontalTextAlignment="Start"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                        <Button Text="APRENDER"
-                                BackgroundColor="#be95c4"
-                                TextColor="White"
-                                FontAttributes="Bold"
-                                CornerRadius="20"
-                                Command="{Binding BannerCommand}"></Button>
-                    </StackLayout>
-                </Frame>
-                <Frame 
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="1"
-                    BackgroundColor="#231942"
-                    HorizontalOptions="Start"
-                    CornerRadius="30"
-                    Margin="0,0,10,20"
-                    WidthRequest="200">
-                    <StackLayout>
-                        <Image Source="~/Resources/drawable/in.png"
-                               HeightRequest="150"></Image>
-                        <Label Text="INTERSTICIAL"
-                               TextColor="White"
-                               FontSize="30"
-                               HorizontalTextAlignment="Start"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                        <Button Text="APRENDER"
-                                BackgroundColor="#be95c4"
-                                TextColor="White"
-                                FontAttributes="Bold"
-                                CornerRadius="20"
-                                Command="{Binding IntersticialCommand}"></Button>
-                    </StackLayout>
-                </Frame>
-                <Frame 
-                    Grid.Row="1"
-                    Grid.RowSpan="2"
-                    Grid.Column="2"
-                    BackgroundColor="#231942"
-                    HorizontalOptions="Start"
-                    CornerRadius="30"
-                    Margin="10,0,10,20"
-                    WidthRequest="200">
-                    <StackLayout>
-                        <Image Source="~/Resources/drawable/rea.png"
-                               HeightRequest="150"></Image>
-                        <Label Text="RECOMPENSAS MEDIANTE VIDEOS"
-                               TextColor="White"
-                               FontSize="Large"
-                               HorizontalTextAlignment="Start"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-                        <Button Text="APRENDER" 
-                                BackgroundColor="#be95c4"
-                                TextColor="White"
-                                FontAttributes="Bold"
-                                CornerRadius="20"
-                                Command="{Binding RewardCommand}"></Button>
-                    </StackLayout>
-                </Frame>
-            </Grid>
+        <ScrollView>
+            <StackLayout>
+                <Label>Google AdMob</Label>
+                <Label>
+                    Google AdMob ayuda a los desarrolladores a ganar más dinero con sus aplicaciones para dispositivos móviles mediante el uso de anuncios de alta calidad. AdMob maximiza el valor de cada impresión, ya que combina la demanda global de los anunciantes, formatos del anuncio innovadores y una tecnología avanzada de monetización de aplicaciones.
+                </Label>
+                <Button Text="Banner"
+                        BackgroundColor="#b8b9fd"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        ImageSource="~/Resources/drawable/banner.png"
+                        Command="{Binding BannerCommand}"></Button>
+                <Button Text="Intersticial"
+                        BackgroundColor="#ffd484"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        ImageSource="~/Resources/drawable/in.png"
+                        Command="{Binding IntersticialCommand}"></Button>
+                <Button Text="Reward"
+                        BackgroundColor="#ffb4dc"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        CornerRadius="20"
+                        ImageSource="~/Resources/drawable/rea.png"
+                        Command="{Binding RewardCommand}"></Button>
+
+                <Button Text="ACERCA DE"
+                        BackgroundColor="#ffb4dc"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="Caption"
+                        CornerRadius="20"
+                        Command="{Binding InfoCommand}"></Button>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

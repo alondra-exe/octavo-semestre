@@ -12,16 +12,19 @@ namespace tutorialalodav.ViewModels
         public Command BannerCommand { get; set; }
         public Command IntersticialCommand { get; set; }
         public Command RewardCommand { get; set; }
+        public Command InfoCommand { get; set; }
 
         Views.Banner banner;
         Views.Interstitial interstitial;
         Views.Rewards rewards;
+        Views.Info info;
 
         public TutorialVM()
         {
             BannerCommand = new Command(TutoBanner);
             IntersticialCommand = new Command(TutoIntersticial);
             RewardCommand = new Command(TutoRewards);
+            InfoCommand = new Command(TutoInfo);
         }
 
         public async void TutoBanner()
@@ -50,6 +53,16 @@ namespace tutorialalodav.ViewModels
                 rewards.BindingContext = this;
             }
             await App.Current.MainPage.Navigation.PushAsync(rewards);
+        }
+
+        private async void TutoInfo()
+        {
+            if (info == null)
+            {
+                info = new Views.Info();
+                info.BindingContext = this;
+            }
+            await App.Current.MainPage.Navigation.PushAsync(info);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
