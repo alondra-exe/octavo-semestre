@@ -4,9 +4,9 @@
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<application android:label="tutorialalodav.Android" android:theme="@style/MainTheme">
-    <meta-data android:name="com.google.adroid.gms.version" 
+    <meta-data android:name="com.google.android.gms.version" 
 							 android:value="@integer/google_play_services_version"/>
-		<meta-data android:name="com.google.adroid.gms.ads.APPLICATION_ID" 
+		<meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" 
                android:value="ca-app-pub-1184057908298837~6978209143"/>
   </application>
 
