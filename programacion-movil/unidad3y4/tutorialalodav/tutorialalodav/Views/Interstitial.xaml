@@ -4,9 +4,8 @@
              x:Class="tutorialalodav.Views.Interstitial">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Button x:Name="interstitial" Text="show interstitial Ad" Clicked="interstitial_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

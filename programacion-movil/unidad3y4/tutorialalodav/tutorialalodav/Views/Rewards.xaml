@@ -4,9 +4,7 @@
              x:Class="tutorialalodav.Views.Rewards">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Button x:Name="reward" Text="show reward" Clicked="reward_Clicked"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

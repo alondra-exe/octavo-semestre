@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using MarcTron.Plugin;
 
 namespace tutorialalodav.Views
 {
@@ -15,6 +16,18 @@ namespace tutorialalodav.Views
         public Interstitial()
         {
             InitializeComponent();
+
+            CrossMTAdmob.Current.OnInterstitialLoaded += Current_OnInterstitialLoaded;
+        }
+
+        private void Current_OnInterstitialLoaded(object sender, EventArgs e)
+        {
+            CrossMTAdmob.Current.ShowInterstitial();
+        }
+
+        private void interstitial_Clicked(object sender, EventArgs e)
+        {
+            CrossMTAdmob.Current.LoadInterstitial("ca-app-pub-3940256099942544/1033173712");
         }
     }
 }
