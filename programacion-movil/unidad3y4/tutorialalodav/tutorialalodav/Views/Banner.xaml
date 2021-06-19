@@ -2,9 +2,20 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
-             x:Class="tutorialalodav.Views.Banner">
+             x:Class="tutorialalodav.Views.Banner" Title="Tutorial: BANNER">
 
-    <StackLayout>
+    <StackLayout Margin="20,0,20,0">
+        <Label FontSize="Title"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       Margin="15,0,15,0">ANTES DE EMPEZAR</Label>
+        <Label FontSize="Subtitle"
+               TextColor="Black"
+                       Margin="15,5,15,0">
+            Antes de continuar a los tutoriales de cada tipo de anuncio, asegurate de realizar los indicado en "Primeros pasos".
+            </Label>
+
+        
         <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-3940256099942544/6300978111" BackgroundColor="Red" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
     </StackLayout>
 

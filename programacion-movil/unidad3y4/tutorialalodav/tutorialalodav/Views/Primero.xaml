@@ -1,12 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tutorialalodav.Views.Primero">
+             x:Class="tutorialalodav.Views.Primero" BackgroundColor="White" Title="PRIMEROS PASOS">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 1</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,10">
+                        Nos crearemos una cuenta en Google AdMob siguiendo los pasos que la página nos indica. admob.google.com
+                    </Label>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">PASO 2</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Buscaremos en el Administrador de paquetes NuGet el paquete "MarcTron.Admob". Lo instalamos en nuestro proyecto de Xamarin. Este paquete nos facilita la implementación de anuncios en nuestra aplicación.
+                    </Label>
+                    <Image Source="~/Resources/drawable/pp1.png"
+                   HeightRequest="70"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">PASO 3</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        En nuestro proyecto de Xamarin agregamos al archivo "AndroidManifest.xml" los permisos ACCESS_NETWORK_STATE, INTERNET y el APPLICATION_ID.
+                    </Label>
+                    <Image Source="~/Resources/drawable/pp2.png"
+                   HeightRequest="90"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">PASO 4</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        En nuestro proyecto de Xamarin en MainActivity.cs iniciamos el MobileAds.
+                    </Label>
+                    <Image Source="~/Resources/drawable/pp3.png"
+                   HeightRequest="80"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
