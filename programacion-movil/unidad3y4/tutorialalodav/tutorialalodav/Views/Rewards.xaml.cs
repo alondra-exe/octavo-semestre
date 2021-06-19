@@ -17,17 +17,6 @@ namespace tutorialalodav.Views
         public Rewards()
         {
             InitializeComponent();
-            CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
-        }
-
-        private void Current_OnRewardedVideoAdLoaded(object sender, EventArgs e)
-        {
-            CrossMTAdmob.Current.ShowRewardedVideo();
-        }
-
-        private void reward_Clicked(object sender, EventArgs e)
-        {
-            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
         }
     }
 }

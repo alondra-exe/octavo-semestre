@@ -40,18 +40,18 @@ namespace tutorialalodav.ViewModels
             RewardCommand = new Command(TutoRewards);
             InfoCommand = new Command(TutoInfo);
             LoadRewardCommand = new Command(LoadReward);
+            CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
+            CrossMTAdmob.Current.OnRewardedVideoAdCompleted += Current_OnRewardedVideoAdCompleted;
         }
 
         public void LoadReward()
-        {
-            CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
-            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
-            CrossMTAdmob.Current.OnRewardedVideoAdCompleted += Current_OnRewardedVideoAdCompleted;
+        {          
+            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");          
         }
 
         private void Current_OnRewardedVideoAdCompleted(object sender, EventArgs e)
         {
-            Puntos ++;
+            Puntos++;
         }
 
         private void Current_OnRewardedVideoAdLoaded(object sender, EventArgs e)
