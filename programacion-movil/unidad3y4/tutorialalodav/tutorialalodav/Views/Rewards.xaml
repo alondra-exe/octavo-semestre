@@ -2,18 +2,119 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:tutorialalodav.ViewModels"
-             x:Class="tutorialalodav.Views.Rewards" BackgroundColor="White">
+             x:Class="tutorialalodav.Views.Rewards" Title="Tutorial: REWARDS" BackgroundColor="White">
     <ContentPage.BindingContext>
         <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Button x:Name="reward" Text="Mostrar anuncio" Command="{Binding LoadRewardCommand}"></Button>
-            <StackLayout Orientation="Horizontal">
-                <Image Source="~/Resources/drawable/moneda.png"
-                   HeightRequest="20"></Image>
-                <Label x:Name="recompensa" FontSize="25" Text="{Binding Puntos}"></Label>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">ANTES DE CONTINUAR</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Asegúrate de haber realizado lo indicado en "Primeros pasos".
+                    </Label>
+                    <Button Text="Primeros pasos"
+                        BackgroundColor="#31322F"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Margin="10,0,10,10"
+                        Command="{Binding PrimeroCommand}"></Button>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 1</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Lo primero que se tiene que hacer es suscribirse al evento OnRewardedVideoAdLoaded, este lo utilizaremos para cargar la AD. También nos suscribiremos al evento OnRewardedVideoAdCompleted.
+                    </Label>
+                    <Image Source="~/Resources/drawable/r1.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 2</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        El evento OnRewardAdLoaded contendrá esta línea la cual estará al pendiente de un AD Reward que se trate de mostrar.
+                    </Label>
+                    <Image Source="~/Resources/drawable/r2.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 3</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Dentro de un evento o de un command agregamos la siguiente línea, la cual llamará a nuestro anuncio. El ID mostrado es el de un reward de prueba para uso durante el desarrollo.
+                    </Label>
+                    <Image Source="~/Resources/drawable/i3.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 4</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        En el evento OnRewardedVideoAdCompleted se pone el código que quieres se realice si el reward se mira en su totalidad.
+                    </Label>
+                    <Image Source="~/Resources/drawable/i4.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">RESULTADO</Label>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="~/Resources/drawable/moneda.png"
+                   HeightRequest="20" Margin="20,0,5,0"></Image>
+                        <Label x:Name="recompensa" TextColor="Black" FontAttributes="Bold" FontSize="25" Text="{Binding Puntos}"></Label>
+                    </StackLayout>
+                    <Button x:Name="reward"
+                            Command="{Binding LoadRewardCommand}"
+                            Text="VER ANUNCIO CON RECOMPENSA"
+                            Clicked="interstitial_Clicked"
+                            BackgroundColor="#31322F"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            Margin="10,0,10,10"></Button>
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

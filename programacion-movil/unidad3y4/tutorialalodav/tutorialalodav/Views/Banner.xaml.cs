@@ -15,6 +15,8 @@ namespace tutorialalodav.Views
         public Banner()
         {
             InitializeComponent();
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Gold;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
         }
 
     }

@@ -20,11 +20,11 @@
                 <Label FontSize="Subtitle"
                        TextColor="Black"
                        Margin="15,5,15,0">
-                    Antes de continuar a los tutoriales de cada tipo de anuncio, asegurate de realizar los indicado en "Primeros pasos".
+                    Antes de continuar a los tutoriales de cada tipo de anuncio, asegúrate de realizar lo indicado en "Primeros pasos".
                 </Label>
                 <Button Text="Primeros pasos"
-                        BackgroundColor="Gold"
-                        TextColor="Black"
+                        BackgroundColor="#31322F"
+                        TextColor="White"
                         FontAttributes="Bold"
                         FontSize="15"
                         CornerRadius="20"

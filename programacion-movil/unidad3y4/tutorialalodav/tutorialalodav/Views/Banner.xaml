@@ -2,21 +2,67 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob"
-             x:Class="tutorialalodav.Views.Banner" Title="Tutorial: BANNER">
-
-    <StackLayout Margin="20,0,20,0">
-        <Label FontSize="Title"
+             x:Class="tutorialalodav.Views.Banner" Title="Tutorial: BANNER" BackgroundColor="White">
+    <ScrollView>
+        <StackLayout>
+            <StackLayout>
+                <Label FontSize="20"
                        BackgroundColor="Gold"
                        TextColor="Black"
-                       Margin="15,0,15,0">ANTES DE EMPEZAR</Label>
-        <Label FontSize="Subtitle"
-               TextColor="Black"
-                       Margin="15,5,15,0">
-            Antes de continuar a los tutoriales de cada tipo de anuncio, asegurate de realizar los indicado en "Primeros pasos".
-            </Label>
-
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">ANTES DE CONTINUAR</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Asegúrate de haber realizado lo indicado en "Primeros pasos".
+                </Label>
+                <Button Text="Primeros pasos"
+                        BackgroundColor="#31322F"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Margin="10,0,10,10"
+                        Command="{Binding PrimeroCommand}"></Button>
+            </StackLayout>
         
-        <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-3940256099942544/6300978111" BackgroundColor="Red" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
-    </StackLayout>
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 1</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Para agregar un banner a nuestra apliccacion hay que agregar un objeto MTAdView en la view deseada. Para poder utlizar estos objetos hay que agregar esta linea a nuestro XAML: xmlns:controls="clr-namespace:MarcTron.Plugin.Controls;assembly=Plugin.MtAdmob".
+                </Label>
+                <Image Source="~/Resources/drawable/b1.png"
+                   Margin="15,0,15,10"></Image>
+            </StackLayout>
 
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">PASO 2</Label>
+                <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                    El objeto MTAdVIew tiene un campo llamadp AdsId, aqui se coloca el id del banner creado en AdMob. El ID que se muestra en la imagen es uno de prueba que proporciona Google para usar durante el desarrollo.
+                </Label>
+            </StackLayout>
+
+            <StackLayout>
+                <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">RESULTADO</Label>
+                <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-3940256099942544/6300978111" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
 </ContentPage>

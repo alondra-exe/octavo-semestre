@@ -30,7 +30,6 @@
                         Buscaremos en el Administrador de paquetes NuGet el paquete "MarcTron.Admob". Lo instalamos en nuestro proyecto de Xamarin. Este paquete nos facilita la implementación de anuncios en nuestra aplicación.
                     </Label>
                     <Image Source="~/Resources/drawable/pp1.png"
-                   HeightRequest="70"
                    Margin="15,0,15,10"></Image>
                 </StackLayout>
 
@@ -46,9 +45,9 @@
                         En nuestro proyecto de Xamarin agregamos al archivo "AndroidManifest.xml" los permisos ACCESS_NETWORK_STATE, INTERNET y el APPLICATION_ID.
                     </Label>
                     <Image Source="~/Resources/drawable/pp2.png"
-                   HeightRequest="90"
                    Margin="15,0,15,10"></Image>
                 </StackLayout>
+
 
                 <StackLayout>
                     <Label FontSize="20"
@@ -62,7 +61,6 @@
                         En nuestro proyecto de Xamarin en MainActivity.cs iniciamos el MobileAds.
                     </Label>
                     <Image Source="~/Resources/drawable/pp3.png"
-                   HeightRequest="80"
                    Margin="15,0,15,10"></Image>
                 </StackLayout>
             </StackLayout>

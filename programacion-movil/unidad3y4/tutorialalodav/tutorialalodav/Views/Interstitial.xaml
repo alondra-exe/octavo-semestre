@@ -1,11 +1,95 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="tutorialalodav.Views.Interstitial">
+             x:Class="tutorialalodav.Views.Interstitial" Title="Tutorial: INTERSTITIAL" BackgroundColor="White">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">ANTES DE CONTINUAR</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Asegúrate de haber realizado lo indicado en "Primeros pasos".
+                    </Label>
+                    <Button Text="Primeros pasos"
+                        BackgroundColor="#31322F"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Margin="10,0,10,10"
+                        Command="{Binding PrimeroCommand}"></Button>
+                </StackLayout>
 
-            <Button x:Name="interstitial" Text="show interstitial Ad" Clicked="interstitial_Clicked"></Button>
-        </StackLayout>
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 1</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Lo primero que debemos hacer es suscribirnos el siguiente evento.
+                    </Label>
+                    <Image Source="~/Resources/drawable/i1.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 2</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Dentro del evento agregamos esta línea para que esté al pendiente de si un AD Interstitial trata de mostrarse.
+                    </Label>
+                    <Image Source="~/Resources/drawable/i2.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,10,10,5">PASO 3</Label>
+                    <Label FontSize="Body"
+                       TextColor="Black"
+                       Margin="10,0,10,5">
+                        Dentro de un evento o de un command agregamos la siguiente línea, la cual llamará a nuestro anuncio. El ID mostrado es el de un Interstitial de prueba para uso durante el desarrollo.
+                    </Label>
+                    <Image Source="~/Resources/drawable/i3.png"
+                   Margin="15,0,15,10"></Image>
+                </StackLayout>
+
+                <StackLayout>
+                    <Label FontSize="20"
+                       BackgroundColor="Gold"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       Margin="10,0,10,5">RESULTADO</Label>
+                    <Button x:Name="interstitial"
+                            Text="VER ANUNCIO INTERSTITIAL"
+                            Clicked="interstitial_Clicked"
+                            BackgroundColor="#31322F"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="15"
+                            CornerRadius="20"
+                            HeightRequest="40"
+                            Margin="10,0,10,10"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

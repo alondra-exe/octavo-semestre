@@ -3,19 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="tutorialalodav.Views.Info" BackgroundColor="White" Title="ACERCA DE">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand">
+        <StackLayout Margin="0,100,0,0">
             <StackLayout.Resources>
                 <Style TargetType="Label">
                     <Setter Property="HorizontalOptions" Value="Center"></Setter>
                     <Setter Property="TextColor" Value="Black"></Setter>
                     <Setter Property="Margin" Value="20,0,20,0"></Setter>
-                    <Setter Property="FontSize" Value="20"></Setter>
+                    <Setter Property="FontSize" Value="Body"></Setter>
                 </Style>
             </StackLayout.Resources>
-            <Label>Realizado por:</Label>
-            <Label>Alondra Elizabeth Delgadillo Silos 171G0576</Label>
-            <Label>David Andrés Ríos González 171G0247</Label>
-            <Label>Programación de Dispositvos Móviles 2021 | 8vo Semestre</Label>
+            <Image Source="~/Resources/drawable/iconoad.png"
+                   Margin="15,10,15,0"
+                   HeightRequest="100"></Image>
+            <Label TextColor="Gold" FontAttributes="Italic">Realizado por:</Label>
+            <Label HorizontalOptions="Center" FontAttributes="Bold">Alondra Elizabeth Delgadillo Silos 171G0576</Label>
+            <Label HorizontalOptions="Center" FontAttributes="Bold">David Andrés Ríos González 171G0247</Label>
+            <BoxView BackgroundColor="Gold" Margin="20,0,20,0" HeightRequest="2"></BoxView>
+            <Label HorizontalOptions="Center">Octavo Semestre</Label>
+            <Label HorizontalOptions="Center">Programación de Dispositvos Móviles 2021</Label>
+            <Label HorizontalTextAlignment="Center" HorizontalOptions="Center">Instituto Tecnológico de Estudios Superiores De La Región Carbonífera</Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
