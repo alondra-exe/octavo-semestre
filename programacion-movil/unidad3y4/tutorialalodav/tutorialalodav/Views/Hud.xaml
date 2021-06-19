@@ -14,6 +14,7 @@
                        TextColor="Black"
                        Margin="15,0,15,0">Presentando: Google AdMob</Label>
                 <Label FontSize="Subtitle"
+                       TextColor="Black"
                        Margin="15,5,15,0">
                     Google AdMob ayuda a los desarrolladores a ganar más dinero con sus aplicaciones para dispositivos móviles mediante el uso de anuncios de alta calidad. AdMob maximiza el valor de cada impresión, ya que combina la demanda global de los anunciantes, formatos del anuncio innovadores y una tecnología avanzada de monetización de aplicaciones.
                 </Label>

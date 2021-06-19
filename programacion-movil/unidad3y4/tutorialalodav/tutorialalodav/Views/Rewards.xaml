@@ -105,7 +105,6 @@
                     <Button x:Name="reward"
                             Command="{Binding LoadRewardCommand}"
                             Text="VER ANUNCIO CON RECOMPENSA"
-                            Clicked="interstitial_Clicked"
                             BackgroundColor="#31322F"
                             TextColor="White"
                             FontAttributes="Bold"
