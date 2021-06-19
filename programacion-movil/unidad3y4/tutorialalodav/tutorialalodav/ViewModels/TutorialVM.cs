@@ -4,15 +4,20 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
+using MarcTron.Plugin;
+
 
 namespace tutorialalodav.ViewModels
 {
     public class TutorialVM : INotifyPropertyChanged
     {
+        public int puntos;
+
         public Command BannerCommand { get; set; }
         public Command IntersticialCommand { get; set; }
         public Command RewardCommand { get; set; }
         public Command InfoCommand { get; set; }
+        public Command LoadRewardCommand { get; set; }
 
         Views.Banner banner;
         Views.Interstitial interstitial;
@@ -25,6 +30,24 @@ namespace tutorialalodav.ViewModels
             IntersticialCommand = new Command(TutoIntersticial);
             RewardCommand = new Command(TutoRewards);
             InfoCommand = new Command(TutoInfo);
+            LoadRewardCommand = new Command(LoadReward);
+        }
+
+        public void LoadReward()
+        {
+            CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
+            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");
+            CrossMTAdmob.Current.OnRewardedVideoAdCompleted += Current_OnRewardedVideoAdCompleted;
+        }
+
+        private void Current_OnRewardedVideoAdCompleted(object sender, EventArgs e)
+        {
+            puntos += 10;
+        }
+
+        private void Current_OnRewardedVideoAdLoaded(object sender, EventArgs e)
+        {
+            CrossMTAdmob.Current.ShowRewardedVideo();
         }
 
         public async void TutoBanner()
@@ -64,6 +87,8 @@ namespace tutorialalodav.ViewModels
             }
             await App.Current.MainPage.Navigation.PushAsync(info);
         }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string name = null)

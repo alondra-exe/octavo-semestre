@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:tutorialalodav.ViewModels"
              x:Class="tutorialalodav.Views.Rewards">
+    <ContentPage.BindingContext>
+        <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="reward" Text="show reward" Clicked="reward_Clicked"></Button>
-            <Label BackgroundColor="Red" Text="{Binding abc}"></Label>
+            <Button x:Name="reward" Text="show reward" Command="{Binding LoadRewardCommand}"></Button>
+            <Label x:Name="recompensa" BackgroundColor="Red" FontSize="25"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
