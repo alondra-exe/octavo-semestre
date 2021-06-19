@@ -8,15 +8,29 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="0,40,0,0">
+            <StackLayout Margin="0,20,0,0">
                 <Label FontSize="Title"
                        BackgroundColor="Gold"
                        TextColor="Black"
                        Margin="15,0,15,0">Presentando: Google AdMob</Label>
                 <Label FontSize="Subtitle"
-                       Margin="15,0,15,0">
+                       Margin="15,5,15,0">
                     Google AdMob ayuda a los desarrolladores a ganar más dinero con sus aplicaciones para dispositivos móviles mediante el uso de anuncios de alta calidad. AdMob maximiza el valor de cada impresión, ya que combina la demanda global de los anunciantes, formatos del anuncio innovadores y una tecnología avanzada de monetización de aplicaciones.
                 </Label>
+                <Label FontSize="Subtitle"
+                       TextColor="Black"
+                       Margin="15,5,15,0">
+                    Antes de continuar a los tutoriales de cada tipo de anuncio, asegurate de realizar los indicado en "Primeros pasos".
+                </Label>
+                <Button Text="Primeros pasos"
+                        BackgroundColor="Gold"
+                        TextColor="Black"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CornerRadius="20"
+                        HeightRequest="40"
+                        Margin="10,0,10,0"
+                        Command="{Binding PrimeroCommand}"></Button>
 
                 <Label FontSize="Title"
                        Margin="10,30,10,0"
@@ -61,7 +75,7 @@
                         FontSize="Caption"
                         CornerRadius="20"
                         HeightRequest="40"
-                        Margin="10,90,10,0"
+                        Margin="10,30,10,0"
                         Command="{Binding InfoCommand}"></Button>
             </StackLayout>
         </ScrollView>

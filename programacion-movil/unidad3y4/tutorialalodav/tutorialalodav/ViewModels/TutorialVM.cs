@@ -26,11 +26,13 @@ namespace tutorialalodav.ViewModels
         public Command IntersticialCommand { get; set; }
         public Command RewardCommand { get; set; }
         public Command InfoCommand { get; set; }
+        public Command PrimeroCommand { get; set; }
         public Command LoadRewardCommand { get; set; }
 
         Views.Banner banner;
         Views.Interstitial interstitial;
         Views.Rewards rewards;
+        Views.Primero primero;
         Views.Info info;
 
         public TutorialVM()
@@ -38,6 +40,7 @@ namespace tutorialalodav.ViewModels
             BannerCommand = new Command(TutoBanner);
             IntersticialCommand = new Command(TutoIntersticial);
             RewardCommand = new Command(TutoRewards);
+            PrimeroCommand = new Command(TutoPrimero);
             InfoCommand = new Command(TutoInfo);
             LoadRewardCommand = new Command(LoadReward);
             CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
@@ -85,6 +88,16 @@ namespace tutorialalodav.ViewModels
                 rewards.BindingContext = this;
             }
             await App.Current.MainPage.Navigation.PushAsync(rewards);
+        }
+
+        private async void TutoPrimero()
+        {
+            if (primero == null)
+            {
+                primero = new Views.Primero();
+                primero.BindingContext = this;
+            }
+            await App.Current.MainPage.Navigation.PushAsync(primero);
         }
 
         private async void TutoInfo()
