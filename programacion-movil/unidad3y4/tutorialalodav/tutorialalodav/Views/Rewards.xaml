@@ -2,14 +2,18 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:tutorialalodav.ViewModels"
-             x:Class="tutorialalodav.Views.Rewards">
+             x:Class="tutorialalodav.Views.Rewards" BackgroundColor="White">
     <ContentPage.BindingContext>
         <vm:TutorialVM x:Name="tutorialView"></vm:TutorialVM>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Button x:Name="reward" Text="show reward" Command="{Binding LoadRewardCommand}"></Button>
-            <Label x:Name="recompensa" BackgroundColor="Red" FontSize="25" Text="{Binding Puntos}"></Label>
+            <Button x:Name="reward" Text="Mostrar anuncio" Command="{Binding LoadRewardCommand}"></Button>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="~/Resources/drawable/moneda.png"
+                   HeightRequest="20"></Image>
+                <Label x:Name="recompensa" FontSize="25" Text="{Binding Puntos}"></Label>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

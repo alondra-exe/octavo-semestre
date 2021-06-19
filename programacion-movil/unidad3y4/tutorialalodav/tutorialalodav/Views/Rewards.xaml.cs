@@ -17,6 +17,8 @@ namespace tutorialalodav.Views
         public Rewards()
         {
             InitializeComponent();
+            ((NavigationPage)Application.Current.MainPage).BarBackgroundColor = Color.Gold;
+            ((NavigationPage)Application.Current.MainPage).BarTextColor = Color.Black;
         }
     }
 }
