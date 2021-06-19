@@ -14,17 +14,10 @@ namespace tutorialalodav.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Rewards : ContentPage
     {
-        public int abc;
         public Rewards()
         {
             InitializeComponent();
             CrossMTAdmob.Current.OnRewardedVideoAdLoaded += Current_OnRewardedVideoAdLoaded;
-            CrossMTAdmob.Current.OnRewardedVideoAdCompleted += Current_OnRewardedVideoAdCompleted;
-        }
-
-        private void Current_OnRewardedVideoAdCompleted(object sender, EventArgs e)
-        {
-            abc++;
         }
 
         private void Current_OnRewardedVideoAdLoaded(object sender, EventArgs e)

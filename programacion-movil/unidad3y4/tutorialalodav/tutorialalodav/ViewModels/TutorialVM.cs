@@ -11,7 +11,16 @@ namespace tutorialalodav.ViewModels
 {
     public class TutorialVM : INotifyPropertyChanged
     {
-        public int puntos;
+        private int puntos;
+        public int Puntos
+        {
+            get { return puntos; }
+            set
+            {
+                puntos = value;
+                OnPropertyChanged("Puntos");
+            }
+        }
 
         public Command BannerCommand { get; set; }
         public Command IntersticialCommand { get; set; }
@@ -42,7 +51,7 @@ namespace tutorialalodav.ViewModels
 
         private void Current_OnRewardedVideoAdCompleted(object sender, EventArgs e)
         {
-            puntos += 10;
+            Puntos ++;
         }
 
         private void Current_OnRewardedVideoAdLoaded(object sender, EventArgs e)

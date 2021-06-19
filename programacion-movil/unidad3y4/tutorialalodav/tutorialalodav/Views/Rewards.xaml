@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Button x:Name="reward" Text="show reward" Command="{Binding LoadRewardCommand}"></Button>
-            <Label x:Name="recompensa" BackgroundColor="Red" FontSize="25"></Label>
+            <Label x:Name="recompensa" BackgroundColor="Red" FontSize="25" Text="{Binding Puntos}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
