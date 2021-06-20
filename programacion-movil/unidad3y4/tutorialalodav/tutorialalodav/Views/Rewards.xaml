@@ -87,8 +87,6 @@
                        Margin="10,0,10,5">
                         En el evento OnRewardedVideoAdCompleted se pone el código que quieres se realice si el reward se mira en su totalidad.
                     </Label>
-                    <Image Source="~/Resources/drawable/i4.png"
-                   Margin="15,0,15,10"></Image>
                 </StackLayout>
 
                 <StackLayout>
