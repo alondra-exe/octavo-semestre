@@ -61,7 +61,7 @@
                        TextColor="Black"
                        FontAttributes="Bold"
                        Margin="10,0,10,5">RESULTADO</Label>
-                <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-3940256099942544/6300978111" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
+                <controls:MTAdView x:Name="banner" AdsId="ca-app-pub-1184057908298837/1579430853" WidthRequest="320" HeightRequest="100"></controls:MTAdView>
             </StackLayout>
         </StackLayout>
         </ScrollView>

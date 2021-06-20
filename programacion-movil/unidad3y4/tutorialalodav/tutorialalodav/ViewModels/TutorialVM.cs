@@ -49,7 +49,7 @@ namespace tutorialalodav.ViewModels
 
         public void LoadReward()
         {          
-            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-3940256099942544/5224354917");          
+            CrossMTAdmob.Current.LoadRewardedVideo("ca-app-pub-1184057908298837/1241639067");          
         }
 
         private void Current_OnRewardedVideoAdCompleted(object sender, EventArgs e)
